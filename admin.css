@@ -6004,5 +6004,5 @@ button {
         -webkit-overflow-scrolling: touch !important;
     }
 }#invoice-modal {
-    display: none !important;
+    display: none;
 }
