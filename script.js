@@ -1622,8 +1622,6 @@ window.closeMyOrders =
     closeMyOrders;
 window.viewOrder =
     viewOrder;
-window.closeOrderDetails =
-    closeOrderDetails;
 window.cancelOrder =
     cancelOrder;
 window.reorderItems =
