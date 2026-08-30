@@ -2674,6 +2674,9 @@ button {
 
     backdrop-filter: blur(3px);
 }
+#invoice-modal {
+    display: none;
+}
 
 
 .modal-overlay.show {
@@ -6000,4 +6003,6 @@ button {
 
         -webkit-overflow-scrolling: touch !important;
     }
+}#invoice-modal {
+    display: none !important;
 }
