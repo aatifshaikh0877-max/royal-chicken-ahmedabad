@@ -4061,13 +4061,13 @@ window.deleteInvoiceToRecycleBin = async function(orderId) {
         });
 
 
-        alert(
-            "Invoice Recycle Bin me chala gaya."
-        );
+       alert("Invoice Recycle Bin me chala gaya.");
 
+loadInvoiceRecycleBin();
 
-        loadInvoiceRecycleBin();
-
+if (typeof loadOrders === "function") {
+    loadOrders();
+}
 
     } catch (error) {
 
@@ -4122,22 +4122,16 @@ window.loadInvoiceRecycleBin = async function() {
 
         snapshot.forEach(item => {
 
-            const order = {
+    const order = {
+        id: item.id,
+        ...item.data()
+    };
 
-                id: item.id,
+    if (order.deleted === true) {
+        deletedInvoices.push(order);
+    }
 
-                ...item.data()
-
-            };
-
-
-            if (order.deleted === true) {
-
-                deletedInvoices.push(order);
-
-            }
-
-        });
+});
 
 
         if (!deletedInvoices.length) {

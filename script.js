@@ -1462,8 +1462,15 @@ async function reorderItems(orderId) {
             }
         );
         updateCart();
-        closeMyOrders();
-        openCart();
+closeMyOrders();
+openCart();
+
+const orderForm = document.querySelector(".order-form");
+
+if (orderForm) {
+    orderForm.style.display = "block";
+}
+
     } catch (error) {
         console.error(
             "REORDER ERROR:",
