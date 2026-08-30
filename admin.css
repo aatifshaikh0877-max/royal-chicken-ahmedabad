@@ -1,0 +1,6003 @@
+/* =========================================================
+   ROYAL CHICKEN - ADMIN PANEL
+   Professional • Clean • Responsive
+   Final Combined CSS
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+    --green: #16a85a;
+    --green-dark: #0f7d40;
+    --green-light: #eaf8f0;
+
+    --gold: #c99a2e;
+    --gold-light: #fff8e5;
+
+    --dark: #17221b;
+    --text: #29332d;
+    --muted: #7a857e;
+
+    --white: #ffffff;
+    --bg: #f5f7f6;
+    --border: #e5e9e6;
+
+    --red: #d94343;
+    --orange: #ed9418;
+    --blue: #3d79d8;
+
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+    --radius: 16px;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   BUTTON GLOBAL
+========================================================= */
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 250px;
+
+    background: #16a85a;
+
+    border-right: none;
+
+    color: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+========================================================= */
+
+.brand {
+
+    height: 155px;
+
+    padding: 18px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   BRAND LOGO
+========================================================= */
+
+.brand-logo {
+
+    width: 72px;
+    height: 72px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+
+.brand-logo img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   BRAND NAME
+========================================================= */
+
+.brand-name {
+
+    text-align: center;
+}
+
+
+.brand h2 {
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.brand span {
+
+    display: block;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU
+========================================================= */
+
+.sidebar-menu {
+
+    padding: 20px 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+/* =========================================================
+   SIDEBAR MENU TITLE
+========================================================= */
+
+.sidebar-menu-title {
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    padding: 10px 14px 5px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MENU ITEM
+========================================================= */
+
+.menu-item {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255, 255, 255, 0.90);
+
+    padding: 13px 14px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* =========================================================
+   MENU ICON
+========================================================= */
+
+.menu-item span {
+
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    color: #ffffff;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   MENU HOVER
+========================================================= */
+
+.menu-item:hover {
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   ACTIVE MENU
+========================================================= */
+
+.menu-item.active {
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    color: #ffffff;
+
+    box-shadow:
+        inset 3px 0 0 #ffffff;
+}
+
+
+/* =========================================================
+   MENU BADGE
+========================================================= */
+
+.menu-item b {
+
+    margin-left: auto;
+
+    min-width: 22px;
+
+    height: 22px;
+
+    padding: 0 6px;
+
+    border-radius: 20px;
+
+    background: #ffe5e5;
+
+    color: var(--red);
+
+    font-size: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   ACTIVE BADGE
+========================================================= */
+
+.menu-item.active b {
+
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer {
+
+    margin-top: auto;
+
+    padding: 18px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+.admin-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color:
+        rgba(255, 255, 255, 0.85);
+}
+
+
+.status-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #38e879;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255, 255, 255, 0.12);
+}
+
+
+.sidebar-footer p {
+
+    margin-top: 12px;
+
+    font-size: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+    padding:
+        0 30px 40px;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+.top-header {
+
+    min-height: 90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid var(--border);
+
+    margin-bottom: 28px;
+
+    gap: 20px;
+}
+
+
+.top-header h1 {
+
+    font-size: 25px;
+
+    color: var(--dark);
+
+    font-weight: 800;
+}
+
+
+.top-header p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.current-date {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.notification-btn {
+
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition: 0.2s ease;
+}
+
+
+.notification-btn:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+.notification-btn span {
+
+    position: absolute;
+
+    right: -4px;
+    top: -5px;
+
+    min-width: 18px;
+    height: 18px;
+
+    border-radius: 20px;
+
+    background: var(--red);
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 2px solid #ffffff;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+
+    display: none;
+}
+
+
+.section.active {
+
+    display: block;
+
+    animation:
+        sectionFade 0.25s ease;
+}
+
+
+@keyframes sectionFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 21px;
+
+    color: var(--dark);
+
+    font-weight: 800;
+}
+
+
+.section-heading p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.heading-actions {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-btn,
+.refresh-btn,
+.secondary-btn,
+.cancel-btn,
+.text-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+/* PRIMARY */
+
+.primary-btn {
+
+    background: var(--green);
+
+    color: #ffffff;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+
+.primary-btn:hover {
+
+    background: var(--green-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* REFRESH */
+
+.refresh-btn {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    color: var(--text);
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+
+.refresh-btn:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+/* SECONDARY */
+
+.secondary-btn {
+
+    background: #f2f5f3;
+
+    color: var(--green);
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+}
+
+
+/* CANCEL */
+
+.cancel-btn {
+
+    background: #f1f3f2;
+
+    color: #5f6963;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+
+.cancel-btn:hover {
+
+    background: #e8ebe9;
+}
+
+
+/* TEXT BUTTON */
+
+.text-btn {
+
+    background: transparent;
+
+    color: var(--green);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   DASHBOARD STATS
+========================================================= */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 17px;
+
+    margin-bottom: 20px;
+}
+
+
+.stat-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+
+.stat-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* STAT ICON */
+
+.stat-icon {
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    flex-shrink: 0;
+}
+
+
+.orders-icon {
+
+    background: #eaf8f0;
+
+    color: var(--green);
+}
+
+
+.sales-icon {
+
+    background: #fff8e5;
+
+    color: var(--gold);
+}
+
+
+.pending-icon {
+
+    background: #fff1df;
+
+    color: var(--orange);
+}
+
+
+.profit-icon {
+
+    background: #eaf1ff;
+
+    color: var(--blue);
+}
+
+
+/* STAT INFO */
+
+.stat-info span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+
+.stat-info strong {
+
+    font-size: 20px;
+
+    color: var(--dark);
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.5fr;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.panel {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+.panel-header {
+
+    padding: 18px 20px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.panel-header h3 {
+
+    font-size: 15px;
+
+    color: var(--dark);
+}
+
+
+.panel-header span {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   BUSINESS SUMMARY + RECENT ORDERS
+========================================================= */
+
+/* BUSINESS SUMMARY */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+}
+
+
+/* COMMON PANEL */
+
+.dashboard-grid .panel {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+
+/* PANEL HEADER */
+
+.dashboard-grid .panel-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid #edf0ee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.dashboard-grid .panel-header h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.dashboard-grid .panel-header span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   BUSINESS SUMMARY BOXES
+========================================================= */
+
+.dashboard-grid .summary-list {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-grid .summary-row {
+    min-height: 58px;
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    background: #fafcfb;
+    border: 1px solid #edf0ee;
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+}
+
+.dashboard-grid .summary-row:hover {
+    background: #f5faf7;
+    border-color: #dce9e0;
+    transform: translateY(-1px);
+}
+
+.dashboard-grid .summary-row span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.dashboard-grid .summary-row strong {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+    white-space: nowrap;
+}
+
+
+/* NET PROFIT */
+
+.dashboard-grid .summary-row.highlight {
+    background: #edf8f1;
+    border: 1px solid #cfe8d8;
+}
+
+.dashboard-grid .summary-row.highlight span {
+    color: #356947;
+}
+
+.dashboard-grid .summary-row.highlight strong {
+    color: var(--green);
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   RECENT ORDERS BOXES
+========================================================= */
+
+.dashboard-grid .recent-orders {
+    padding: 15px;
+
+    max-height: 300px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* EACH ORDER BOX */
+
+.dashboard-grid .recent-orders .financial-row {
+    min-height: 60px;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    background: #fafcfb;
+    border: 1px solid #edf0ee;
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+}
+
+.dashboard-grid .recent-orders .financial-row:hover {
+    background: #f5faf7;
+    border-color: #dce9e0;
+    transform: translateY(-1px);
+}
+
+
+/* ORDER NAME */
+
+.dashboard-grid .recent-orders .financial-row span {
+    min-width: 0;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--dark);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ORDER AMOUNT */
+
+.dashboard-grid .recent-orders .financial-row strong {
+    flex-shrink: 0;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    color: var(--green);
+
+    white-space: nowrap;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
+.filter-bar,
+.invoice-filter,
+.accounting-filter {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 13px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
+
+.search-box {
+
+    flex: 1;
+
+    min-width: 220px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background: #f7f9f8;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 0 12px;
+}
+
+
+.search-box span {
+
+    font-size: 14px;
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 12px;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   INPUTS / SELECT
+========================================================= */
+
+.filter-bar select,
+.filter-bar input,
+.invoice-filter input,
+.accounting-filter input,
+.filter-field input {
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    color: var(--text);
+}
+
+
+.filter-bar select:focus,
+.filter-bar input:focus,
+.search-box:focus-within,
+.invoice-filter input:focus,
+.accounting-filter input:focus {
+
+    border-color: var(--green);
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+.orders-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.order-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 17px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+
+.order-card:hover {
+
+    border-color: #cfe7d9;
+
+    transform: translateY(-1px);
+}
+
+
+/* ORDER TOP */
+
+.order-card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.order-number {
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    color: var(--dark);
+}
+
+
+.order-date {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-badge {
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status-pending {
+
+    background: #fff5df;
+
+    color: #b67500;
+}
+
+
+.status-accepted {
+
+    background: #eaf1ff;
+
+    color: #376cc0;
+}
+
+
+.status-preparing {
+
+    background: #f2eaff;
+
+    color: #7c42b7;
+}
+
+
+.status-out-for-delivery {
+
+    background: #e8f7ff;
+
+    color: #15739c;
+}
+
+
+.status-delivered {
+
+    background: #e8f8ef;
+
+    color: var(--green);
+}
+
+
+.status-cancelled {
+
+    background: #ffeaea;
+
+    color: var(--red);
+}
+
+
+/* =========================================================
+   ORDER BODY
+========================================================= */
+
+.order-card-body {
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 17px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #f0f2f1;
+}
+
+
+.order-info-block span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-bottom: 4px;
+
+    text-transform: uppercase;
+}
+
+
+.order-info-block strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    color: var(--text);
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   ORDER FOOTER
+========================================================= */
+
+.order-card-footer {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid #f0f2f1;
+}
+
+
+.order-total {
+
+    color: var(--green);
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+
+.order-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+}
+
+
+.order-actions button {
+
+    border:
+        1px solid var(--border);
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    padding: 8px 10px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    transition: 0.2s ease;
+}
+
+
+.order-actions button:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+.order-actions .delete-order-btn:hover {
+
+    border-color: var(--red);
+
+    color: var(--red);
+
+    background: #fff5f5;
+}
+
+
+/* =========================================================
+   ACCOUNTING
+========================================================= */
+
+.accounting-filter {
+
+    align-items: flex-end;
+}
+
+
+.filter-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.filter-field label {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    font-weight: 700;
+}
+
+
+.accounting-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.account-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.account-card span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.account-card strong {
+
+    display: block;
+
+    margin-top: 9px;
+
+    color: var(--green);
+
+    font-size: 21px;
+}
+
+
+.account-card.expense strong {
+
+    color: var(--red);
+}
+
+
+.account-card.profit strong {
+
+    color: var(--green);
+}
+
+
+.account-card.orders strong {
+
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   FINANCIAL TABLE
+========================================================= */
+
+.financial-table {
+
+    padding: 5px 20px 15px;
+}
+
+
+.financial-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 18px 0;
+
+    border-bottom:
+        1px solid #f0f2f1;
+}
+
+
+.financial-row span {
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+.financial-row strong {
+
+    font-size: 14px;
+
+    color: var(--dark);
+}
+
+
+.financial-row.total-row {
+
+    border-bottom: none;
+}
+
+
+.financial-row.total-row strong {
+
+    color: var(--green);
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   EXPENSES
+   CLEAN FINAL DESIGN
+========================================================= */
+
+
+/* EXPENSE TOP BAR */
+
+.expenses-top-bar {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 18px;
+}
+
+
+/* EXPENSE HEADING */
+
+.expenses-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.expenses-heading-icon {
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 12px;
+
+    background: #eef8f1;
+
+    border:
+        1px solid #d8ebdf;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: var(--green);
+
+    flex-shrink: 0;
+}
+
+
+.expenses-heading h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: #171717;
+}
+
+
+.expenses-heading p {
+
+    margin: 4px 0 0;
+
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   ADD EXPENSE BUTTON
+========================================================= */
+
+.add-expense-btn {
+
+    border: 0;
+
+    background: var(--green);
+
+    color: #ffffff;
+
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition: 0.2s ease;
+
+    white-space: nowrap;
+}
+
+
+.add-expense-btn span {
+
+    font-size: 22px;
+
+    line-height: 1;
+}
+
+
+.add-expense-btn:hover {
+
+    background: var(--green-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EXPENSE TOTAL BOX
+========================================================= */
+
+.expense-total-box {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e6ebe8;
+
+    border-radius: 15px;
+
+    padding: 20px 22px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 5px 18px rgba(20, 60, 35, 0.05);
+}
+
+
+.expense-total-left {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.expense-total-label {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #555;
+}
+
+
+.expense-total-left small {
+
+    font-size: 12px;
+
+    color: #999;
+}
+
+
+.expense-total-amount {
+
+    color: var(--red);
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   OLD EXPENSE SUMMARY SUPPORT
+   Kept so existing JS/HTML doesn't break
+========================================================= */
+
+.expense-summary {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e6ebe8;
+
+    border-radius: 15px;
+
+    padding: 18px 20px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 6px 20px rgba(20, 60, 35, 0.05);
+}
+
+
+.expense-summary-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.expense-summary-info span {
+
+    color: #718078;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.expense-summary-info strong {
+
+    color: var(--red);
+
+    font-size: 26px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   EXPENSE ADD BUTTON OLD SUPPORT
+========================================================= */
+
+.expense-add-btn {
+
+    flex-shrink: 0;
+
+    min-width: 145px;
+
+    height: 44px;
+
+    border-radius: 11px;
+}
+
+
+/* =========================================================
+   EXPENSE RECORDS
+========================================================= */
+
+.expense-records-wrapper,
+.expense-record-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding: 2px 0;
+}
+
+
+/* =========================================================
+   EXPENSE RECORD CARD
+========================================================= */
+
+.expense-record-card {
+
+    width: 100%;
+
+    min-height: 82px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e7ece9;
+
+    border-radius: 14px;
+
+    padding: 16px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.035);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+
+.expense-record-card:hover {
+
+    transform: translateY(-1px);
+
+    border-color: #cfe2d5;
+
+    box-shadow:
+        0 8px 20px rgba(20, 60, 35, 0.07);
+}
+
+
+/* =========================================================
+   EXPENSE MAIN
+========================================================= */
+
+.expense-record-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EXPENSE ICON
+========================================================= */
+
+.expense-record-icon {
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 11px;
+
+    background: #eef8f1;
+
+    border:
+        1px solid #dcece1;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 800;
+
+    color: var(--green);
+}
+
+
+/* =========================================================
+   EXPENSE DETAILS
+========================================================= */
+
+.expense-record-details {
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   EXPENSE TITLE ROW
+========================================================= */
+
+.expense-record-title-row,
+.expense-record-title {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+}
+
+
+.expense-record-title-row strong,
+.expense-record-title strong {
+
+    font-size: 15px;
+
+    color: #202a24;
+
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   EXPENSE CATEGORY
+========================================================= */
+
+.expense-category {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #eef8f1;
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   EXPENSE META
+========================================================= */
+
+.expense-record-meta,
+.expense-record-info {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 7px;
+
+    color: #858e89;
+
+    font-size: 12px;
+}
+
+
+.expense-record-info {
+
+    margin-top: 0;
+}
+
+
+.expense-record-meta span,
+.expense-record-info span {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+/* =========================================================
+   EXPENSE ACTIONS
+========================================================= */
+
+.expense-record-actions,
+.expense-record-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   EXPENSE AMOUNT
+========================================================= */
+
+.expense-record-amount {
+
+    color: var(--red);
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   EXPENSE DELETE
+========================================================= */
+
+.expense-delete-btn {
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid #ffd0d0;
+
+    background: #fff0f0;
+
+    color: var(--red);
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.18s ease;
+}
+
+
+.expense-delete-btn:hover {
+
+    background: var(--red);
+
+    color: #ffffff;
+
+    border-color: var(--red);
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   EXPENSE PANEL
+========================================================= */
+
+.expense-panel {
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   EXPENSE EMPTY
+========================================================= */
+
+.expense-empty-box {
+
+    background: #ffffff;
+
+    border:
+        1px dashed #d9e0dc;
+
+    border-radius: 14px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+}
+
+
+.expense-empty-icon {
+
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+
+    background: #eef8f1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+
+    color: var(--green);
+}
+
+
+.expense-empty-box h3 {
+
+    margin: 0;
+
+    color: #222;
+
+    font-size: 16px;
+}
+
+
+.expense-empty-box p {
+
+    margin: 7px 0 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   OLD EMPTY STATE SUPPORT
+========================================================= */
+
+.expense-record-list .empty-state {
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: #8a948e;
+}
+
+
+/* =========================================================
+   INVOICES
+========================================================= */
+
+.invoice-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+.invoice-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 17px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s ease;
+}
+
+
+.invoice-card:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+
+.invoice-card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+
+.invoice-card-number {
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+    color: var(--dark);
+}
+
+
+.invoice-card-date {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+.invoice-card-customer {
+
+    margin-top: 15px;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid #f0f2f1;
+}
+
+
+.invoice-card-customer strong {
+
+    font-size: 12px;
+
+    display: block;
+}
+
+
+.invoice-card-customer span {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    display: block;
+
+    margin-top: 4px;
+}
+
+
+.invoice-card-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+
+.invoice-card-total {
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    color: var(--green);
+}
+
+
+.invoice-card-actions {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+
+.invoice-card-actions button {
+
+    border:
+        1px solid var(--border);
+
+    background: #ffffff;
+
+    border-radius: 8px;
+
+    padding: 8px 10px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.invoice-card-actions button:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+/* =========================================================
+   SALES
+========================================================= */
+
+.sales-filter {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+
+.period-btn {
+
+    border:
+        1px solid var(--border);
+
+    background: #ffffff;
+
+    color: var(--muted);
+
+    border-radius: 9px;
+
+    padding: 9px 15px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.period-btn:hover {
+
+    border-color: var(--green);
+
+    color: var(--green);
+}
+
+
+.period-btn.active {
+
+    background: var(--green);
+
+    border-color: var(--green);
+
+    color: #ffffff;
+}
+
+
+.sales-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.sales-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.sales-card span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.sales-card strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 23px;
+
+    color: var(--green);
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(18, 27, 22, 0.55);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 3000;
+
+    backdrop-filter: blur(3px);
+}
+
+
+.modal-overlay.show {
+
+    display: flex;
+}
+
+
+.modal {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.18);
+
+    animation:
+        modalOpen 0.2s ease;
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.97)
+            translateY(8px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.modal-header {
+
+    padding: 19px 20px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+.modal-header h3 {
+
+    font-size: 16px;
+
+    color: var(--dark);
+}
+
+
+.modal-header p {
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+/* CLOSE */
+
+.close-modal {
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #f3f5f4;
+
+    color: #69736d;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.close-modal:hover {
+
+    background: #ffeaea;
+
+    color: var(--red);
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+#expense-form {
+
+    padding: 20px;
+}
+
+
+.form-group {
+
+    margin-bottom: 15px;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    margin-bottom: 7px;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    border:
+        1px solid var(--border);
+
+    background: #fbfcfb;
+
+    border-radius: 10px;
+
+    padding: 11px 12px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    color: var(--text);
+
+    transition: 0.2s ease;
+}
+
+
+.form-group textarea {
+
+    resize: vertical;
+
+    min-height: 80px;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: var(--green);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 168, 90, 0.07);
+}
+
+
+/* FORM ROW */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* MODAL ACTIONS */
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   ORDER DETAILS
+========================================================= */
+
+.order-modal {
+
+    max-width: 650px;
+}
+
+
+.order-details {
+
+    padding: 20px;
+}
+
+
+.detail-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail-box {
+
+    padding: 12px;
+
+    background: #f8faf9;
+
+    border-radius: 10px;
+}
+
+
+.detail-box span {
+
+    display: block;
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    margin-bottom: 5px;
+}
+
+
+.detail-box strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    color: var(--dark);
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   ORDER ITEMS TABLE
+========================================================= */
+
+.order-items-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 10px;
+}
+
+
+.order-items-table th {
+
+    background: #f7f9f8;
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    text-align: left;
+
+    padding: 10px;
+}
+
+
+.order-items-table td {
+
+    padding: 11px 10px;
+
+    font-size: 11px;
+
+    border-bottom:
+        1px solid #f0f2f1;
+}
+
+
+/* ORDER TOTAL */
+
+.order-detail-total {
+
+    margin-top: 15px;
+
+    padding-top: 15px;
+
+    border-top:
+        2px solid var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+
+.order-detail-total strong {
+
+    color: var(--green);
+}
+
+
+/* =========================================================
+   INVOICE MODAL
+========================================================= */
+
+.invoice-modal {
+
+    max-width: 720px;
+
+    width: 95%;
+
+    max-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.invoice-content {
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+
+    flex: 1;
+
+    min-height: 0;
+}
+
+
+.invoice-paper {
+
+    width: 100%;
+
+    color: #111111;
+
+    background: #ffffff;
+}
+
+
+/* INVOICE BRAND */
+
+.invoice-brand {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        2px solid #222222;
+}
+
+
+.invoice-brand h1 {
+
+    font-size: 23px;
+
+    color: #111111;
+
+    font-weight: 900;
+}
+
+
+.invoice-brand p {
+
+    font-size: 10px;
+
+    color: #555555;
+
+    margin-top: 4px;
+}
+
+
+/* INVOICE TITLE */
+
+.invoice-title {
+
+    text-align: right;
+}
+
+
+.invoice-title h2 {
+
+    font-size: 18px;
+}
+
+
+.invoice-title span {
+
+    display: block;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   INVOICE CUSTOMER
+========================================================= */
+
+.invoice-customer {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    padding: 18px 0;
+}
+
+
+.invoice-customer-block span {
+
+    display: block;
+
+    font-size: 9px;
+
+    color: #777777;
+
+    margin-bottom: 4px;
+}
+
+
+.invoice-customer-block strong {
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #111111;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   INVOICE TABLE
+========================================================= */
+
+.invoice-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 5px;
+}
+
+
+.invoice-table th {
+
+    background: #f2f2f2;
+
+    border-top:
+        1px solid #222222;
+
+    border-bottom:
+        1px solid #222222;
+
+    padding: 9px 7px;
+
+    font-size: 9px;
+
+    text-align: left;
+}
+
+
+.invoice-table td {
+
+    padding: 9px 7px;
+
+    border-bottom:
+        1px solid #dddddd;
+
+    font-size: 10px;
+}
+
+
+.invoice-table th:last-child,
+.invoice-table td:last-child {
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   INVOICE SUMMARY
+========================================================= */
+
+.invoice-summary {
+
+    width: 280px;
+
+    margin-left: auto;
+
+    margin-top: 15px;
+}
+
+
+.invoice-summary-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 7px 0;
+
+    font-size: 10px;
+}
+
+
+.invoice-summary-row.grand-total {
+
+    border-top:
+        2px solid #111111;
+
+    margin-top: 5px;
+
+    padding-top: 10px;
+
+    font-size: 14px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   INVOICE FOOTER
+========================================================= */
+
+.invoice-footer {
+
+    margin-top: 35px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid #dddddd;
+
+    text-align: center;
+}
+
+
+.invoice-footer p {
+
+    font-size: 10px;
+
+    color: #555555;
+
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   INVOICE ACTIONS
+========================================================= */
+
+.invoice-actions {
+
+    padding: 15px 20px;
+
+    border-top:
+        1px solid var(--border);
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.empty-state,
+.loading-state {
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.empty-state::first-letter {
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   EXPENSE TOP OLD SUPPORT
+========================================================= */
+
+.expense-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+
+.expense-top .expense-summary {
+
+    width: fit-content;
+
+    min-width: 220px;
+
+    padding: 18px 24px;
+
+    border-radius: 14px;
+
+    margin: 0;
+}
+
+
+.expense-top .expense-add-btn {
+
+    width: auto !important;
+
+    min-width: 140px;
+
+    padding: 11px 18px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .accounting-cards {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .invoice-list {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 800px
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+
+        width: 72px;
+
+        overflow-y: auto;
+    }
+
+
+    .brand {
+
+        height: 80px;
+
+        padding: 12px 8px;
+    }
+
+
+    .brand-logo {
+
+        width: 44px;
+
+        height: 44px;
+    }
+
+
+    .brand-name {
+
+        display: none;
+    }
+
+
+    .brand > div:last-child {
+
+        display: none;
+    }
+
+
+    .sidebar-menu {
+
+        padding: 15px 8px;
+    }
+
+
+    .sidebar-menu-title {
+
+        display: none;
+    }
+
+
+    .menu-item {
+
+        justify-content: center;
+
+        padding: 13px 8px;
+
+        font-size: 0;
+    }
+
+
+    .menu-item span {
+
+        width: auto;
+
+        font-size: 17px;
+    }
+
+
+    .menu-item b {
+
+        position: absolute;
+
+        margin-left: 28px;
+
+        margin-top: -22px;
+    }
+
+
+    .sidebar-footer {
+
+        display: none;
+    }
+
+
+    /* MAIN */
+
+    .main-content {
+
+        margin-left: 72px;
+
+        padding:
+            0 15px 30px;
+    }
+
+
+    /* HEADER */
+
+    .top-header {
+
+        min-height: 75px;
+
+        gap: 10px;
+    }
+
+
+    .top-header h1 {
+
+        font-size: 20px;
+    }
+
+
+    .current-date {
+
+        display: none;
+    }
+
+
+    /* SECTION */
+
+    .section-heading {
+
+        align-items: flex-start;
+    }
+
+
+    /* FILTER */
+
+    .filter-bar,
+    .invoice-filter,
+    .accounting-filter {
+
+        flex-wrap: wrap;
+    }
+
+
+    .search-box {
+
+        flex-basis: 100%;
+    }
+
+
+    /* ORDERS */
+
+    .order-card-body {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .order-card-body
+    .order-info-block:last-child {
+
+        grid-column:
+            1 / -1;
+    }
+
+
+    /* SALES */
+
+    .sales-cards {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* EXPENSES */
+
+    .expenses-top-bar {
+
+        align-items: flex-start;
+    }
+
+
+    .expense-record-card {
+
+        align-items: flex-start;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 650px
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .expense-summary {
+
+        padding: 15px;
+
+        border-radius: 14px;
+    }
+
+
+    .expense-add-btn {
+
+        min-width: auto;
+
+        padding:
+            0 13px;
+
+        font-size: 12px;
+    }
+
+
+    .expense-record-card {
+
+        padding: 14px;
+
+        gap: 12px;
+    }
+
+
+    .expense-record-right,
+    .expense-record-actions {
+
+        flex-direction: column;
+
+        align-items: flex-end;
+
+        gap: 8px;
+    }
+
+
+    .expense-record-amount {
+
+        font-size: 14px;
+    }
+
+
+    .expenses-heading {
+
+        gap: 10px;
+    }
+
+
+    .expenses-heading-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+
+    .expenses-heading h2 {
+
+        font-size: 17px;
+    }
+
+
+    .expenses-heading p {
+
+        font-size: 11px;
+    }
+
+
+    .add-expense-btn {
+
+        padding:
+            0 12px;
+
+        font-size: 12px;
+    }
+
+
+    .expense-total-box {
+
+        padding: 16px;
+    }
+
+
+    .expense-total-amount {
+
+        font-size: 20px;
+    }
+
+
+    .expense-delete-btn {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 520px
+========================================================= */
+
+@media (max-width: 520px) {
+
+    /* STATS */
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ACCOUNTING */
+
+    .accounting-cards {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FORM */
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ORDER */
+
+    .order-card-top {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .order-card-body {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .order-card-body
+    .order-info-block:last-child {
+
+        grid-column: auto;
+    }
+
+
+    .order-card-footer {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .order-actions {
+
+        width: 100%;
+
+        justify-content: flex-start;
+    }
+
+
+    /* INVOICE */
+
+    .invoice-customer {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .invoice-summary {
+
+        width: 100%;
+    }
+
+
+    /* MODAL */
+
+    .modal-overlay {
+
+        padding: 8px;
+    }
+
+
+    .modal {
+
+        border-radius: 14px;
+    }
+
+
+    .invoice-content {
+
+        padding: 15px;
+    }
+
+
+    /* EXPENSE */
+
+    .expenses-top-bar {
+
+        gap: 10px;
+    }
+
+
+    .expenses-heading-icon {
+
+        display: none;
+    }
+
+
+    .expense-total-box {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+
+    .expense-record-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .expense-record-main {
+
+        width: 100%;
+    }
+
+
+    .expense-record-actions,
+    .expense-record-right {
+
+        width: 100%;
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+
+    .expense-record-amount {
+
+        font-size: 15px;
+    }
+
+
+    .add-expense-btn {
+
+        min-height: 40px;
+
+        padding:
+            0 10px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .main-content {
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+
+    .top-header h1 {
+
+        font-size: 18px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 18px;
+    }
+
+
+    .stat-card {
+
+        padding: 15px;
+    }
+
+
+    .stat-icon {
+
+        width: 42px;
+
+        height: 42px;
+    }
+
+
+    .expense-record-main {
+
+        gap: 9px;
+    }
+
+
+    .expense-record-icon {
+
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    body {
+
+        background: #ffffff;
+    }
+
+
+    .sidebar,
+    .top-header,
+    .no-print {
+
+        display: none !important;
+    }
+
+
+    .main-content {
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+
+    .section {
+
+        display: none !important;
+    }
+
+
+    .modal-overlay {
+
+        position: static;
+
+        display: block !important;
+
+        background: #ffffff;
+
+        padding: 0;
+    }
+
+
+    .invoice-modal {
+
+        max-width: none;
+
+        max-height: none;
+
+        box-shadow: none;
+
+        border-radius: 0;
+    }
+
+
+    .invoice-content {
+
+        padding: 0;
+    }
+}/* =====================================================
+   ROYAL CHICKEN - SALES REPORT
+   SALES RECORDS BOX / TABLE
+===================================================== */
+
+.sales-records-panel {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+
+/* SALES RECORDS HEADER */
+
+.sales-records-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    background: #ffffff;
+}
+
+.sales-records-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.sales-records-header p {
+    margin: 5px 0 0;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+
+/* SALES TABLE WRAPPER */
+
+.sales-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* SALES TABLE */
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+
+/* TABLE HEADER */
+
+.sales-table thead {
+    background: #f7f9f8;
+}
+
+.sales-table th {
+    padding: 13px 20px;
+    text-align: left;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    color: #69746d;
+
+    border-bottom: 1px solid var(--border);
+
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+
+/* TABLE BODY */
+
+.sales-table td {
+    padding: 15px 20px;
+
+    font-size: 12px;
+
+    color: var(--text);
+
+    border-bottom: 1px solid #f0f2f1;
+
+    vertical-align: middle;
+}
+
+
+/* LAST ROW */
+
+.sales-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* HOVER */
+
+.sales-table tbody tr {
+    transition: 0.18s ease;
+}
+
+.sales-table tbody tr:hover {
+    background: #fafcfb;
+}
+
+
+/* DATE */
+
+.sales-table .sales-date {
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+
+/* ORDER NUMBER */
+
+.sales-table .sales-order {
+    font-weight: 800;
+    color: var(--dark);
+}
+
+
+/* CUSTOMER */
+
+.sales-table .sales-customer {
+    font-weight: 600;
+    color: var(--text);
+}
+
+
+/* AMOUNT */
+
+.sales-table .sales-amount {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--green);
+    white-space: nowrap;
+}
+
+
+/* EMPTY SALES */
+
+.sales-table-empty {
+    padding: 45px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   SALES REPORT TOTAL ORDERS BOX
+===================================================== */
+
+.sales-total-box {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 22px 24px;
+
+    margin-bottom: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.sales-total-box span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+.sales-total-box strong {
+    display: block;
+
+    color: var(--green);
+
+    font-size: 30px;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   SALES PERIOD BUTTONS
+===================================================== */
+
+.sales-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.period-btn {
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--muted);
+
+    border-radius: 10px;
+
+    padding: 10px 17px;
+
+    cursor: pointer;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.period-btn:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.period-btn.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 12px rgba(22, 138, 69, 0.18);
+}
+
+
+/* =====================================================
+   SALES REPORT MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    .sales-records-panel {
+        border-radius: 14px;
+    }
+
+    .sales-records-header {
+        padding: 16px;
+    }
+
+    .sales-records-header h3 {
+        font-size: 15px;
+    }
+
+    .sales-table {
+        min-width: 520px;
+    }
+
+    .sales-table th {
+        padding: 12px 15px;
+        font-size: 9px;
+    }
+
+    .sales-table td {
+        padding: 13px 15px;
+        font-size: 11px;
+    }
+
+    .sales-table .sales-amount {
+        font-size: 13px;
+    }
+
+    .sales-total-box {
+        padding: 18px;
+    }
+
+    .sales-total-box strong {
+        font-size: 26px;
+    }
+
+    .sales-filter {
+        gap: 6px;
+    }
+
+    .period-btn {
+        padding: 9px 12px;
+        font-size: 10px;
+    }
+}/* =========================================================
+   SALES SIMPLE LIST
+========================================================= */
+
+.sales-simple-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sales-simple-row {
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    border-bottom: 1px solid #e8e8e8;
+
+    background: #fff;
+}
+
+
+.sales-simple-row:last-child {
+    border-bottom: none;
+}
+
+
+.sales-invoice-number {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+}
+
+
+.sales-amount {
+    font-size: 17px;
+    font-weight: 800;
+    color: #008f63;
+}
+
+
+@media (max-width: 600px) {
+
+    .sales-simple-row {
+        min-height: 58px;
+        padding: 0 15px;
+    }
+
+    .sales-invoice-number {
+        font-size: 14px;
+    }
+
+    .sales-amount {
+        font-size: 16px;
+    }
+
+}/* =========================================================
+   ROYAL CHICKEN ADMIN - MOBILE RESPONSIVE FIX
+   Paste at the VERY END of admin.css
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* ================================
+       BASIC
+    ================================= */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* ================================
+       MAIN ADMIN LAYOUT
+    ================================= */
+
+    .admin-layout,
+    .admin-container,
+    .app-layout {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+
+    /* ================================
+       SIDEBAR
+    ================================= */
+
+    .sidebar {
+        width: 68px !important;
+        min-width: 68px !important;
+        position: fixed !important;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+    }
+
+
+    /* ================================
+       MAIN CONTENT
+    ================================= */
+
+    .main-content,
+    .content,
+    .admin-main {
+        margin-left: 68px !important;
+        width: calc(100% - 68px) !important;
+        max-width: calc(100% - 68px) !important;
+        min-width: 0 !important;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+       TOP HEADER
+    ================================= */
+
+    .topbar,
+    .header,
+    .page-header {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 0 !important;
+        margin: 0 0 15px 0;
+        box-sizing: border-box;
+    }
+
+    .page-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    #page-title {
+        font-size: 24px !important;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    #page-subtitle {
+        font-size: 13px !important;
+        margin-top: 5px;
+    }
+
+
+    /* ================================
+       ALL SECTIONS
+    ================================= */
+
+    .section {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+       PANELS
+    ================================= */
+
+    .panel {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 16px !important;
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+    }
+
+
+    /* ================================
+       CARDS
+    ================================= */
+
+    .cards,
+    .dashboard-cards,
+    .sales-cards,
+    .stats-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .sales-card,
+    .stat-card,
+    .dashboard-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+       SALES PAGE
+    ================================= */
+
+    .sales-filter {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .period-btn {
+        width: 100%;
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    .sales-cards {
+        grid-template-columns: 1fr !important;
+    }
+
+    .sales-card {
+        padding: 18px !important;
+    }
+
+
+    /* ================================
+       SALES LIST
+    ================================= */
+
+    #sales-list {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .expense-table {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .expense-table-head {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        gap: 10px;
+        padding: 12px !important;
+    }
+
+    .expense-table-head span:nth-child(2),
+    .expense-table-head span:nth-child(3),
+    .expense-table-head span:nth-child(4) {
+        display: none;
+    }
+
+    .expense-table-row {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        gap: 10px;
+        padding: 14px 12px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .expense-table-row span:nth-child(2),
+    .expense-table-row span:nth-child(3),
+    .expense-table-row span:nth-child(4) {
+        display: none;
+    }
+
+
+    /* ================================
+       EXPENSE PAGE
+    ================================= */
+
+    .expenses-top-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .expenses-heading {
+        width: 100%;
+    }
+
+    .expenses-heading h2 {
+        font-size: 20px;
+    }
+
+    .add-expense-btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+    }
+
+    .expense-total-box {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 18px !important;
+    }
+
+    .expense-total-amount {
+        font-size: 24px !important;
+    }
+
+    .expense-record-card {
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px;
+    }
+
+    .expense-record-actions {
+        width: 100%;
+        justify-content: space-between !important;
+    }
+
+
+    /* ================================
+       ORDERS
+    ================================= */
+
+    .order-card {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .order-card-header,
+    .order-card-footer {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .order-buttons {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .order-buttons button {
+        width: 100%;
+    }
+
+
+    /* ================================
+       INVOICES
+    ================================= */
+
+    .invoice-card {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .invoice-card button {
+        width: 100%;
+    }
+
+
+    /* ================================
+       FILTERS
+    ================================= */
+
+    .filters,
+    .filter-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100%;
+        gap: 10px;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+       MODALS
+    ================================= */
+
+    .modal {
+        padding: 12px !important;
+    }
+
+    .modal-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-sizing: border-box;
+        margin: auto;
+    }
+
+
+    /* ================================
+       INVOICE MODAL
+    ================================= */
+
+    .invoice-paper {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+
+    .invoice-top {
+        flex-direction: column !important;
+        gap: 15px;
+    }
+
+    .invoice-info {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    .invoice-table {
+        font-size: 12px;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        padding: 7px !important;
+    }
+
+
+    /* ================================
+       BUTTONS
+    ================================= */
+
+    .primary-btn,
+    .secondary-btn,
+    .cancel-btn {
+        min-height: 42px;
+    }
+
+
+    /* ================================
+       DASHBOARD
+    ================================= */
+
+    .dashboard-grid,
+    .financial-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+
+    /* ================================
+       REMOVE HORIZONTAL SCROLL
+    ================================= */
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .sidebar {
+        width: 60px !important;
+        min-width: 60px !important;
+    }
+
+    .main-content,
+    .content,
+    .admin-main {
+        margin-left: 60px !important;
+        width: calc(100% - 60px) !important;
+        max-width: calc(100% - 60px) !important;
+        padding: 10px !important;
+    }
+
+    #page-title {
+        font-size: 21px !important;
+    }
+
+    #page-subtitle {
+        font-size: 12px !important;
+    }
+
+    .sales-filter {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .sales-card strong {
+        font-size: 24px;
+    }
+
+}/* =========================================================
+   ORDER STATUS - TOP RIGHT
+========================================================= */
+
+.order-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.order-number-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+.order-number {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+.order-date {
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* STATUS DROPDOWN */
+
+.order-status-area {
+    margin-left: auto;
+}
+
+
+.order-status-select {
+    appearance: none;
+    -webkit-appearance: none;
+
+    min-width: 145px;
+
+    padding: 9px 32px 9px 13px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    outline: none;
+
+    background-color: #fff;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #777 50%),
+        linear-gradient(135deg, #777 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 15px) 13px,
+        calc(100% - 10px) 13px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+
+    transition: 0.2s ease;
+}
+
+
+.order-status-select:hover {
+    border-color: #1fa463;
+}
+
+
+.order-status-select:focus {
+    border-color: #1fa463;
+    box-shadow: 0 0 0 3px rgba(31,164,99,0.12);
+}
+
+
+/* STATUS COLORS */
+
+.order-status-select.status-pending {
+    color: #9a6700;
+    background-color: #fff8df;
+}
+
+
+.order-status-select.status-accepted {
+    color: #1769aa;
+    background-color: #eaf4ff;
+}
+
+
+.order-status-select.status-preparing {
+    color: #8a4b00;
+    background-color: #fff1df;
+}
+
+
+.order-status-select.status-out-for-delivery {
+    color: #6a3db5;
+    background-color: #f3eaff;
+}
+
+
+.order-status-select.status-delivered {
+    color: #16834a;
+    background-color: #e8f8ef;
+}
+
+
+.order-status-select.status-cancelled {
+    color: #c62828;
+    background-color: #ffebeb;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .order-card-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .order-number {
+        font-size: 16px;
+    }
+
+    .order-date {
+        font-size: 12px;
+    }
+
+    .order-status-select {
+        min-width: 125px;
+        font-size: 12px;
+        padding: 8px 28px 8px 10px;
+    }
+
+}/* =========================================================
+   ROYAL CHICKEN - PREMIUM INVOICE DESIGN
+========================================================= */
+
+
+/* INVOICE MODAL */
+
+.invoice-modal {
+    width: min(950px, 95vw);
+    max-width: 950px;
+    max-height: 94vh;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+/* INVOICE CONTENT */
+
+.invoice-content {
+    padding: 0;
+    background: #f3f6f4;
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   INVOICE PAPER
+========================================================= */
+
+.rc-invoice-paper {
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    padding: 42px 48px 35px;
+
+    color: #17231d;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.rc-invoice-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+/* BRAND */
+
+.rc-brand-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+/* LOGO */
+
+.rc-invoice-logo {
+
+    width: 82px;
+
+    height: 82px;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    border: 2px solid #e7c65c;
+
+    padding: 5px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+/* BRAND TEXT */
+
+.rc-brand-text h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+    letter-spacing: 1.5px;
+
+    font-weight: 900;
+
+    color: #116b45;
+
+}
+
+
+.rc-brand-text p {
+
+    margin: 7px 0 0;
+
+    color: #777;
+
+    font-size: 13px;
+
+    letter-spacing: 0.4px;
+
+}
+
+
+/* =========================================================
+   INVOICE TITLE
+========================================================= */
+
+.rc-invoice-heading {
+
+    text-align: right;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 5px;
+
+}
+
+
+.rc-invoice-heading span {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    color: #777;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.rc-invoice-heading strong {
+
+    font-size: 22px;
+
+    color: #116b45;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.rc-invoice-heading small {
+
+    color: #777;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   GOLD LINE
+========================================================= */
+
+.rc-gold-line {
+
+    height: 4px;
+
+    width: 100%;
+
+    margin: 28px 0 25px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #116b45 0%,
+            #116b45 65%,
+            #d9ae32 65%,
+            #d9ae32 100%
+        );
+
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.rc-info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.4fr 1fr;
+
+    gap: 14px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.rc-info-card {
+
+    min-height: 105px;
+
+    padding: 17px;
+
+    border-radius: 12px;
+
+    background: #f6faf7;
+
+    border: 1px solid #e0ebe4;
+
+}
+
+
+.rc-info-label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    color: #116b45;
+
+}
+
+
+.rc-info-card strong {
+
+    display: block;
+
+    font-size: 14px;
+
+    color: #17231d;
+
+    line-height: 1.45;
+
+}
+
+
+.rc-info-card p {
+
+    margin: 5px 0 0;
+
+    color: #707872;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================================
+   ORDER DETAILS TITLE
+========================================================= */
+
+.rc-section-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+
+}
+
+
+.rc-section-title span {
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    color: #116b45;
+
+    letter-spacing: 1px;
+
+}
+
+
+.rc-section-title small {
+
+    color: #777;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.rc-invoice-table {
+
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    border: 1px solid #dfe7e2;
+
+    border-radius: 12px;
+
+}
+
+
+/* TABLE HEADER */
+
+.rc-invoice-table thead th {
+
+    padding: 13px 12px;
+
+    background: #116b45;
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    text-align: left;
+
+}
+
+
+.rc-invoice-table thead th:first-child {
+
+    border-top-left-radius: 11px;
+
+}
+
+
+.rc-invoice-table thead th:last-child {
+
+    border-top-right-radius: 11px;
+
+}
+
+
+/* TABLE BODY */
+
+.rc-invoice-table tbody td {
+
+    padding: 15px 12px;
+
+    border-bottom: 1px solid #edf1ee;
+
+    font-size: 13px;
+
+    color: #29332e;
+
+}
+
+
+.rc-invoice-table tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+.rc-invoice-table tbody tr:nth-child(even) {
+
+    background: #fbfdfc;
+
+}
+
+
+/* COLUMN ALIGNMENT */
+
+.invoice-no {
+
+    width: 45px;
+
+    color: #777 !important;
+
+}
+
+
+.invoice-product {
+
+    font-weight: 600;
+
+}
+
+
+.invoice-qty {
+
+    width: 100px;
+
+}
+
+
+.invoice-rate {
+
+    width: 120px;
+
+}
+
+
+.invoice-amount {
+
+    width: 140px;
+
+    font-weight: 800;
+
+    color: #116b45 !important;
+
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.rc-total-area {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 45px;
+
+    margin-top: 25px;
+
+    padding: 20px 24px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1faf5,
+            #fffdf4
+        );
+
+    border: 1px solid #dfe9e2;
+
+}
+
+
+.rc-total-label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 4px;
+
+}
+
+
+.rc-total-label span {
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    color: #116b45;
+
+}
+
+
+.rc-total-label small {
+
+    font-size: 11px;
+
+    color: #7a817d;
+
+}
+
+
+.rc-total-area > strong {
+
+    font-size: 28px;
+
+    color: #116b45;
+
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.rc-invoice-footer {
+
+    margin-top: 35px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #e3e9e5;
+
+    text-align: center;
+
+}
+
+
+.rc-footer-main {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.rc-footer-main strong {
+
+    color: #116b45;
+
+    font-size: 14px;
+
+}
+
+
+.rc-footer-main span {
+
+    color: #555;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.rc-footer-note {
+
+    margin-top: 10px;
+
+    color: #929892;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.rc-footer-brand {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+    padding-top: 15px;
+
+    border-top: 1px dashed #d9dfdb;
+
+}
+
+
+.rc-footer-brand span {
+
+    color: #116b45;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.rc-footer-brand small {
+
+    color: #a28a42;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .invoice-modal {
+
+        width: 96vw;
+
+        max-height: 92vh;
+
+    }
+
+
+    .rc-invoice-paper {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .rc-invoice-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .rc-invoice-heading {
+
+        align-items: flex-start;
+
+        text-align: left;
+
+    }
+
+
+    .rc-info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .rc-invoice-table {
+
+        font-size: 11px;
+
+    }
+
+
+    .rc-invoice-table thead th,
+    .rc-invoice-table tbody td {
+
+        padding: 9px 6px;
+
+    }
+
+
+    .invoice-rate,
+    .invoice-amount {
+
+        width: auto;
+
+    }
+
+
+    .rc-total-area {
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        padding: 16px;
+
+    }
+
+
+    .rc-total-area > strong {
+
+        font-size: 22px;
+
+    }
+
+
+    .rc-brand-text h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .rc-invoice-logo {
+
+        width: 65px;
+
+        height: 65px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    .rc-invoice-paper {
+
+        box-shadow: none;
+
+        max-width: none;
+
+        padding: 20px;
+
+    }
+
+}/* =========================================================
+   WHATSAPP INVOICE BUTTON
+========================================================= */
+.whatsapp-btn {
+    border: none;
+    background: #25D366;
+    color: #ffffff;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.whatsapp-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+.whatsapp-btn:active {
+    transform: scale(0.98);
+}/* =========================================================
+   INVOICE WHATSAPP BUTTON
+========================================================= */
+.invoice-whatsapp-box {
+    margin-top: 25px;
+    text-align: center;
+}
+.invoice-whatsapp-btn {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 10px;
+    background: #25D366;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.25);
+    transition: 0.2s ease;
+}
+.invoice-whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35);
+}
+.invoice-whatsapp-btn:active {
+    transform: scale(0.97);
+}/* =========================================================
+   MOBILE INVOICE - SCROLL FIX
+========================================================= */
+@media (max-width: 768px) {
+    /* Invoice modal full screen */
+    #invoice-modal {
+        align-items: flex-start !important;
+        justify-content: center !important;
+        padding: 15px !important;
+        overflow: hidden !important;
+    }
+    /* Invoice modal box */
+    #invoice-modal .modal-content,
+    #invoice-modal .invoice-modal-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: calc(100vh - 30px) !important;
+        height: auto !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 20px !important;
+    }
+    /* Invoice content itself */
+    #invoice-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+    /* Invoice paper */
+    #invoice-content .rc-invoice-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+    /* Customer / address / payment boxes */
+    #invoice-content .rc-info-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    #invoice-content .rc-info-card {
+        width: 100% !important;
+    }
+    /* Order table */
+    #invoice-content .rc-items-section {
+        width: 100% !important;
+        overflow-x: auto !important;
+    }
+    #invoice-content .rc-invoice-table {
+        min-width: 600px !important;
+    }
+    /* Total */
+    #invoice-content .rc-total-area {
+        width: 100% !important;
+    }
+    /* Buttons */
+    #invoice-content .invoice-action {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        padding: 15px !important;
+    }
+    #invoice-content .invoice-action {
+        width: 100% !important;
+        min-height: 48px !important;
+    }
+}
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+@media (max-width: 480px) {
+    #invoice-modal {
+        padding: 8px !important;
+    }
+    #invoice-modal .modal-content,
+    #invoice-modal .invoice-modal-content {
+        max-height: calc(100vh - 16px) !important;
+        border-radius: 18px !important;
+    }
+    #invoice-content .rc-invoice-paper {
+        padding: 18px !important;
+    }
+    #invoice-content .rc-brand-area {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    #invoice-content .rc-invoice-logo {
+        width: 75px !important;
+        height: 75px !important;
+    }
+    #invoice-content .rc-brand-text h1 {
+        font-size: 25px !important;
+    }
+    #invoice-content .rc-invoice-heading {
+        margin-top: 15px !important;
+    }
+}
+/* =========================================================
+   HIDE ONLY WHATSAPP BUTTON FROM PRINT / PDF
+========================================================= */
+
+@media print {
+
+    .invoice-whatsapp-box,
+    .invoice-whatsapp-btn {
+        display: none !important;
+    }
+
+}/* =========================================================
+   MOBILE INVOICE SCROLL FIX
+========================================================= */
+
+.invoice-modal {
+    max-height: 90vh;
+    height: 90vh;
+    overflow: hidden;
+}
+
+
+.invoice-content {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    flex: 1;
+    min-height: 0;
+}
+
+
+@media (max-width: 600px) {
+
+    .invoice-modal {
+        width: 95%;
+        max-height: 92vh;
+        height: 92vh;
+    }
+
+    .invoice-content {
+        padding: 15px !important;
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}/* =========================================================
+   INVOICE MOBILE SCROLL - FINAL FIX
+========================================================= */
+
+#invoice-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px !important;
+}
+
+#invoice-modal .invoice-modal {
+    width: 100% !important;
+    max-width: 720px !important;
+
+    height: 94vh !important;
+    max-height: 94vh !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+}
+
+#invoice-modal .invoice-content {
+    flex: 1 1 auto !important;
+
+    min-height: 0 !important;
+
+    height: auto !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    -webkit-overflow-scrolling: touch !important;
+
+    touch-action: pan-y !important;
+}
+
+#invoice-modal .invoice-actions {
+    flex-shrink: 0 !important;
+}
+
+
+@media (max-width: 600px) {
+
+    #invoice-modal {
+        align-items: center !important;
+        padding: 8px !important;
+    }
+
+    #invoice-modal .invoice-modal {
+        width: 100% !important;
+        height: 94vh !important;
+        max-height: 94vh !important;
+
+        border-radius: 12px !important;
+    }
+
+    #invoice-modal .invoice-content {
+        padding: 12px !important;
+
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+
+        touch-action: pan-y !important;
+
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
