@@ -412,6 +412,8 @@ async function placeOrder(event) {
             )
             .value
             .trim();
+            const description =
+    document.getElementById("order-description")?.value.trim() || "";
     if (
         !name ||
         !phone ||
@@ -515,6 +517,8 @@ async function placeOrder(event) {
                 cleanPhone,
             address:
                 address,
+                description:
+                description,
             paymentMethod:
                 paymentMethod,
             items:

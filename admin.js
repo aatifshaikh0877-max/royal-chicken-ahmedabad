@@ -879,16 +879,27 @@ window.viewOrder = function(orderId) {
 
 
             <!-- ADDRESS -->
-            <div class="order-address-box">
+<div class="order-address-box">
 
-                <span>Delivery Address</span>
+    <span>Delivery Address</span>
 
-                <strong>
-                    ${escapeHTML(order.address || "-")}
-                </strong>
+    <strong>
+        ${escapeHTML(order.address || "-")}
+    </strong>
 
-            </div>
+</div>
 
+
+<!-- DESCRIPTION -->
+<div class="order-address-box">
+
+    <span>Description</span>
+
+    <strong>
+        ${escapeHTML(order.description || "-")}
+    </strong>
+
+</div>
 
             <!-- STATUS -->
             <div class="order-status-box">
@@ -2528,6 +2539,19 @@ window.openInvoice = function(orderId) {
                     </strong>
 
                 </div>
+                <div class="rc-info-card">
+
+    <span class="rc-info-label">
+        DESCRIPTION
+    </span>
+
+    <strong>
+        ${escapeHTML(
+            order.description || "-"
+        )}
+    </strong>
+
+</div>
 
 
                 <div class="rc-info-card">
