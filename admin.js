@@ -642,28 +642,44 @@ function renderOrders(orders) {
                 </div>
 
 
-                <!-- CUSTOMER -->
-                <div class="order-customer">
+               <!-- CUSTOMER -->
+<div class="order-customer">
 
-                    <strong>
-                        ${escapeHTML(
-                            order.customerName || "-"
-                        )}
-                    </strong>
+    <div class="customer-detail">
+        <span class="customer-label">Customer Name</span>
+        <strong>
+            ${escapeHTML(order.customerName || "-")}
+        </strong>
+    </div>
 
-                    <span>
-                        ${escapeHTML(
-                            order.phone || "-"
-                        )}
-                    </span>
+    <div class="customer-detail">
+        <span class="customer-label">Phone Number</span>
+        <strong>
+            ${escapeHTML(order.phone || "-")}
+        </strong>
+    </div>
 
-                    <span>
-                        ${escapeHTML(
-                            order.address || "-"
-                        )}
-                    </span>
+    <div class="customer-detail">
+        <span class="customer-label">Delivery Address</span>
+        <strong>
+            ${escapeHTML(order.address || "-")}
+        </strong>
+    </div>
 
-                </div>
+</div>
+
+                <!-- DESCRIPTION -->
+${order.description ? `
+    <div class="order-description">
+        <div class="order-description-title">
+            📝 Customer Description
+        </div>
+
+        <div class="order-description-text">
+            ${escapeHTML(order.description)}
+        </div>
+    </div>
+` : ""}
 
 
                 <!-- ITEMS -->
