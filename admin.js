@@ -667,7 +667,6 @@ function renderOrders(orders) {
     </div>
 
 </div>
-
                 <!-- DESCRIPTION -->
 ${order.description ? `
     <div class="order-description">
