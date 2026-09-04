@@ -6061,4 +6061,109 @@ button {
     color: #29332d;
     line-height: 1.4;
     word-break: break-word;
+}/* =====================================================
+   DAILY RATES
+===================================================== */
+
+.daily-rates-panel {
+    padding: 24px;
+}
+
+.daily-rates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.rate-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 18px;
+
+    background: var(--green-light);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.rate-product {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rate-product strong {
+    font-size: 16px;
+    color: var(--green-dark);
+}
+
+.rate-product span {
+    font-size: 12px;
+    color: #777;
+}
+
+.rate-input-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 7px 10px;
+
+    color: var(--green-dark);
+    font-weight: 700;
+}
+
+.rate-input-box input {
+    width: 85px;
+
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: var(--green-dark);
+    background: transparent;
+
+    text-align: center;
+}
+
+.rate-input-box input::-webkit-outer-spin-button,
+.rate-input-box input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.daily-rates-actions {
+    margin-top: 25px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#rates-save-status {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+
+    .daily-rates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rate-row {
+        padding: 15px;
+    }
+
+    .rate-input-box input {
+        width: 70px;
+    }
 }

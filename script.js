@@ -48,27 +48,108 @@ const db =
    CART
 ===================================================== */
 let cart = [];
+// =====================================================
+// DAILY RATES FROM FIREBASE
+// =====================================================
+
+const DEFAULT_RATES = {
+    "kheema": 400,
+    "bombay-legs": 270,
+    "wings": 270,
+    "drumsticks": 270,
+    "curry-cut": 270,
+    "boneless": 400,
+    "thai-boneless": 400,
+    "lollipop": 280,
+    "liver": 150,
+    "gizzard": 150
+};
+
+const PRODUCT_RATE_IDS = {
+    "Kheema": "kheema",
+    "Bombay Legs": "bombay-legs",
+    "Wings": "wings",
+    "Drumsticks": "drumsticks",
+    "Curry Cut": "curry-cut",
+    "Boneless": "boneless",
+    "Thai Boneless": "thai-boneless",
+    "Lollipop": "lollipop",
+    "Liver": "liver",
+    "Gizzard": "gizzard"
+};
+
+let liveRates = { ...DEFAULT_RATES };
+
+async function loadProductRates() {
+    try {
+        const snapshot = await getDocs(
+            collection(db, "productRates")
+        );
+
+        snapshot.forEach((rateDoc) => {
+            const data = rateDoc.data();
+
+            if (data.price !== undefined) {
+                liveRates[rateDoc.id] = Number(data.price);
+            }
+        });
+
+        updateProductPrices();
+
+        console.log("Daily Rates Loaded:", liveRates);
+
+    } catch (error) {
+        console.error("Daily Rates Error:", error);
+    }
+}
+
+function updateProductPrices() {
+
+    Object.entries(PRODUCT_RATE_IDS).forEach(
+        ([productName, rateId]) => {
+
+            const priceElement =
+                document.getElementById("price-" + rateId);
+
+            if (!priceElement) return;
+
+            const price =
+                liveRates[rateId] ??
+                DEFAULT_RATES[rateId];
+
+            priceElement.textContent =
+                `₹${price} / kg`;
+        }
+    );
+}
 /* =====================================================
    ADD TO CART
 ===================================================== */
 function addToCart(name, price) {
+
+    const rateId = PRODUCT_RATE_IDS[name];
+
+    const currentPrice =
+        rateId && liveRates[rateId] !== undefined
+            ? liveRates[rateId]
+            : Number(price);
+
     const existingItem =
         cart.find(
             item =>
                 item.name === name
         );
+
     if (existingItem) {
         existingItem.quantity++;
     } else {
         cart.push({
-            name:
-                name,
-            price:
-                Number(price),
-            quantity:
-                1
+            name: name,
+            price: currentPrice,
+            quantity: 1
         });
     }
+
     updateCart();
 }
 /* =====================================================
@@ -1642,7 +1723,8 @@ window.reorderItems =
 ===================================================== */
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    async function() {
+        await loadProductRates();
         updateCart();
     }
 );

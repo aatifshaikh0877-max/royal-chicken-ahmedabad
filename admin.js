@@ -12,9 +12,10 @@ import {
     collection,
     addDoc,
     getDocs,
-    doc,
+    getDoc,
     updateDoc,
     deleteDoc,
+    setDoc,
     query,
     orderBy,
     serverTimestamp,
@@ -3596,6 +3597,7 @@ document.addEventListener(
     async function() {
 
         updateCurrentDate();
+        loadDailyRates();
 
 
         const expenseDate =
@@ -4477,4 +4479,243 @@ async function() {
 
     }
 
+
+};
+/* =========================================================
+   DAILY RATES
+========================================================= */
+
+const DAILY_RATE_PRODUCTS = {
+    "kheema": {
+        name: "Kheema",
+        defaultPrice: 400
+    },
+
+    "bombay-legs": {
+        name: "Bombay Legs",
+        defaultPrice: 270
+    },
+
+    "wings": {
+        name: "Wings",
+        defaultPrice: 270
+    },
+
+    "drumsticks": {
+        name: "Drumsticks",
+        defaultPrice: 270
+    },
+
+    "curry-cut": {
+        name: "Curry Cut",
+        defaultPrice: 270
+    },
+
+    "boneless": {
+        name: "Boneless",
+        defaultPrice: 400
+    },
+
+    "thai-boneless": {
+        name: "Thai Boneless",
+        defaultPrice: 400
+    },
+
+    "lollipop": {
+        name: "Lollipop",
+        defaultPrice: 280
+    },
+
+    "liver": {
+        name: "Liver",
+        defaultPrice: 150
+    },
+
+    "gizzard": {
+        name: "Gizzard",
+        defaultPrice: 150
+    }
+};
+
+
+/* =========================================================
+   LOAD DAILY RATES
+========================================================= */
+
+window.loadDailyRates = async function () {
+
+    try {
+
+        for (const [id, product] of Object.entries(DAILY_RATE_PRODUCTS)) {
+
+            const input =
+                document.getElementById("rate-" + id);
+
+            if (!input) continue;
+
+            const rateRef =
+                doc(db, "productRates", id);
+
+            try {
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(db, "productRates")
+                        )
+                    );
+
+                const saved =
+                    snapshot.docs.find(
+                        item => item.id === id
+                    );
+
+                if (saved) {
+
+                    const data = saved.data();
+
+                    input.value =
+                        Number(data.price);
+
+                } else {
+
+                    input.value =
+                        product.defaultPrice;
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Rate read error:",
+                    error
+                );
+
+                input.value =
+                    product.defaultPrice;
+            }
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Daily Rates Load Error:",
+            error
+        );
+
+    }
+};
+
+
+/* =========================================================
+   SAVE DAILY RATES
+========================================================= */
+
+window.saveDailyRates = async function () {
+
+    const button =
+        document.querySelector(
+            ".daily-rates-actions button"
+        );
+
+    const status =
+        document.getElementById(
+            "rates-save-status"
+        );
+
+    try {
+
+        if (button) {
+
+            button.disabled = true;
+            button.textContent = "⏳ Saving...";
+
+        }
+
+        for (
+            const [id, product]
+            of Object.entries(DAILY_RATE_PRODUCTS)
+        ) {
+
+            const input =
+                document.getElementById(
+                    "rate-" + id
+                );
+
+            if (!input) continue;
+
+            const price =
+                Number(input.value);
+
+            if (
+                !Number.isFinite(price) ||
+                price < 0
+            ) {
+
+                throw new Error(
+                    product.name +
+                    " ki price valid nahi hai."
+                );
+
+            }
+
+            await setDoc(
+                doc(
+                    db,
+                    "productRates",
+                    id
+                ),
+                {
+                    name: product.name,
+                    price: price,
+                    unit: "kg",
+                    updatedAt: serverTimestamp()
+                },
+                {
+                    merge: true
+                }
+            );
+        }
+
+        if (status) {
+
+            status.textContent =
+                "✅ Rates saved successfully.";
+
+        }
+
+        alert(
+            "✅ Daily Rates successfully save ho gaye!"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "DAILY RATE SAVE ERROR:",
+            error
+        );
+
+        if (status) {
+
+            status.textContent =
+                "❌ Save failed.";
+
+        }
+
+        alert(
+            "Daily Rates save nahi hue.\n\n" +
+            error.message
+        );
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+            button.textContent =
+                "💾 Save Daily Rates";
+
+        }
+
+    }
 };

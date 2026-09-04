@@ -118,6 +118,13 @@
             <span>📈</span>
             Sales
         </button>
+        <button
+    class="menu-item"
+    onclick="showSection('daily-rates', this)"
+>
+    <span>💰</span>
+    Daily Rates
+</button>
 
     </nav>
     
@@ -965,6 +972,297 @@
         </div>
 
     </section>
+    <!-- =====================================================
+     DAILY RATES
+===================================================== -->
+
+<section id="daily-rates" class="section">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Daily Rates</h2>
+            <p>Chicken products ke daily prices yahan se change karein.</p>
+        </div>
+
+    </div>
+
+
+    <div class="panel daily-rates-panel">
+
+        <div class="daily-rates-grid">
+
+            <!-- KHEEMA -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Kheema</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-kheema"
+                        min="0"
+                        step="1"
+                        value="400"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- BOMBAY LEGS -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Bombay Legs</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-bombay-legs"
+                        min="0"
+                        step="1"
+                        value="270"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- WINGS -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Wings</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-wings"
+                        min="0"
+                        step="1"
+                        value="270"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- DRUMSTICKS -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Drumsticks</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-drumsticks"
+                        min="0"
+                        step="1"
+                        value="270"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- CURRY CUT -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Curry Cut</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-curry-cut"
+                        min="0"
+                        step="1"
+                        value="270"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- BONELESS -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Boneless</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-boneless"
+                        min="0"
+                        step="1"
+                        value="400"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- THAI BONELESS -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Thai Boneless</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-thai-boneless"
+                        min="0"
+                        step="1"
+                        value="400"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- LOLLIPOP -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Lollipop</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-lollipop"
+                        min="0"
+                        step="1"
+                        value="280"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- LIVER -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Liver</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-liver"
+                        min="0"
+                        step="1"
+                        value="150"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+
+            <!-- GIZZARD -->
+            <div class="rate-row">
+
+                <div class="rate-product">
+                    <strong>Gizzard</strong>
+                    <span>Per KG</span>
+                </div>
+
+                <div class="rate-input-box">
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="rate-gizzard"
+                        min="0"
+                        step="1"
+                        value="150"
+                    >
+
+                    <span>/ kg</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SAVE BUTTON -->
+
+        <div class="daily-rates-actions">
+
+            <button
+                type="button"
+                class="btn primary"
+                onclick="saveDailyRates()"
+            >
+                💾 Save Daily Rates
+            </button>
+
+            <span id="rates-save-status"></span>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 </main>
