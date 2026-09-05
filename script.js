@@ -1238,7 +1238,7 @@ async function openMyOrders() {
         (
             order.createdAt.seconds * 1000
         )
-    ) < 10 * 60 * 1000
+    ) < 5 * 60 * 1000
     ?
     `
     <button
@@ -1596,7 +1596,7 @@ async function cancelOrder(orderId) {
         }
 
         /* =========================================
-           10 MINUTE CANCELLATION LIMIT
+           5 MINUTE CANCELLATION LIMIT
         ========================================= */
         if (
             !order.createdAt ||
@@ -1615,16 +1615,16 @@ async function cancelOrder(orderId) {
         const currentTime =
             Date.now();
 
-        const tenMinutes =
-            10 * 60 * 1000;
+        const fiveMinutes =
+            5 * 60 * 1000;
 
         if (
             currentTime -
             orderTime >=
-            tenMinutes
+            fiveMinutes
         ) {
             alert(
-                "Cancellation time has expired. Orders can only be cancelled within 10 minutes."
+                "Cancellation time has expired. Orders can only be cancelled within 5 minutes."
             );
 
             await openMyOrders();
