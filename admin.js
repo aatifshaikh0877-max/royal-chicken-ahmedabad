@@ -4487,6 +4487,7 @@ async function() {
 ========================================================= */
 
 const DAILY_RATE_PRODUCTS = {
+
     "kheema": {
         name: "Kheema",
         defaultPrice: 400
@@ -4535,10 +4536,19 @@ const DAILY_RATE_PRODUCTS = {
     "gizzard": {
         name: "Gizzard",
         defaultPrice: 150
+    },
+
+    "tandoori": {
+        name: "Tandoori",
+        defaultPrice: 250
+    },
+
+    "broiler": {
+        name: "Broiler",
+        defaultPrice: 250
     }
+
 };
-
-
 /* =========================================================
    LOAD DAILY RATES
 ========================================================= */

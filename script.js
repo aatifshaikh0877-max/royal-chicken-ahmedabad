@@ -142,7 +142,9 @@ const DEFAULT_RATES = {
     "thai-boneless": 400,
     "lollipop": 280,
     "liver": 150,
-    "gizzard": 150
+    "gizzard": 150,
+    "tandoori": 250,
+    "broiler": 250
 };
 
 const PRODUCT_RATE_IDS = {
@@ -155,7 +157,9 @@ const PRODUCT_RATE_IDS = {
     "Thai Boneless": "thai-boneless",
     "Lollipop": "lollipop",
     "Liver": "liver",
-    "Gizzard": "gizzard"
+    "Gizzard": "gizzard",
+    "Tandoori": "tandoori",
+    "Broiler": "broiler"
 };
 
 let liveRates = { ...DEFAULT_RATES };
@@ -182,7 +186,6 @@ async function loadProductRates() {
         console.error("Daily Rates Error:", error);
     }
 }
-
 function updateProductPrices() {
 
     Object.entries(PRODUCT_RATE_IDS).forEach(
@@ -197,8 +200,22 @@ function updateProductPrices() {
                 liveRates[rateId] ??
                 DEFAULT_RATES[rateId];
 
-            priceElement.textContent =
-                `₹${price} / kg`;
+            if (rateId === "tandoori") {
+
+                priceElement.innerHTML =
+                    `₹${price} <small>/ 900 gm</small>`;
+
+            } else if (rateId === "broiler") {
+
+                priceElement.innerHTML =
+                    `₹${price} <small>/ 1 kg</small>`;
+
+            } else {
+
+                priceElement.innerHTML =
+                    `₹${price} <small>/ kg</small>`;
+
+            }
         }
     );
 }
@@ -221,7 +238,7 @@ function addToCart(name, price) {
         );
 
     if (existingItem) {
-        existingItem.quantity++;
+        existingItem.quantity += 0.5;
     } else {
         cart.push({
             name: name,
@@ -400,7 +417,7 @@ function increaseItem(index) {
     if (!cart[index]) {
         return;
     }
-    cart[index].quantity++;
+    cart[index].quantity += 0.5;
     updateCart();
 }
 /* =====================================================
@@ -410,16 +427,13 @@ function decreaseItem(index) {
     if (!cart[index]) {
         return;
     }
-    if (
-        cart[index].quantity > 1
-    ) {
-        cart[index].quantity--;
+
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 0.5;
     } else {
-        cart.splice(
-            index,
-            1
-        );
+        cart.splice(index, 1);
     }
+
     updateCart();
 }
 /* =====================================================
