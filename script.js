@@ -1230,21 +1230,28 @@ async function openMyOrders() {
                             >
                                 👀 View Order
                             </button>
-                            ${
-                                status === "Pending"
-                                ?
-                                `
-                                <button
-                                    type="button"
-                                    class="cancel-order-btn"
-                                    onclick="cancelOrder('${order.id}')"
-                                >
-                                    ❌ Cancel Order
-                                </button>
-                                `
-                                :
-                                ""
-                            }
+                           ${
+    status === "Pending" &&
+    order.createdAt &&
+    (
+        Date.now() -
+        (
+            order.createdAt.seconds * 1000
+        )
+    ) < 10 * 60 * 1000
+    ?
+    `
+    <button
+        type="button"
+        class="cancel-order-btn"
+        onclick="cancelOrder('${order.id}')"
+    >
+        ❌ Cancel Order
+    </button>
+    `
+    :
+    ""
+}
                             <button
                                 type="button"
                                 class="reorder-btn"
@@ -1547,9 +1554,11 @@ async function cancelOrder(orderId) {
         confirm(
             "Are you sure you want to cancel this order?"
         );
+
     if (!confirmCancel) {
         return;
     }
+
     try {
         const orderRef =
             doc(
@@ -1557,18 +1566,25 @@ async function cancelOrder(orderId) {
                 "orders",
                 orderId
             );
+
         const orderSnap =
             await getDoc(
                 orderRef
             );
+
         if (!orderSnap.exists()) {
             alert(
                 "Order not found."
             );
             return;
         }
+
         const order =
             orderSnap.data();
+
+        /* =========================================
+           CHECK ORDER STATUS
+        ========================================= */
         if (
             order.status !==
             "Pending"
@@ -1578,24 +1594,69 @@ async function cancelOrder(orderId) {
             );
             return;
         }
+
+        /* =========================================
+           10 MINUTE CANCELLATION LIMIT
+        ========================================= */
+        if (
+            !order.createdAt ||
+            !order.createdAt.seconds
+        ) {
+            alert(
+                "Cancellation time could not be verified."
+            );
+            return;
+        }
+
+        const orderTime =
+            order.createdAt.seconds *
+            1000;
+
+        const currentTime =
+            Date.now();
+
+        const tenMinutes =
+            10 * 60 * 1000;
+
+        if (
+            currentTime -
+            orderTime >=
+            tenMinutes
+        ) {
+            alert(
+                "Cancellation time has expired. Orders can only be cancelled within 10 minutes."
+            );
+
+            await openMyOrders();
+            return;
+        }
+
+        /* =========================================
+           CANCEL ORDER
+        ========================================= */
         await updateDoc(
             orderRef,
             {
                 status:
                     "Cancelled",
+
                 cancelledAt:
                     serverTimestamp()
             }
         );
+
         alert(
             "Your order has been cancelled successfully."
         );
+
         await openMyOrders();
+
     } catch (error) {
         console.error(
             "CANCEL ORDER ERROR:",
             error
         );
+
         alert(
             "Order cancel nahi ho paya. Please try again."
         );
