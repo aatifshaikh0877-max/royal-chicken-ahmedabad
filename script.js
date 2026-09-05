@@ -21,6 +21,12 @@ import {
     doc,
     updateDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    getMessaging,
+    getToken,
+    onMessage
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-messaging.js";
 /* =====================================================
    FIREBASE CONFIG
 ===================================================== */
@@ -44,6 +50,80 @@ const app =
     initializeApp(firebaseConfig);
 const db =
     getFirestore(app);
+const messaging = getMessaging(app);
+const VAPID_KEY = "BNlMSym2ILeQdfEo2R4pOM9BGqgzEZlOBo0ZQ1zuxqkH9IbjoN6Qiy5Q6hXtUcUiV_zvHcxG72fcPLHHmDgDIn8";
+/* =====================================================
+   CUSTOMER NOTIFICATIONS
+===================================================== */
+
+async function enableRoyalChickenNotifications() {
+    try {
+        if (!("Notification" in window)) {
+            console.log("This browser does not support notifications.");
+            return;
+        }
+
+        const permission = await Notification.requestPermission();
+
+        if (permission !== "granted") {
+            console.log("Notification permission denied.");
+            return;
+        }
+
+        const registration = await navigator.serviceWorker.register(
+            "/firebase-messaging-sw.js"
+        );
+
+        const token = await getToken(messaging, {
+            vapidKey: VAPID_KEY,
+            serviceWorkerRegistration: registration
+        });
+
+        if (!token) {
+            console.log("FCM token nahi mila.");
+            return;
+        }
+
+        localStorage.setItem(
+            "royalChickenFCMToken",
+            token
+        );
+
+        console.log(
+            "ROYAL CHICKEN FCM TOKEN:",
+            token
+        );
+
+    } catch (error) {
+        console.error(
+            "Royal Chicken notification error:",
+            error
+        );
+    }
+}
+/* =====================================================
+   GET CUSTOMER FCM TOKEN
+===================================================== */
+
+async function getRoyalChickenFCMToken() {
+    try {
+        let token = localStorage.getItem("royalChickenFCMToken");
+
+        if (token) {
+            return token;
+        }
+
+        await enableRoyalChickenNotifications();
+
+        token = localStorage.getItem("royalChickenFCMToken");
+
+        return token || null;
+
+    } catch (error) {
+        console.error("FCM token error:", error);
+        return null;
+    }
+}
 /* =====================================================
    CART
 ===================================================== */
@@ -588,28 +668,44 @@ async function placeOrder(event) {
     /* =================================================
        SAVE TO FIREBASE
     ================================================= */
-    try {
-        const orderData = {
-            orderNumber:
-                orderNumber,
-            customerName:
-                name,
-            phone:
-                cleanPhone,
-            address:
-                address,
-                description:
-                description,
-            paymentMethod:
-                paymentMethod,
-            items:
-                orderItems,
-            total:
-                total,
-            status:
-                "Pending",
-            createdAt:
-                serverTimestamp()
+try {
+
+    const notificationToken =
+        await getRoyalChickenFCMToken();
+
+    const orderData = {
+        orderNumber:
+            orderNumber,
+
+        customerName:
+            name,
+
+        phone:
+            cleanPhone,
+
+        address:
+            address,
+
+        description:
+            description,
+
+        paymentMethod:
+            paymentMethod,
+
+        items:
+            orderItems,
+
+        total:
+            total,
+
+        status:
+            "Pending",
+
+        notificationToken:
+            notificationToken || null,
+
+        createdAt:
+            serverTimestamp()
         };
         await addDoc(
             collection(
@@ -1726,5 +1822,7 @@ document.addEventListener(
     async function() {
         await loadProductRates();
         updateCart();
+
+        await enableRoyalChickenNotifications();
     }
 );
