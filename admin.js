@@ -6,6 +6,11 @@
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
     getFirestore,
@@ -40,7 +45,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const auth = getAuth(app);
 
 /* =========================================================
    GLOBAL DATA
@@ -3592,55 +3597,57 @@ window.exportSalesCSV = function() {
 /* =========================================================
    DOM READY
 ========================================================= */
-
 document.addEventListener(
     "DOMContentLoaded",
-    async function() {
+    function() {
 
         updateCurrentDate();
-        loadDailyRates();
-
 
         const expenseDate =
-            document.getElementById(
-                "expense-date"
-            );
-
+            document.getElementById("expense-date");
 
         if (
             expenseDate &&
             !expenseDate.value
         ) {
-
             expenseDate.value =
                 dateOnly(new Date());
-
         }
 
-
         /*
-           ONLY ONE ORDERS LISTENER
+           Admin data login ke baad hi load hoga.
         */
 
-        loadOrders();
+        onAuthStateChanged(auth, async function(user) {
 
+            if (!user) {
+                return;
+            }
 
-        /*
-           LOAD EXPENSES
-        */
+            try {
 
-        await loadExpenses();
+                await loadDailyRates();
 
+                loadOrders();
 
-        /*
-           INITIAL CALCULATIONS
-        */
+                await loadExpenses();
 
-        updateDashboard();
+                updateDashboard();
 
-        calculateSales();
+                calculateSales();
 
-        calculateAccounting();
+                calculateAccounting();
+
+            } catch (error) {
+
+                console.error(
+                    "ADMIN INITIALIZATION ERROR:",
+                    error
+                );
+
+            }
+
+        });
 
     }
 );
@@ -4729,4 +4736,95 @@ window.saveDailyRates = async function () {
         }
 
     }
-};
+};/* =========================================================
+   ADMIN PASSWORD LOGIN
+========================================================= */
+
+const ADMIN_EMAIL = "aatifshaikh0877@gmail.com";
+
+const loginScreen =
+    document.getElementById("admin-login-screen");
+
+const passwordInput =
+    document.getElementById("admin-password");
+
+const loginButton =
+    document.getElementById("admin-login-btn");
+
+const loginError =
+    document.getElementById("admin-login-error");
+
+
+if (loginButton) {
+
+    loginButton.addEventListener("click", async function() {
+
+        const password =
+            passwordInput.value.trim();
+
+        loginError.textContent = "";
+
+        if (!password) {
+
+            loginError.textContent =
+                "Password enter karo.";
+
+            return;
+        }
+
+        loginButton.disabled = true;
+        loginButton.textContent = "Logging in...";
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                ADMIN_EMAIL,
+                password
+            );
+
+        } catch (error) {
+
+            console.error(
+                "ADMIN LOGIN ERROR:",
+                error
+            );
+
+            loginError.textContent =
+                "Incorrect password.";
+
+            passwordInput.value = "";
+
+        } finally {
+
+            loginButton.disabled = false;
+            loginButton.textContent = "LOGIN";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   AUTH CHECK
+========================================================= */
+
+onAuthStateChanged(auth, function(user) {
+
+    if (user) {
+
+        if (loginScreen) {
+            loginScreen.style.display = "none";
+        }
+
+    } else {
+
+        if (loginScreen) {
+            loginScreen.style.display = "flex";
+        }
+
+    }
+
+});

@@ -15,9 +15,91 @@
         href="admin.css"
     ><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+    #admin-login-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+    }
+
+    .admin-login-box {
+        width: min(90%, 380px);
+        padding: 30px;
+        text-align: center;
+        border-radius: 16px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        background: #fff;
+    }
+
+    .admin-login-box img {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    .admin-login-box h2 {
+        margin: 0 0 8px;
+    }
+
+    .admin-login-box p {
+        margin: 8px 0 18px;
+    }
+
+    #admin-password {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin-bottom: 12px;
+    }
+
+    #admin-login-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    #admin-login-error {
+        color: #d00;
+        min-height: 20px;
+        margin-top: 12px;
+    }
+</style>
 </head>
 
 <body>
+    <div id="admin-login-screen">
+    <div class="admin-login-box">
+        <img src="images/royal-chicken-logo.jpeg" alt="Royal Chicken">
+
+        <h2>Admin Panel</h2>
+        <p>Enter Password</p>
+
+        <input
+            type="password"
+            id="admin-password"
+            placeholder="Enter Password"
+            autocomplete="current-password"
+        >
+
+        <button type="button" id="admin-login-btn">
+            LOGIN
+        </button>
+
+        <p id="admin-login-error"></p>
+    </div>
+</div>
 
 <!-- =====================================================
      SIDEBAR
