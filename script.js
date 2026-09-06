@@ -939,7 +939,7 @@ function showOrderSuccess(
                     and deliver it to your doorstep.
                 </p>
                 <p>
-                    Delivery charge: ₹15 per km.
+                    Delivery charge: ₹10 per km.
                 </p>
             </div>
             <div class="royal-name">
