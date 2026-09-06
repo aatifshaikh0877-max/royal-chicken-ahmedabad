@@ -239,7 +239,7 @@ function updateProductPrices() {
             if (rateId === "tandoori") {
 
                 priceElement.innerHTML =
-                    `₹${price} <small>/ 900 gm</small>`;
+                    `₹${price} <small>/ 1 piece</small>`;
 
             } else if (rateId === "broiler") {
 
