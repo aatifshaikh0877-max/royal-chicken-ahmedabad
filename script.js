@@ -50,34 +50,69 @@ const app =
     initializeApp(firebaseConfig);
 const db =
     getFirestore(app);
-const messaging = getMessaging(app);
+let messaging = null;
+
+try {
+    messaging = getMessaging(app);
+} catch (error) {
+    console.log(
+        "Firebase Messaging is not supported in this browser/webview.",
+        error
+    );
+}
 const VAPID_KEY = "BNlMSym2ILeQdfEo2R4pOM9BGqgzEZlOBo0ZQ1zuxqkH9IbjoN6Qiy5Q6hXtUcUiV_zvHcxG72fcPLHHmDgDIn8";
 /* =====================================================
    CUSTOMER NOTIFICATIONS
 ===================================================== */
 
 async function enableRoyalChickenNotifications() {
+    if (!messaging) {
+    return null;
+}
     try {
-        if (!("Notification" in window)) {
-            console.log("This browser does not support notifications.");
+
+        if (!messaging) {
+            console.log(
+                "Notifications not supported in this browser/webview."
+            );
             return;
         }
 
-        const permission = await Notification.requestPermission();
+        if (!("Notification" in window)) {
+            console.log(
+                "This browser does not support notifications."
+            );
+            return;
+        }
+
+        const permission =
+            await Notification.requestPermission();
 
         if (permission !== "granted") {
-            console.log("Notification permission denied.");
+            console.log(
+                "Notification permission denied."
+            );
             return;
         }
 
-        const registration = await navigator.serviceWorker.register(
-            "/firebase-messaging-sw.js"
-        );
+        if (!("serviceWorker" in navigator)) {
+            console.log(
+                "Service Worker not supported."
+            );
+            return;
+        }
 
-        const token = await getToken(messaging, {
-            vapidKey: VAPID_KEY,
-            serviceWorkerRegistration: registration
-        });
+        const registration =
+            await navigator.serviceWorker.register(
+                "/firebase-messaging-sw.js"
+            );
+
+        const token =
+            await getToken(messaging, {
+                vapidKey: VAPID_KEY,
+                serviceWorkerRegistration:
+                    registration
+            });
 
         if (!token) {
             console.log("FCM token nahi mila.");
@@ -95,8 +130,9 @@ async function enableRoyalChickenNotifications() {
         );
 
     } catch (error) {
-        console.error(
-            "Royal Chicken notification error:",
+
+        console.log(
+            "Notification unavailable:",
             error
         );
     }
