@@ -332,6 +332,354 @@
         font-size: 12px;
     }
 }
+/* =========================================
+   CONTACT PAGE
+========================================= */
+
+.contact-page {
+    min-height: calc(100vh - 75px);
+    padding: 55px 7%;
+    background: #f7f4f1;
+    box-sizing: border-box;
+}
+
+.contact-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER NAV
+========================================= */
+
+.header nav a {
+    color: #3a2b2e !important;
+}
+
+.header nav a:hover,
+.header nav a.active {
+    color: #8f5f68 !important;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.contact-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.contact-heading .halal-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    background: #2b2022;
+    color: #f3d2e2;
+}
+
+.contact-heading h1 {
+    margin: 0;
+    color: #2b2022;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.contact-heading p {
+    margin: 8px 0 0;
+    color: #756b6e;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   CONTACT GRID
+========================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+
+/* =========================================
+   CONTACT CARD
+========================================= */
+
+.contact-card {
+    min-height: 185px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #eadde0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(43, 32, 34, 0.07);
+
+    transition: 0.25s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #b9828b;
+
+    box-shadow:
+        0 12px 30px rgba(43, 32, 34, 0.12);
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f7edef;
+    color: #b9828b;
+
+    border-radius: 12px;
+    font-size: 21px;
+
+    margin-bottom: 13px;
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.contact-card h3 {
+    margin: 0 0 8px;
+
+    color: #2b2022;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.contact-card p {
+    margin: 3px 0;
+
+    color: #5f5658;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.contact-card strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #b9828b;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   CONTACT BUTTON
+========================================= */
+
+.contact-link {
+    display: inline-block;
+
+    margin-top: 12px;
+    padding: 9px 15px;
+
+    background: #2b2022;
+    color: #ffffff;
+
+    border: 1px solid #2b2022;
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.contact-link:hover {
+    background: #b9828b;
+    border-color: #b9828b;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   OPENING HOURS
+========================================= */
+
+.hours-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid rgba(185, 130, 139, 0.18);
+}
+
+.hours-row:last-child {
+    border-bottom: none;
+}
+
+.hours-row span {
+    color: #756b6e;
+    font-size: 12px;
+}
+
+.hours-row strong {
+    margin: 0;
+    color: #2b2022;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   ORDER BUTTON
+========================================= */
+
+.contact-order {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.contact-order a {
+    display: inline-block;
+
+    padding: 13px 28px;
+
+    background: #2b2022;
+    color: #ffffff;
+
+    border: 2px solid #2b2022;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.contact-order a:hover {
+    background: #b9828b;
+    border-color: #b9828b;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+    .contact-page {
+        min-height: calc(100vh - 110px);
+        padding: 25px 12px 35px;
+    }
+
+    .contact-heading {
+        margin-bottom: 20px;
+    }
+
+    .contact-heading h1 {
+        font-size: 30px;
+    }
+
+    .contact-heading p {
+        font-size: 11px;
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .contact-card {
+        min-height: 155px;
+        padding: 15px 12px;
+        border-radius: 13px;
+    }
+
+    .contact-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 17px;
+        border-radius: 9px;
+
+        margin-bottom: 9px;
+    }
+
+    .contact-card h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .contact-card p {
+        font-size: 9.5px;
+        line-height: 1.4;
+    }
+
+    .contact-card strong {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    .contact-link {
+        margin-top: 7px;
+        padding: 6px 8px;
+        font-size: 9px;
+        border-radius: 6px;
+    }
+
+    .hours-row {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .hours-row span {
+        display: block;
+        font-size: 9px;
+    }
+
+    .hours-row strong {
+        display: block;
+        margin-top: 2px;
+        font-size: 9px;
+    }
+
+    .contact-order {
+        margin-top: 15px;
+    }
+
+    .contact-order a {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 10px;
+
+        font-size: 12px;
+    }
+}
+
     </style>
 
 </head>

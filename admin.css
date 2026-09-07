@@ -6166,4 +6166,390 @@ button {
     .rate-input-box input {
         width: 70px;
     }
+}/* =====================================================
+   ROYAL CHICKEN ADMIN — CUSTOMER THEME
+===================================================== */
+
+/* MAIN COLORS
+   Dark       #2b2022
+   Text       #4a3f41
+   Accent     #b9828b
+   Background #f7f4f1
+*/
+
+/* ================= MAIN BACKGROUND ================= */
+
+body {
+    background: #f7f4f1 !important;
+    color: #4a3f41 !important;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    background: #2b2022 !important;
+    color: #ffffff !important;
+}
+
+.brand-name h2 {
+    color: #ffffff !important;
+}
+
+.brand-name span {
+    color: #d6a0a8 !important;
+}
+
+.sidebar-menu-title {
+    color: #b9828b !important;
+}
+
+.menu-item {
+    color: #eadfe1 !important;
+}
+
+.menu-item:hover {
+    background: #3a3032 !important;
+    color: #ffffff !important;
+}
+
+.menu-item.active {
+    background: #b9828b !important;
+    color: #ffffff !important;
+}
+
+.menu-item b {
+    background: #b9828b !important;
+    color: #ffffff !important;
+}
+
+.sidebar-footer {
+    color: #d6a0a8 !important;
+}
+
+.admin-status {
+    color: #ffffff !important;
+}
+
+
+/* ================= TOP HEADER ================= */
+
+.top-header {
+    background: #ffffff !important;
+    border-bottom-color: #e3dadd !important;
+}
+
+.top-header h1 {
+    color: #4a3f41 !important;
+}
+
+.top-header p {
+    color: #756b6e !important;
+}
+
+.current-date {
+    color: #4a3f41 !important;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.refresh-btn,
+.primary-btn,
+.secondary-btn,
+.text-btn {
+    background: #4a3f41 !important;
+    border-color: #4a3f41 !important;
+    color: #ffffff !important;
+}
+
+.refresh-btn:hover,
+.primary-btn:hover,
+.secondary-btn:hover,
+.text-btn:hover {
+    background: #2b2022 !important;
+    border-color: #2b2022 !important;
+}
+
+
+/* ================= NOTIFICATION ================= */
+
+.notification-btn {
+    background: #4a3f41 !important;
+    color: #ffffff !important;
+}
+
+.notification-btn:hover {
+    background: #2b2022 !important;
+}
+
+#notification-count,
+#pending-order-count {
+    background: #b9828b !important;
+    color: #ffffff !important;
+}
+
+
+/* ================= DASHBOARD CARDS ================= */
+
+.stat-card,
+.account-card,
+.sales-card,
+.panel,
+.expense-panel {
+    background: #ffffff !important;
+    border-color: #e3dadd !important;
+    box-shadow: 0 8px 25px rgba(43,32,34,0.07) !important;
+}
+
+.stat-info span,
+.account-card span,
+.sales-card span {
+    color: #756b6e !important;
+}
+
+.stat-info strong,
+.account-card strong,
+.sales-card strong {
+    color: #4a3f41 !important;
+}
+
+
+/* ================= ICONS ================= */
+
+.stat-icon,
+.orders-icon,
+.sales-icon,
+.pending-icon,
+.profit-icon {
+    background: #f7edef !important;
+    color: #b9828b !important;
+}
+
+
+/* ================= HEADINGS ================= */
+
+.section-heading h2,
+.section-header h2,
+.panel-header h3,
+.section h2 {
+    color: #4a3f41 !important;
+}
+
+.section-heading p,
+.section-header p,
+.panel-header span {
+    color: #756b6e !important;
+}
+
+
+/* ================= SUMMARY ================= */
+
+.summary-row,
+.financial-row {
+    border-bottom-color: #eee5e7 !important;
+}
+
+.summary-row span,
+.financial-row span {
+    color: #5f5658 !important;
+}
+
+.summary-row strong,
+.financial-row strong {
+    color: #4a3f41 !important;
+}
+
+.summary-row.highlight,
+.financial-row.total-row {
+    background: #f7f4f1 !important;
+}
+
+
+/* ================= SEARCH / FILTER ================= */
+
+.filter-bar,
+.invoice-filter,
+.accounting-filter,
+.sales-filter {
+    color: #4a3f41 !important;
+}
+
+.search-box,
+.filter-bar input,
+.filter-bar select,
+.invoice-filter input,
+.accounting-filter input,
+input[type="date"],
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+    background: #ffffff !important;
+    color: #4a3f41 !important;
+    border-color: #dcd1d4 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #b9828b !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(185,130,139,0.12) !important;
+}
+
+
+/* ================= SALES PERIOD ================= */
+
+.period-btn {
+    background: #ffffff !important;
+    color: #4a3f41 !important;
+    border-color: #dcd1d4 !important;
+}
+
+.period-btn:hover,
+.period-btn.active {
+    background: #4a3f41 !important;
+    color: #ffffff !important;
+    border-color: #4a3f41 !important;
+}
+
+
+/* ================= DAILY RATES ================= */
+
+.rate-row {
+    background: #ffffff !important;
+    border-color: #e3dadd !important;
+}
+
+.rate-product strong {
+    color: #4a3f41 !important;
+}
+
+.rate-product span {
+    color: #756b6e !important;
+}
+
+.rate-input-box {
+    border-color: #dcd1d4 !important;
+    color: #4a3f41 !important;
+}
+
+.rate-input-box input {
+    color: #4a3f41 !important;
+}
+
+
+/* ================= MODALS ================= */
+
+.modal-overlay {
+    background: rgba(43,32,34,0.78) !important;
+}
+
+.modal {
+    background: #ffffff !important;
+    border-color: #e3dadd !important;
+}
+
+.modal-header {
+    border-bottom-color: #eee5e7 !important;
+}
+
+.modal-header h3 {
+    color: #4a3f41 !important;
+}
+
+.modal-header p {
+    color: #756b6e !important;
+}
+
+.close-modal {
+    background: #4a3f41 !important;
+    color: #ffffff !important;
+}
+
+.close-modal:hover {
+    background: #b9828b !important;
+}
+
+
+/* ================= FORM ================= */
+
+.form-group label,
+.filter-field label {
+    color: #4a3f41 !important;
+}
+
+.cancel-btn {
+    background: #ffffff !important;
+    color: #4a3f41 !important;
+    border-color: #dcd1d4 !important;
+}
+
+.cancel-btn:hover {
+    background: #f7f4f1 !important;
+}
+
+
+/* ================= INVOICE ================= */
+
+.invoice-content {
+    background: #ffffff !important;
+}
+
+.invoice-actions {
+    border-top-color: #e3dadd !important;
+}
+
+
+/* ================= DANGER ================= */
+
+.danger-btn {
+    background: #d32f2f !important;
+    border-color: #d32f2f !important;
+    color: #ffffff !important;
+}
+
+.danger-btn:hover {
+    background: #b71c1c !important;
+    border-color: #b71c1c !important;
+}
+
+/* ================= LOGIN SCREEN ================= */
+
+#admin-login-screen {
+    background: #f7f4f1 !important;
+}
+
+.admin-login-box {
+    background: #ffffff !important;
+    border: 1px solid #e3dadd !important;
+    box-shadow: 0 15px 40px rgba(43,32,34,0.12) !important;
+}
+
+.admin-login-box h2 {
+    color: #4a3f41 !important;
+}
+
+.admin-login-box p {
+    color: #756b6e !important;
+}
+
+#admin-password {
+    border-color: #dcd1d4 !important;
+    color: #4a3f41 !important;
+}
+
+#admin-login-btn {
+    background: #4a3f41 !important;
+    color: #ffffff !important;
+}
+
+#admin-login-btn:hover {
+    background: #2b2022 !important;
+}
+
+#admin-login-error {
+    color: #c0392b !important;
 }

@@ -583,21 +583,46 @@
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- ================= EDITORIAL HERO ================= -->
+<section class="hero editorial-hero" id="home">
+    <div
+    class="editorial-hero-image"
+    onclick="openBannerModal()"
+    style="cursor:pointer;"
+>
+    <img
+        src="./images/royal-chicken-banner.jpeg"
+        alt="Royal Chicken"
+    >
 
-<section class="hero" id="home">
-
-    <div class="hero-banner">
-
-        <img
-            src="./images/royal-chicken-banner.jpeg"
-            alt="Royal Chicken"
+    <div class="editorial-overlay"></div>
+</div>
+    <div class="editorial-content">
+        <span class="editorial-kicker">
+            ORDER NOW
+        </span>
+        <h1>
+            <em>ROYAL.</em>
+            <em>CHICKEN.</em>
+        </h1>
+        <div class="editorial-rule"></div>
+        <p>
+            Premium chicken, prepared fresh
+            for your table.
+        </p>
+        <a
+            href="products.html"
+            class="editorial-button"
         >
-
+            SHOP NOW
+            <span>↗</span>
+        </a>
     </div>
-
+    <div class="editorial-scroll">
+        <span>SCROLL TO EXPLORE</span>
+        <div></div>
+    </div>
 </section>
-
 
 <!-- ================= FEATURES ================= -->
 
@@ -946,7 +971,37 @@
     type="module"
     src="script.js"
 ></script>
+<!-- PREMIUM BANNER POPUP -->
 
+<div id="banner-modal" class="banner-modal">
+
+    <div class="banner-modal-backdrop" onclick="closeBannerModal()"></div>
+
+    <div class="banner-modal-content">
+
+        <button
+            type="button"
+            class="banner-modal-close"
+            onclick="closeBannerModal()"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <div class="banner-modal-image">
+            <img
+                src="./images/royal-chicken-banner.jpeg"
+                alt="Royal Chicken"
+            >
+        </div>
+
+        <a href="products.html" class="banner-order-btn">
+            ORDER NOW <span>↗</span>
+        </a>
+
+    </div>
+
+</div>
 </body>
 
 </html>

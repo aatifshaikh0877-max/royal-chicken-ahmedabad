@@ -2016,3 +2016,40 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoSlide();
 
 });
+/* =========================================
+   PREMIUM BANNER POPUP
+========================================= */
+
+window.openBannerModal = function () {
+
+    const modal = document.getElementById("banner-modal");
+
+    if (!modal) return;
+
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+};
+
+
+window.closeBannerModal = function () {
+
+    const modal = document.getElementById("banner-modal");
+
+    if (!modal) return;
+
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "";
+};
+
+
+/* ESC KEY TO CLOSE */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+        window.closeBannerModal();
+    }
+
+});

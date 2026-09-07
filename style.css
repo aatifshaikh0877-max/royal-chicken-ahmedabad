@@ -2954,4 +2954,929 @@ footer p {
         margin: 0 !important;
     }
 
+}/* =====================================================
+   ROYAL CHICKEN — EDITORIAL PREMIUM HERO
+===================================================== */
+.editorial-hero {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    overflow: hidden;
+    background: #111;
+}
+/* IMAGE */
+.editorial-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.editorial-hero-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.01);
+}
+/* SUBTLE DARK OVERLAY */
+.editorial-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.62) 0%,
+            rgba(0,0,0,0.28) 38%,
+            rgba(0,0,0,0.05) 72%
+        );
+    pointer-events: none;
+}
+/* CONTENT */
+.editorial-content {
+    position: absolute;
+    z-index: 3;
+    left: 9%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    max-width: 500px;
+}
+.editorial-kicker {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #d6b45b;
+}
+.editorial-content h1 {
+    margin: 0;
+    font-size: clamp(65px, 8vw, 115px);
+    line-height: 0.86;
+    font-weight: 500;
+    letter-spacing: -5px;
+    color: #fff;
+}
+.editorial-content h1 em {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: italic;
+    color: #d6b45b;
+}
+.editorial-rule {
+    width: 48px;
+    height: 1px;
+    margin: 28px 0 18px;
+    background: #d6b45b;
+}
+.editorial-content p {
+    max-width: 330px;
+    margin: 0 0 28px;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: rgba(255,255,255,0.78);
+}
+/* BUTTON */
+.editorial-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 13px 20px;
+    border: 1px solid rgba(214,180,91,0.8);
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+.editorial-button span {
+    font-size: 17px;
+    line-height: 1;
+    color: #d6b45b;
+}
+.editorial-button:hover {
+    background: #d6b45b;
+    color: #111;
+    transform: translateY(-2px);
+}
+.editorial-button:hover span {
+    color: #111;
+}
+/* SCROLL INDICATOR */
+.editorial-scroll {
+    position: absolute;
+    z-index: 4;
+    right: 5%;
+    bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: rotate(-90deg);
+    transform-origin: right center;
+}
+.editorial-scroll span {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.65);
+}
+.editorial-scroll div {
+    width: 45px;
+    height: 1px;
+    background: #d6b45b;
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media (max-width: 550px) {
+    .editorial-hero {
+        height: 590px;
+    }
+    .editorial-hero-image img {
+        object-position: center;
+    }
+    .editorial-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,0.04) 0%,
+                rgba(0,0,0,0.15) 38%,
+                rgba(0,0,0,0.76) 78%,
+                rgba(0,0,0,0.93) 100%
+            );
+    }
+    .editorial-content {
+        left: 22px;
+        right: 22px;
+        top: auto;
+        bottom: 88px;
+        transform: none;
+        max-width: none;
+        text-align: center;
+    }
+    .editorial-kicker {
+        margin-bottom: 13px;
+        font-size: 8px;
+        letter-spacing: 3.5px;
+    }
+    .editorial-content h1 {
+        font-size: 57px;
+        line-height: 0.88;
+        letter-spacing: -3px;
+    }
+    .editorial-rule {
+        width: 38px;
+        margin:
+            20px auto 13px;
+    }
+    .editorial-content p {
+        margin:
+            0 auto 21px;
+        max-width: 280px;
+        font-size: 11px;
+        line-height: 1.55;
+    }
+    .editorial-button {
+        padding: 12px 17px;
+        gap: 14px;
+        font-size: 9px;
+    }
+    .editorial-button span {
+        font-size: 15px;
+    }
+    .editorial-scroll {
+        right: 50%;
+        bottom: 25px;
+        transform:
+            translateX(50%);
+    }
+    .editorial-scroll span {
+        font-size: 7px;
+        letter-spacing: 2.5px;
+    }
+    .editorial-scroll div {
+        width: 30px;
+    }
+}/* ROSE GOLD FEATURES BACKGROUND */
+.features {
+    background: #2b2022 !important;
+}
+.features .feature-icon {
+    color: #d8a0a8 !important;
+}/* PREMIUM FEATURE TEXT COLOR */
+.features .feature h3,
+.features .feature p {
+    color: #f3d2e2 !important;
+}
+.features .feature-icon {
+    color: #e6b8a2 !important;
+}/* PREMIUM FOOTER BACKGROUND */
+
+footer {
+    background: #2b2022 !important;
+}/* =====================================================
+   ROYAL CHICKEN — FLOATING HERO CARD
+===================================================== */
+
+.editorial-hero {
+    height: 650px !important;
+    padding: 25px !important;
+    box-sizing: border-box;
+    background: #f7f4f1 !important;
+}
+
+.editorial-hero-image {
+    inset: 25px !important;
+    width: calc(100% - 50px) !important;
+    height: calc(100% - 50px) !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.20) !important;
+}
+
+.editorial-content {
+    left: calc(9% + 25px) !important;
+}
+
+.editorial-scroll {
+    right: calc(5% + 25px) !important;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .editorial-hero {
+        height: 590px !important;
+        padding: 12px !important;
+    }
+
+    .editorial-hero-image {
+        inset: 12px !important;
+        width: calc(100% - 24px) !important;
+        height: calc(100% - 24px) !important;
+        border-radius: 14px !important;
+    }
+
+    .editorial-content {
+        left: 22px !important;
+        right: 22px !important;
+    }
+
+    .editorial-scroll {
+        right: 50% !important;
+    }
+
+}/* =====================================================
+   ROYAL CHICKEN — REMOVE GREEN / PREMIUM ROSE GOLD
+===================================================== */
+
+/* GREEN TEXT */
+nav a,
+.feature h3,
+.section-heading p,
+.section-label,
+.section-heading h2,
+.product-info h3,
+.price,
+.contact-items strong,
+.cart-box h2,
+.cart-item strong,
+#cart-total,
+.close-cart,
+.review-card h3,
+.review-box h3,
+#review-success {
+    color: #b9828b !important;
+}
+
+
+/* GREEN BACKGROUNDS */
+.cart-btn,
+.product-info button,
+.cart-item button,
+.order-form button,
+.submit-review,
+.reorder-btn,
+.floating-cart button {
+    background: #2b2022 !important;
+}
+
+
+/* GREEN BUTTON HOVER */
+.cart-btn:hover,
+.product-info button:hover,
+.order-form button:hover,
+.submit-review:hover {
+    background: #d6a0a8 !important;
+    color: #2b2022 !important;
+}
+
+
+/* GREEN BORDERS / FOCUS */
+.order-form input:focus,
+.order-form textarea:focus,
+.product-search-box input:focus {
+    border-color: #b9828b !important;
+}
+
+
+/* SEARCH GLOW */
+.product-search-box input:focus {
+    box-shadow:
+        0 0 0 3px rgba(185,130,139,0.14) !important;
+}
+
+
+/* HALAL */
+.halal-tag {
+    background: #2b2022 !important;
+}
+
+
+/* PRODUCT HOVER SHADOW */
+.product-card:hover {
+    box-shadow:
+        0 12px 30px rgba(43,32,34,0.18) !important;
+}
+
+
+/* ABOUT SECTION */
+.about {
+    background:
+        linear-gradient(
+            90deg,
+            #211719 0%,
+            #2b2022 55%,
+            #171113 100%
+        ) !important;
+}
+
+
+/* CONTACT */
+.contact-items strong {
+    color: #b9828b !important;
+}
+
+
+/* THANK YOU */
+.thank-you-icon {
+    background: #2b2022 !important;
+}
+
+.thank-you-box h2,
+.royal-name {
+    color: #b9828b !important;
+}
+
+.delivery-message {
+    background: #faf3f5 !important;
+    border-left-color: #b9828b !important;
+}
+
+.delivery-message strong {
+    color: #b9828b !important;
+}
+
+
+/* ORDER DETAILS */
+.order-number-box {
+    background: #faf3f5 !important;
+    border-color: #ead6da !important;
+}
+
+.order-number-box strong {
+    color: #b9828b !important;
+}
+
+.ordered-product-price,
+.order-total strong {
+    color: #b9828b !important;
+}
+
+
+/* MY ORDERS */
+#orders-modal .order-label,
+.order-label {
+    color: #b9828b !important;
+}
+
+#orders-modal .reorder-btn,
+.reorder-btn {
+    background: #2b2022 !important;
+    color: #ffffff !important;
+}
+
+
+/* OUT FOR DELIVERY */
+#orders-modal .order-status.out-for-delivery,
+.order-status.out-for-delivery {
+    background: #f7edef !important;
+    color: #8f5e67 !important;
+}
+
+
+/* DELIVERED */
+#orders-modal .order-status.delivered,
+.order-status.delivered {
+    background: #f0e2e5 !important;
+    color: #704851 !important;
+}
+
+
+/* ORDER BUTTON */
+#orders-modal .order-card-buttons button:first-child {
+    background: #2b2022 !important;
+    color: #ffffff !important;
+}
+
+
+/* REVIEW */
+.stars,
+.rating button.active {
+    color: #d6a0a8 !important;
+}
+
+
+/* =====================================================
+   HERO — REMOVE GREEN COMPLETELY
+===================================================== */
+
+.hero {
+    background:
+        linear-gradient(
+            90deg,
+            #211719 0%,
+            #2b2022 50%,
+            #171113 100%
+        ) !important;
+}
+
+
+/* =====================================================
+   PRODUCT SECTION
+===================================================== */
+
+.products {
+    background: #f8f5f3 !important;
+}
+
+
+/* =====================================================
+   FEATURE SECTION
+===================================================== */
+
+.features {
+    background: #2b2022 !important;
+}
+
+.features .feature-icon {
+    color: #644030 !important;
+}
+
+.features .feature h3,
+.features .feature p {
+    color: #f3d2e2 !important;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #2b2022 !important;
+}
+
+
+/* =====================================================
+   OLD GREEN COLORS — FORCE OVERRIDE
+===================================================== */
+
+[style*="#176B3A"],
+[style*="#168a45"],
+[style*="#16805b"],
+[style*="#198754"],
+[style*="#16a34a"],
+[style*="#15803d"],
+[style*="#064d29"],
+[style*="#123D28"],
+[style*="#0F2F1D"] {
+    color: #b9828b !important;
+}
+
+
+/* =====================================================
+   MOBILE — KEEP EVERYTHING SAME
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .features {
+        background: #2b2022 !important;
+    }
+
+    .feature h3,
+    .feature p {
+        color: #f3d2e2 !important;
+    }
+
+    .feature-icon {
+        color: #e6b8a2 !important;
+    }
+}
+/* HEADER NAV — SLIGHTLY DARKER */
+
+.header nav a {
+    color: #4a3f41 !important;
+}
+
+.header nav a:hover,
+.header nav a.active {
+    color: #3a3032 !important;
+}/* =========================================
+   PRODUCTS — DARK TEXT & ADD TO CART
+========================================= */
+
+.products-page .product-info h3 {
+    color: #4a3f41 !important;
+}
+
+.products-page .product-info button {
+    background: #4a3f41 !important;
+    border-color: #4a3f41 !important;
+    color: #ffffff !important;
+}
+
+.products-page .product-info button:hover {
+    background: #3a3032 !important;
+    border-color: #3a3032 !important;
+}/* =========================================
+   FEATURES — LIGHT PREMIUM BACKGROUND
+========================================= */
+
+.features {
+    background: #f7f4f1 !important;
+}
+
+.feature {
+    background: #ffffff !important;
+    border-color: #522c35 !important;
+}
+
+.feature h3 {
+    color: #4a3f41 !important;
+}
+
+.feature p {
+    color: #a34f68 !important;
+}
+
+.feature-icon {
+    color: #b9828b !important;
+}/* FEATURES TEXT — SAME DARK AS NAV */
+
+.features .feature h3 {
+    color: #4a3f41 !important;
+}.editorial-hero h1 em {
+    font-family: cursive !important;
+    font-style: cursive !important;
+}/* =========================================
+   ROYAL CHICKEN PREMIUM BANNER POPUP
+========================================= */
+
+.banner-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+.banner-modal.active {
+    display: flex;
+}
+
+.banner-modal-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(15, 11, 13, 0.88);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    animation: bannerFadeIn 0.3s ease;
+}
+
+.banner-modal-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(850px, 100%);
+
+    padding: 8px;
+
+    background: linear-gradient(
+        145deg,
+        #b9828b,
+        #2b2022 18%,
+        #2b2022 82%,
+        #b9828b
+    );
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.65),
+        0 0 35px rgba(185, 130, 139, 0.20);
+
+    animation: bannerZoomIn 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+.banner-modal-image {
+    overflow: hidden;
+
+    background: #2b2022;
+
+    border-radius: 17px;
+}
+
+.banner-modal-image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-height: 75vh;
+
+    object-fit: contain;
+}
+
+
+/* CLOSE BUTTON */
+
+.banner-modal-close {
+    position: absolute;
+
+    top: -16px;
+    right: -16px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #2b2022;
+    color: #ffffff;
+
+    border: 1px solid #b9828b;
+    border-radius: 50%;
+
+    font-size: 27px;
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.banner-modal-close:hover {
+    background: #b9828b;
+    transform: rotate(90deg);
+}
+
+
+/* ORDER BUTTON */
+
+.banner-order-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: fit-content;
+
+    margin: 14px auto 4px;
+    padding: 11px 24px;
+
+    background: #b9828b;
+    color: #ffffff;
+
+    border: 1px solid #d6a0a8;
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+
+    transition: 0.25s ease;
+}
+
+.banner-order-btn span {
+    font-size: 16px;
+}
+
+.banner-order-btn:hover {
+    background: #2b2022;
+    border-color: #b9828b;
+    transform: translateY(-2px);
+}
+
+
+/* ANIMATIONS */
+
+@keyframes bannerFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bannerZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.88);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+    .banner-modal {
+        padding: 16px;
+    }
+
+    .banner-modal-content {
+        width: 100%;
+        padding: 5px;
+
+        border-radius: 17px;
+    }
+
+    .banner-modal-image {
+        border-radius: 13px;
+    }
+
+    .banner-modal-image img {
+        max-height: 68vh;
+    }
+
+    .banner-modal-close {
+        top: -11px;
+        right: -7px;
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 23px;
+    }
+
+    .banner-order-btn {
+        margin-top: 10px;
+        margin-bottom: 3px;
+
+        padding: 10px 20px;
+
+        font-size: 11px;
+    }
+}/* =========================================
+   ORDER SUCCESS — PREMIUM DARK THEME
+========================================= */
+
+.thank-you-box {
+    background: #ffffff !important;
+    border: 1px solid #ded4d6 !important;
+    box-shadow: 0 12px 35px rgba(43, 32, 34, 0.12) !important;
+}
+
+.thank-you-icon {
+    background: #168a45 !important;
+    color: #ffffff !important;
+}
+
+.thank-you-box h2 {
+    color: #4a3f41 !important;
+}
+
+.success-message {
+    color: #5f5658 !important;
+}
+
+
+/* DELIVERY MESSAGE */
+
+.delivery-message {
+    background: #f7f4f1 !important;
+    border-left: 4px solid #4a3f41 !important;
+}
+
+.delivery-message strong {
+    color: #4a3f41 !important;
+}
+
+.delivery-message p {
+    color: #5f5658 !important;
+}
+
+
+/* ROYAL CHICKEN */
+
+.royal-name {
+    color: #4a3f41 !important;
+}
+
+
+/* ORDER NUMBER */
+
+.order-number-box {
+    background: #f7f4f1 !important;
+    border: 1px solid #ded4d6 !important;
+}
+
+.order-number-box span {
+    color: #756b6e !important;
+}
+
+.order-number-box strong {
+    color: #4a3f41 !important;
+}
+
+
+/* ORDER SUMMARY */
+
+.order-section {
+    border-color: #e3dadd !important;
+}
+
+.order-section h3 {
+    color: #4a3f41 !important;
+    border-bottom-color: #e3dadd !important;
+}
+
+.ordered-product {
+    border-bottom-color: #eee5e7 !important;
+}
+
+.ordered-product-info strong {
+    color: #4a3f41 !important;
+}
+
+.ordered-product-info span {
+    color: #756b6e !important;
+}
+
+.ordered-product-price {
+    color: #4a3f41 !important;
+}
+.order-total span {
+    color: #222222 !important;
+    font-weight: 600 !important;
+}
+
+.order-total strong {
+    color: #222222 !important;
+    font-weight: 800 !important;
+}.cart-modal h2,
+.cart-modal .cart-title,
+#cart-modal h2 {
+    color: #4a3f41 !important;
 }
