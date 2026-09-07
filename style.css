@@ -3463,4 +3463,266 @@ footer p {
 
         font-size: 9px !important;
     }
+}/* =====================================================
+   ROYAL CHICKEN — FINAL HERO FIX
+   ===================================================== */
+
+/* DESKTOP HERO */
+
+.editorial-hero {
+    background: #f7f4f1 !important;
+}
+
+.editorial-content {
+    z-index: 10 !important;
+}
+
+.editorial-content h1 em {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+.editorial-kicker {
+    color: #ffffff !important;
+}
+
+.editorial-rule {
+    background: #ffffff !important;
+}
+
+.editorial-content p {
+    color: rgba(255,255,255,0.85) !important;
+}
+
+.editorial-button {
+    background: #4a3f41 !important;
+    color: #ffffff !important;
+    border-color: #4a3f41 !important;
+}
+
+.editorial-button span {
+    color: #ffffff !important;
+}
+
+.editorial-button:hover {
+    background: #3a3032 !important;
+    border-color: #3a3032 !important;
+}
+
+
+/* =====================================================
+   MOBILE HERO
+   ===================================================== */
+
+@media (max-width: 550px) {
+
+    .editorial-hero {
+        height: 590px !important;
+        min-height: 590px !important;
+        padding: 12px !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+
+        /* OUTSIDE OF BANNER */
+        background: #f7f4f1 !important;
+    }
+
+    .editorial-hero-image {
+        position: absolute !important;
+        inset: 12px !important;
+
+        width: calc(100% - 24px) !important;
+        height: calc(100% - 24px) !important;
+
+        border-radius: 14px !important;
+        overflow: hidden !important;
+
+        background: transparent !important;
+    }
+
+    .editorial-hero-image img {
+        width: 100% !important;
+        height: 100% !important;
+
+        display: block !important;
+
+        /* FULL PHOTO — NO CROPPING */
+        object-fit: contain !important;
+        object-position: center center !important;
+
+        transform: none !important;
+    }
+
+    /* DARK OVERLAY ONLY ON IMAGE */
+    .editorial-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+    }
+
+
+    /* =================================================
+       ROYAL CHICKEN TEXT
+       ================================================= */
+
+    .editorial-content {
+        position: absolute !important;
+
+        left: 22px !important;
+        right: auto !important;
+
+        top: 50% !important;
+        bottom: auto !important;
+
+        transform: translateY(-50%) !important;
+
+        width: auto !important;
+        max-width: 300px !important;
+
+        background: transparent !important;
+
+        text-align: left !important;
+
+        z-index: 10 !important;
+    }
+
+    .editorial-kicker {
+        display: block !important;
+
+        margin-bottom: 13px !important;
+
+        font-size: 8px !important;
+        letter-spacing: 3.5px !important;
+
+        color: #ffffff !important;
+    }
+
+    .editorial-content h1 {
+        margin: 0 !important;
+
+        font-size: 57px !important;
+        line-height: 0.88 !important;
+        letter-spacing: -3px !important;
+
+        text-align: left !important;
+
+        background: transparent !important;
+    }
+
+    .editorial-content h1 em {
+        display: block !important;
+
+        font-family:
+            "Cormorant Garamond",
+            Georgia,
+            "Times New Roman",
+            serif !important;
+
+        font-style: normal !important;
+        font-weight: 500 !important;
+
+        letter-spacing: 2px !important;
+
+        color: #ffffff !important;
+
+        background: transparent !important;
+    }
+
+    .editorial-rule {
+        width: 38px !important;
+
+        margin: 20px 0 13px !important;
+
+        background: #ffffff !important;
+    }
+
+    .editorial-content p {
+        margin: 0 0 21px !important;
+
+        max-width: 250px !important;
+
+        font-size: 11px !important;
+        line-height: 1.55 !important;
+
+        text-align: left !important;
+
+        color: rgba(255,255,255,0.85) !important;
+
+        background: transparent !important;
+    }
+
+
+    /* =================================================
+       ORDER NOW BUTTON
+       ================================================= */
+
+    .editorial-button {
+        display: inline-flex !important;
+
+        width: auto !important;
+        margin: 0 !important;
+
+        padding: 12px 17px !important;
+
+        gap: 14px !important;
+
+        font-size: 9px !important;
+
+        background: #4a3f41 !important;
+        color: #ffffff !important;
+
+        border: 1px solid #ffffff !important;
+    }
+
+    .editorial-button span {
+        color: #ffffff !important;
+    }
+
+
+    /* =================================================
+       SCROLL
+       ================================================= */
+
+    .editorial-scroll {
+        right: 50% !important;
+        bottom: 25px !important;
+
+        transform: translateX(50%) !important;
+
+        z-index: 10 !important;
+    }
+
+    .editorial-scroll span {
+        font-size: 7px !important;
+        letter-spacing: 2.5px !important;
+    }
+
+    .editorial-scroll div {
+        width: 30px !important;
+
+        background: #ffffff !important;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+    .editorial-content {
+        left: 22px !important;
+
+        width: 170px !important;
+        max-width: 170px !important;
+    }
+
+    .editorial-content h1 {
+        font-size: 44px !important;
+    }
+
+    .editorial-content p {
+        max-width: 155px !important;
+        font-size: 9px !important;
+    }
 }
