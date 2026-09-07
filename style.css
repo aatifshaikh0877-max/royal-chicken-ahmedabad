@@ -3725,4 +3725,34 @@ footer p {
         max-width: 155px !important;
         font-size: 9px !important;
     }
+}/* MOBILE HERO — KEEP TEXT INSIDE BANNER */
+
+@media (max-width: 550px) {
+
+    .editorial-content {
+        left: 28px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+
+        max-width: 220px !important;
+        width: 220px !important;
+
+        z-index: 10 !important;
+    }
+
+    .editorial-content h1 {
+        font-size: 50px !important;
+        line-height: 0.88 !important;
+        letter-spacing: -2px !important;
+    }
+
+    .editorial-content h1 em {
+        font-size: 50px !important;
+        letter-spacing: 1px !important;
+        white-space: nowrap !important;
+    }
+
+    .editorial-content p {
+        max-width: 190px !important;
+    }
 }
