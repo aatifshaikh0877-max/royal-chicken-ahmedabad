@@ -3776,4 +3776,46 @@ footer p {
     .editorial-button {
         margin: 0 !important;
     }
+}/* MOBILE HERO CONTENT — SMALLER */
+
+@media (max-width: 550px) {
+
+    .editorial-content {
+        max-width: 240px !important;
+    }
+
+    .editorial-kicker {
+        font-size: 7px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .editorial-content h1,
+    .editorial-content h1 em {
+        font-size: 42px !important;
+        line-height: 0.88 !important;
+        letter-spacing: 1px !important;
+    }
+
+    .editorial-rule {
+        width: 32px !important;
+        margin: 15px 0 10px !important;
+    }
+
+    .editorial-content p {
+        max-width: 200px !important;
+        font-size: 9px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 16px !important;
+    }
+
+    .editorial-button {
+        padding: 10px 14px !important;
+        gap: 10px !important;
+        font-size: 8px !important;
+    }
+
+    .editorial-button span {
+        font-size: 13px !important;
+    }
 }
