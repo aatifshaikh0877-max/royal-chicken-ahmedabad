@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Royal Chicken</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================================
+           ABOUT PAGE
+        ================================= */
+
+        .about-page {
+            min-height: calc(100vh - 75px);
+            padding: 60px 7%;
+            background: #f7f8f6;
+        }
+
+        .about-wrapper {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .about-top {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .about-label {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 30px;
+            background: #176b3a;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+
+        .about-top h1 {
+            margin: 0;
+            font-size: 46px;
+            color: #123d28;
+            font-weight: 800;
+        }
+
+        .about-top h2 {
+            margin: 10px 0 0;
+            color: #c49a24;
+            font-size: 21px;
+            font-weight: 600;
+        }
+
+        /* MAIN CARD */
+
+        .about-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .about-card {
+            background: #ffffff;
+            padding: 38px;
+            border-radius: 20px;
+            border: 1px solid #e5e8e5;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+        }
+
+        .about-card h3 {
+            margin: 0 0 15px;
+            color: #176b3a;
+            font-size: 24px;
+        }
+
+        .about-card p {
+            margin: 0 0 14px;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, #123d28, #176b3a);
+            color: #ffffff;
+            padding: 38px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .about-highlight h3 {
+            margin: 0 0 18px;
+            color: #d4af37;
+            font-size: 24px;
+        }
+
+        .about-highlight p {
+            margin: 0;
+            color: rgba(255,255,255,0.88);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* FEATURES */
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .about-feature {
+            background: #ffffff;
+            border: 1px solid #e5e8e5;
+            border-radius: 16px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+        }
+
+        .about-feature-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .about-feature strong {
+            display: block;
+            color: #176b3a;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .about-feature span {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* BUTTON */
+
+        .about-order {
+            text-align: center;
+        }
+
+        .about-order a {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #176b3a;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 700;
+            border: 2px solid #176b3a;
+            transition: 0.25s ease;
+        }
+
+        .about-order a:hover {
+            background: #d4af37;
+            border-color: #d4af37;
+            color: #123d28;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .about-page {
+                padding: 40px 15px 55px;
+            }
+
+            .about-top {
+                margin-bottom: 30px;
+            }
+
+            .about-top h1 {
+                font-size: 32px;
+            }
+
+            .about-top h2 {
+                font-size: 17px;
+            }
+
+            .about-main {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .about-card,
+            .about-highlight {
+                padding: 25px 20px;
+            }
+
+            .about-card h3,
+            .about-highlight h3 {
+                font-size: 20px;
+            }
+
+            .about-card p,
+            .about-highlight p {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .about-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .about-feature {
+                padding: 20px 10px;
+            }
+
+            .about-feature-icon {
+                font-size: 24px;
+            }
+
+            .about-feature strong {
+                font-size: 14px;
+            }
+
+            .about-feature span {
+                font-size: 10px;
+            }
+
+            .about-order a {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+            <a href="index.html">
+                Royal Chicken
+            </a>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ABOUT PAGE -->
+
+    <main class="about-page">
+
+        <div class="about-wrapper">
+
+            <!-- HEADING -->
+
+            <div class="about-top">
+
+                <span class="about-label">
+                    ROYAL CHICKEN
+                </span>
+
+                <h1>
+                    About Us
+                </h1>
+
+                <h2>
+                    Freshness You Can Trust.
+                </h2>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="about-main">
+
+                <div class="about-card">
+
+                    <h3>
+                        Who We Are
+                    </h3>
+
+                    <p>
+                        Welcome to Royal Chicken, your trusted
+                        destination for fresh and quality chicken
+                        in Ahmedabad.
+                    </p>
+
+                    <p>
+                        We are committed to providing fresh
+                        chicken with clean handling, careful
+                        preparation and reliable service.
+                    </p>
+
+                </div>
+
+
+                <div class="about-highlight">
+
+                    <h3>
+                        Why Royal Chicken?
+                    </h3>
+
+                    <p>
+                        We believe quality starts with freshness.
+                        That's why every order is prepared with
+                        care so you receive fresh chicken exactly
+                        the way you want it.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURES -->
+
+            <div class="about-features">
+
+                <div class="about-feature">
+
+                    <div class="about-feature-icon">
+                        🍗
+                    </div>
+
+                    <strong>
+                        Fresh
+                    </strong>
+
+                    <span>
+                        Freshly prepared chicken
+                    </span>
+
+                </div>
+
+
+                <div class="about-feature">
+
+                    <div class="about-feature-icon">
+                        ✨
+                    </div>
+
+                    <strong>
+                        Hygienic
+                    </strong>
+
+                    <span>
+                        Clean handling & preparation
+                    </span>
+
+                </div>
+
+
+                <div class="about-feature">
+
+                    <div class="about-feature-icon">
+                        ✓
+                    </div>
+
+                    <strong>
+                        Quality
+                    </strong>
+
+                    <span>
+                        Quality you can trust
+                    </span>
+
+                </div>
+
+
+                <div class="about-feature">
+
+                    <div class="about-feature-icon">
+                        🚚
+                    </div>
+
+                    <strong>
+                        Home Delivery
+                    </strong>
+
+                    <span>
+                        Fresh chicken at your doorstep
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="about-order">
+
+                <a href="products.html">
+                    Order Fresh Chicken →
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

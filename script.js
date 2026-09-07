@@ -1936,4 +1936,83 @@ document.addEventListener(
 
         await enableRoyalChickenNotifications();
     }
-);
+);/* =========================================
+   ROYAL CHICKEN MOBILE AUTO CAROUSEL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const productGrid = document.querySelector(".product-grid");
+
+    if (!productGrid) return;
+
+    let autoSlide;
+
+    function startAutoSlide() {
+
+        clearInterval(autoSlide);
+
+        autoSlide = setInterval(() => {
+
+            if (window.innerWidth > 550) return;
+
+            const cards = productGrid.querySelectorAll(".product-card");
+
+            if (cards.length <= 3) return;
+
+            const cardWidth = cards[0].offsetWidth;
+
+            const gap = parseInt(
+                getComputedStyle(productGrid).gap
+            ) || 0;
+
+            const moveAmount = (cardWidth + gap) * 3;
+
+            const maxScroll =
+                productGrid.scrollWidth -
+                productGrid.clientWidth;
+
+            if (productGrid.scrollLeft >= maxScroll - 5) {
+
+                productGrid.scrollTo({
+                    left: 0,
+                    behavior: "smooth"
+                });
+
+            } else {
+
+                productGrid.scrollBy({
+                    left: moveAmount,
+                    behavior: "smooth"
+                });
+
+            }
+
+        }, 3500);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    /* Finger swipe ke time autoplay pause */
+
+    productGrid.addEventListener(
+        "touchstart",
+        stopAutoSlide,
+        { passive: true }
+    );
+
+    /* Finger chhodne ke baad autoplay wapas */
+
+    productGrid.addEventListener(
+        "touchend",
+        () => {
+            setTimeout(startAutoSlide, 2500);
+        },
+        { passive: true }
+    );
+
+    startAutoSlide();
+
+});

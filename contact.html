@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Royal Chicken</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================
+           CONTACT PAGE
+           Uses Royal Chicken's existing theme
+        ========================================= */
+/* =========================================
+   CONTACT PAGE
+   Uses Royal Chicken's existing theme
+========================================= */
+
+.contact-page {
+    min-height: calc(100vh - 75px);
+    padding: 55px 7%;
+    background: #FAF9F5;
+    box-sizing: border-box;
+}
+
+.contact-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* HEADING */
+
+.contact-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.contact-heading .halal-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.contact-heading h1 {
+    margin: 0;
+    color: #123d28;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.contact-heading p {
+    margin: 8px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 2 x 2 */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+/* BOX */
+
+.contact-card {
+    min-height: 185px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    background: #FFFDF7;
+
+    border: 1px solid #E5D7A8;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.07);
+
+    transition: 0.25s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.11);
+
+    border-color: #D4AF37;
+}
+
+/* ICON */
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #EEF5F0;
+    color: #123d28;
+
+    border-radius: 12px;
+    font-size: 21px;
+
+    margin-bottom: 13px;
+}
+
+/* TEXT */
+
+.contact-card h3 {
+    margin: 0 0 8px;
+
+    color: #123d28;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.contact-card p {
+    margin: 3px 0;
+
+    color: #444;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.contact-card strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #123d28;
+    font-size: 14px;
+}
+
+/* BUTTON */
+
+.contact-link {
+    display: inline-block;
+
+    margin-top: 12px;
+    padding: 9px 15px;
+
+    background: #176B3A;
+    color: #ffffff;
+
+    border: 1px solid #176B3A;
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.contact-link:hover {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: #123d28;
+}
+
+/* HOURS */
+
+.hours-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid rgba(18,61,40,0.12);
+}
+
+.hours-row:last-child {
+    border-bottom: none;
+}
+
+.hours-row span {
+    color: #555;
+    font-size: 12px;
+}
+
+.hours-row strong {
+    margin: 0;
+    color: #123d28;
+    font-size: 12px;
+}
+
+/* ORDER BUTTON */
+
+.contact-order {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.contact-order a {
+    display: inline-block;
+
+    padding: 13px 28px;
+
+    background: #176B3A;
+    color: white;
+
+    border: 2px solid #176B3A;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.contact-order a:hover {
+    background: #D4AF37;
+    border-color: #D4AF37;
+    color: #123d28;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+    .contact-page {
+        min-height: calc(100vh - 110px);
+        padding: 25px 12px 35px;
+        background: #FAF9F5;
+    }
+
+    .contact-heading {
+        margin-bottom: 20px;
+    }
+
+    .contact-heading h1 {
+        font-size: 30px;
+    }
+
+    .contact-heading p {
+        font-size: 11px;
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .contact-card {
+        min-height: 155px;
+        padding: 15px 12px;
+        border-radius: 13px;
+
+        background: #FFFDF7;
+        border-color: #E5D7A8;
+    }
+
+    .contact-icon {
+        width: 35px;
+        height: 35px;
+
+        background: #EEF5F0;
+        color: #123d28;
+
+        font-size: 17px;
+        border-radius: 9px;
+
+        margin-bottom: 9px;
+    }
+
+    .contact-card h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .contact-card p {
+        font-size: 9.5px;
+        line-height: 1.4;
+    }
+
+    .contact-card strong {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    .contact-link {
+        margin-top: 7px;
+        padding: 6px 8px;
+        font-size: 9px;
+        border-radius: 6px;
+    }
+
+    .hours-row {
+        display: block;
+        padding: 5px 0;
+    }
+
+    .hours-row span {
+        display: block;
+        font-size: 9px;
+    }
+
+    .hours-row strong {
+        display: block;
+        margin-top: 2px;
+        font-size: 9px;
+    }
+
+    .contact-order {
+        margin-top: 15px;
+    }
+
+    .contact-order a {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 10px;
+
+        font-size: 12px;
+    }
+}
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <a href="index.html">
+                Royal Chicken
+            </a>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- CONTACT -->
+
+    <main class="contact-page">
+
+        <div class="contact-wrapper">
+
+
+            <!-- HEADING -->
+
+            <div class="contact-heading">
+
+                <span class="halal-tag">
+                    ROYAL CHICKEN
+                </span>
+
+                <h1>
+                    Contact Us
+                </h1>
+
+                <p>
+                    Fresh chicken is just a message away.
+                </p>
+
+            </div>
+
+
+            <!-- 2 x 2 BOXES -->
+
+            <div class="contact-grid">
+
+
+                <!-- WHATSAPP -->
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        WhatsApp
+                    </h3>
+
+                    <p>
+                        8200348170
+                    </p>
+
+                    <p>
+                        9377382938
+                    </p>
+
+                    <a
+                        class="contact-link"
+                        href="https://wa.me/918200348170"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Chat Now →
+
+                    </a>
+
+                </div>
+
+
+                <!-- SHOP -->
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <h3>
+                        Our Shop
+                    </h3>
+
+                    <p>
+                        Royal Chicken
+                    </p>
+
+                    <p>
+                        Makhtampura, Ahmedabad
+                    </p>
+
+                    <a
+                        class="contact-link"
+                        href="https://maps.app.goo.gl/KRXVUTjzu4RAoWVc6?g_st=iw"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        Directions →
+
+                    </a>
+
+                </div>
+
+
+                <!-- DELIVERY -->
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        🚚
+                    </div>
+
+                    <h3>
+                        Home Delivery
+                    </h3>
+
+                    <p>
+                        Fresh chicken delivered
+                        straight to your doorstep.
+                    </p>
+
+                    <strong>
+                        ₹10 per km
+                    </strong>
+
+                </div>
+
+
+                <!-- HOURS -->
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        ⏰
+                    </div>
+
+                    <h3>
+                        Opening Hours
+                    </h3>
+
+                    <div class="hours-row">
+
+                        <span>
+                            Morning
+                        </span>
+
+                        <strong>
+                            8:00 AM – 1:30 PM
+                        </strong>
+
+                    </div>
+
+                    <div class="hours-row">
+
+                        <span>
+                            Evening
+                        </span>
+
+                        <strong>
+                            5:00 PM – 8:00 PM
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ORDER -->
+
+            <div class="contact-order">
+
+                <a href="products.html">
+                    Order Fresh Chicken →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

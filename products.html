@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Royal Chicken | Products</title>
+
+    <link rel="stylesheet"
+        href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="brand">
+            <a href="index.html">
+                Royal Chicken
+            </a>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-buttons">
+
+            <button
+                class="orders-btn"
+                onclick="openMyOrders()">
+                My Orders
+            </button>
+
+            <button
+                class="cart-btn"
+                onclick="openCart()">
+
+                🛒 View Cart
+
+                <span id="cart-count">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- PRODUCTS -->
+
+    <main>
+
+        <section
+            class="products"
+            id="products">
+
+            <div class="section-heading">
+
+                <p>
+                    ROYAL CHICKEN
+                </p>
+
+                <h1>
+                    Fresh Chicken Collection
+                </h1>
+
+                <span>
+                    Choose your favourite cut
+                </span>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div class="product-search-box">
+
+                <input
+                    type="text"
+                    id="product-search"
+                    placeholder="Search products..."
+                    oninput="searchProducts()">
+
+            </div>
+
+
+            <!-- PRODUCT GRID -->
+
+            <div class="product-grid">
+
+
+                <!-- KHEEMA -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/kheema.jpeg"
+                        alt="Kheema">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Kheema
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-kheema">
+                            ₹400/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Kheema', 400)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOMBAY LEGS -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/bombay-legs.jpeg"
+                        alt="Bombay Legs">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Bombay Legs
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-bombay-legs">
+                            ₹270/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Bombay Legs', 270)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WINGS -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/wings.jpeg"
+                        alt="Wings">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Wings
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-wings">
+                            ₹270/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Wings', 270)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DRUMSTICKS -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/drumsticks.jpeg"
+                        alt="Drumsticks">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Drumsticks
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-drumsticks">
+                            ₹270/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Drumsticks', 270)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRY CUT -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/curry-cut.jpeg"
+                        alt="Curry Cut">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Curry Cut
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-curry-cut">
+                            ₹270/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Curry Cut', 270)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BONELESS -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/boneless.jpeg"
+                        alt="Boneless">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Boneless
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-boneless">
+                            ₹400/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Boneless', 400)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- THAI BONELESS -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/thai-boneless.jpeg"
+                        alt="Thai Boneless">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Thai Boneless
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-thai-boneless">
+                            ₹400/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Thai Boneless', 400)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOLLIPOP -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/lollipop.jpeg"
+                        alt="Lollipop">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Lollipop
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-lollipop">
+                            ₹280/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Lollipop', 280)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVER -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/liver.jpeg"
+                        alt="Liver">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Liver
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-liver">
+                            ₹150/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Liver', 150)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GIZZARD -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/gizzard.jpeg"
+                        alt="Gizzard">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Gizzard
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-gizzard">
+                            ₹150/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Gizzard', 150)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TANDOORI -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/tandoori.jpeg"
+                        alt="Tandoori Chicken">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Tandoori Chicken
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-tandoori">
+                            ₹250 / 1 Piece
+                        </p>
+
+                        <button
+                            onclick="addToCart('Tandoori', 250)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BROILER -->
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="./images/broiler.jpeg"
+                        alt="Broiler Chicken">
+
+                    <div class="product-info">
+
+                        <span class="halal-tag">
+                            HALAL
+                        </span>
+
+                        <h3>
+                            Broiler Chicken
+                        </h3>
+
+                        <p
+                            class="price"
+                            id="price-broiler">
+                            ₹250/kg
+                        </p>
+
+                        <button
+                            onclick="addToCart('Broiler', 250)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+<!-- =====================================================
+     CART MODAL
+===================================================== -->
+<div
+    class="cart-modal"
+    id="cart-modal"
+>
+    <div class="cart-box">
+        <button
+            class="close-cart"
+            type="button"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
+        <h2>
+            Your Cart
+        </h2>
+        <div id="cart-items">
+            <p class="empty-cart">
+                Your cart is empty.
+            </p>
+        </div>
+        <h3 id="cart-total">
+            Total: ₹0
+        </h3>
+        <form
+            class="order-form"
+            id="order-form"
+            onsubmit="placeOrder(event)"
+        >
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Your Name"
+                required
+            >
+            <input
+                type="tel"
+                id="customer-phone"
+                placeholder="Phone Number"
+                required
+            >
+            <textarea
+                id="customer-address"
+                placeholder="Delivery Address"
+                required
+            ></textarea>
+            <textarea
+    id="order-description"
+    placeholder="Description / Special Instructions"
+    rows="3"
+></textarea>
+            <div class="payment-method">
+                <h3>
+                    Payment Method
+                </h3>
+                <label>
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="UPI"
+                        required
+                        onchange="showUPI()"
+                    >
+                    UPI / Online Payment
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Cash on Delivery"
+                        onchange="hideUPI()"
+                    >
+                    Cash on Delivery
+                </label>
+            </div>
+            <div
+                class="upi-payment"
+                id="upi-payment"
+            >
+                <h3>
+                    Pay Using UPI
+                </h3>
+                <img
+                    src="./images/payment-qr.jpeg"
+                    alt="UPI QR Code"
+                    class="payment-qr"
+                >
+                <p>
+                    Scan the QR code using your UPI app
+                    and complete the payment.
+                </p>
+            </div>
+            <button
+                type="submit"
+                class="place-order-btn"
+            >
+                <span>
+                    Place Order
+                </span>
+                <span>
+                    →
+                </span>
+            </button>
+        </form>
+    </div>
+</div>
+<!-- =====================================================
+     MY ORDERS MODAL
+===================================================== -->
+<div
+    id="orders-modal"
+    aria-hidden="true"
+>
+    <div
+        class="orders-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="orders-title"
+    >
+        <button
+            type="button"
+            class="close-orders"
+            onclick="closeMyOrders()"
+            aria-label="Close My Orders"
+        >
+            ×
+        </button>
+        <h2 id="orders-title">
+            🧾 My Orders
+        </h2>
+        <p class="orders-subtitle">
+            View your previous orders and manage them easily.
+        </p>
+        <div id="my-orders-content">
+            <div class="orders-loading">
+                <div style="font-size:40px;">
+                    ⏳
+                </div>
+                <p>
+                    Loading your orders...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- =====================================================
+     FLOATING CART
+===================================================== -->
+<div
+    id="floating-cart"
+    class="floating-cart"
+>
+    <div class="floating-cart-info">
+        <span id="floating-cart-count">
+            0 items
+        </span>
+
+        <strong id="floating-cart-total">
+            ₹0
+        </strong>
+    </div>
+
+    <button
+        type="button"
+        onclick="openCart()"
+    >
+        View Cart 🛒
+    </button>
+</div>
+
+<script
+    type="module"
+    src="script.js"
+></script>
+
+</body>
+</html>
