@@ -472,6 +472,66 @@
             }
         }
     </style>
+    <style>
+@media (max-width: 550px) {
+
+    .product-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 10px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-behavior: smooth !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        padding: 5px 2px 15px !important;
+    }
+
+    .product-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .product-card {
+        flex: 0 0 calc((100% - 20px) / 3) !important;
+        width: calc((100% - 20px) / 3) !important;
+        min-width: calc((100% - 20px) / 3) !important;
+        max-width: calc((100% - 20px) / 3) !important;
+        scroll-snap-align: start !important;
+        transform: none !important;
+    }
+
+    .product-card:hover {
+        transform: none !important;
+    }
+
+    .product-image,
+    .product-image img {
+        width: 100% !important;
+        height: 110px !important;
+        object-fit: cover !important;
+    }
+
+    .product-info {
+        padding: 8px 5px !important;
+    }
+
+    .product-info h3 {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+    }
+
+    .product-info .price {
+        font-size: 10px !important;
+    }
+
+    .product-info button {
+        width: 100% !important;
+        padding: 7px 2px !important;
+        font-size: 9px !important;
+    }
+}
+</style>
 </head>
 <body>
 <!-- ================= SPLASH SCREEN ================= -->
@@ -1166,5 +1226,76 @@
     type="module"
     src="script.js"
 ></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const productGrid = document.querySelector(".product-grid");
+
+    if (!productGrid) return;
+
+    let autoSlide;
+
+    function startAutoSlide() {
+
+        clearInterval(autoSlide);
+
+        autoSlide = setInterval(function () {
+
+            if (window.innerWidth > 550) return;
+
+            const cards = productGrid.querySelectorAll(".product-card");
+
+            if (cards.length <= 3) return;
+
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseInt(
+                getComputedStyle(productGrid).gap
+            ) || 0;
+
+            const moveAmount = (cardWidth + gap) * 3;
+
+            const maxScroll =
+                productGrid.scrollWidth -
+                productGrid.clientWidth;
+
+            if (productGrid.scrollLeft >= maxScroll - 5) {
+
+                productGrid.scrollTo({
+                    left: 0,
+                    behavior: "smooth"
+                });
+
+            } else {
+
+                productGrid.scrollBy({
+                    left: moveAmount,
+                    behavior: "smooth"
+                });
+
+            }
+
+        }, 3500);
+    }
+
+    productGrid.addEventListener(
+        "touchstart",
+        function () {
+            clearInterval(autoSlide);
+        },
+        { passive: true }
+    );
+
+    productGrid.addEventListener(
+        "touchend",
+        function () {
+            setTimeout(startAutoSlide, 2500);
+        },
+        { passive: true }
+    );
+
+    startAutoSlide();
+
+});
+</script>
 </body>
 </html>
