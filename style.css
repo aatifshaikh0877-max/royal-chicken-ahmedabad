@@ -2921,37 +2921,37 @@ footer p {
     min-height: 56px !important;
 
     box-sizing: border-box !important;
-}
+}/* ================= MOBILE FEATURES FIX ================= */
 
+@media (max-width: 550px) {
 
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .orders-btn {
-        height: 50px !important;
-        min-height: 50px !important;
-
-        padding: 0 16px !important;
-
-        font-size: 16px !important;
-
-        border-radius: 10px !important;
-    }
-
-    .cart-btn {
-        height: 50px !important;
-        min-height: 50px !important;
-
-        padding: 0 16px !important;
-
-        font-size: 16px !important;
-    }
-
-    .header-buttons {
+    .features {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 8px !important;
+        padding: 18px 10px !important;
+    }
+
+    .feature {
+        padding: 12px 5px !important;
+        min-width: 0 !important;
+    }
+
+    .feature-icon {
+        font-size: 25px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .feature h3 {
+        font-size: 13px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .feature p {
+        font-size: 10px !important;
+        line-height: 1.25 !important;
+        margin: 0 !important;
     }
 
 }
