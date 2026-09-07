@@ -3943,31 +3943,4 @@ footer {
     }
 }.features .feature p {
     color: #5f5658 !important;
-}/* =========================================
-   ROYAL CHICKEN — MOBILE HERO TEXT
-========================================= */
-
-@media (max-width: 550px) {
-
-    .editorial-content h1 {
-        font-size: 42px !important;
-        line-height: 0.95 !important;
-        margin: 8px 0 14px !important;
-        text-align: right !important;
-    }
-
-    .editorial-content h1 em {
-        display: block !important;
-        font-family: "Cormorant Garamond", Georgia, serif !important;
-        font-style: normal !important;
-        font-weight: 500 !important;
-        letter-spacing: 1.5px !important;
-        white-space: nowrap !important;
-    }
-
-    .editorial-content {
-        right: 18px !important;
-        left: auto !important;
-        text-align: right !important;
-    }
 }
