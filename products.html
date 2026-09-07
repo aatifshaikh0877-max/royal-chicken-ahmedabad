@@ -1,502 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>Products | Royal Chicken Ahmedabad</title>
 
-    <title>Royal Chicken | Products</title>
+    <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet"
-        href="style.css">
+    <style>
+        /* ================= PRODUCTS PAGE ================= */
+
+        .products-page {
+            padding: 45px 7% 80px;
+            min-height: calc(100vh - 75px);
+        }
+
+        .products-page .section-heading {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* ================= MOBILE 3 PRODUCTS PER ROW ================= */
+
+        @media (max-width: 550px) {
+
+            .products-page {
+                padding: 25px 10px 80px;
+            }
+
+            .products-page .section-heading {
+                margin-bottom: 18px;
+            }
+
+            .products-page .section-heading h2 {
+                font-size: 27px !important;
+            }
+
+            .products-page .section-heading span {
+                font-size: 11px;
+            }
+
+            .products-page .product-grid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 13px !important;
+                overflow: visible !important;
+                padding: 6px 2px 16px !important;
+            }
+
+            .products-page .product-card {
+                width: 100% !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                transform: none !important;
+            }
+
+            .products-page .product-card:hover {
+                transform: none !important;
+            }
+
+            .products-page .product-image,
+            .products-page .product-image img {
+                width: 100% !important;
+                height: 140px !important;
+                object-fit: cover !important;
+            }
+
+            .products-page .product-info {
+                padding: 11px 7px !important;
+            }
+
+            .products-page .product-info h3 {
+                font-size: 14px !important;
+                line-height: 1.25 !important;
+                margin-bottom: 7px !important;
+            }
+
+            .products-page .product-info .price {
+                font-size: 13px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .products-page .product-info .price small {
+                font-size: 10px !important;
+            }
+
+            .products-page .product-info button {
+                width: 100% !important;
+                padding: 9px 3px !important;
+                font-size: 10.5px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
-    <header class="header">
+<header class="header">
 
-        <div class="brand">
-            <a href="index.html">
-                Royal Chicken
-            </a>
-        </div>
+    <a href="index.html" class="brand">
+        Royal Chicken
+    </a>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-        <div class="header-buttons">
+    <div class="header-buttons">
 
-            <button
-                class="orders-btn"
-                onclick="openMyOrders()">
-                My Orders
-            </button>
+        <button
+            class="orders-btn"
+            type="button"
+            onclick="openMyOrders()"
+        >
+            🧾 My Orders
+        </button>
 
-            <button
-                class="cart-btn"
-                onclick="openCart()">
+        <button
+            class="cart-btn"
+            type="button"
+            onclick="openCart()"
+        >
+            🛒 View Cart
+            (<span id="cart-count">0</span>)
+        </button>
 
-                🛒 View Cart
+    </div>
 
-                <span id="cart-count">
-                    0
-                </span>
-
-            </button>
-
-        </div>
-
-    </header>
+</header>
 
 
-    <!-- PRODUCTS -->
+<!-- ================= PRODUCTS ================= -->
 
-    <main>
+<section class="products products-page">
 
-        <section
-            class="products"
-            id="products">
+    <div class="section-heading">
 
-            <div class="section-heading">
+        <p>
+            OUR PRODUCTS
+        </p>
 
-                <p>
-                    ROYAL CHICKEN
+        <h2>
+            Fresh Chicken Collection
+        </h2>
+
+        <span>
+            Choose your favourite cut
+        </span>
+
+    </div>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="product-search-box">
+
+        <input
+            type="text"
+            id="product-search"
+            placeholder="🔍 Search chicken..."
+            oninput="searchProducts()"
+        >
+
+    </div>
+
+
+    <!-- ================= PRODUCT GRID ================= -->
+
+    <div class="product-grid">
+
+
+        <!-- KHEEMA -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/kheema.jpeg"
+                    alt="Kheema"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Kheema
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-kheema"
+                >
+                    ₹400 <small>/ kg</small>
                 </p>
 
-                <h1>
-                    Fresh Chicken Collection
-                </h1>
-
-                <span>
-                    Choose your favourite cut
-                </span>
-
-            </div>
-
-
-            <!-- SEARCH -->
-
-            <div class="product-search-box">
-
-                <input
-                    type="text"
-                    id="product-search"
-                    placeholder="Search products..."
-                    oninput="searchProducts()">
+                <button
+                    type="button"
+                    onclick="addToCart('Kheema', 400)"
+                >
+                    Add to Cart
+                </button>
 
             </div>
 
+        </div>
 
-            <!-- PRODUCT GRID -->
 
-            <div class="product-grid">
+        <!-- BOMBAY LEGS -->
 
+        <div class="product-card">
 
-                <!-- KHEEMA -->
+            <div class="product-image">
 
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/kheema.jpeg"
-                        alt="Kheema">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Kheema
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-kheema">
-                            ₹400/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Kheema', 400)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BOMBAY LEGS -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/bombay-legs.jpeg"
-                        alt="Bombay Legs">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Bombay Legs
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-bombay-legs">
-                            ₹270/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Bombay Legs', 270)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- WINGS -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/wings.jpeg"
-                        alt="Wings">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Wings
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-wings">
-                            ₹270/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Wings', 270)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- DRUMSTICKS -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/drumsticks.jpeg"
-                        alt="Drumsticks">
-
-                    <div class="product-info">
-
-                        <h3>
-                            Drumsticks
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-drumsticks">
-                            ₹270/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Drumsticks', 270)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CURRY CUT -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/curry-cut.jpeg"
-                        alt="Curry Cut">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Curry Cut
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-curry-cut">
-                            ₹270/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Curry Cut', 270)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BONELESS -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/boneless.jpeg"
-                        alt="Boneless">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Boneless
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-boneless">
-                            ₹400/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Boneless', 400)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- THAI BONELESS -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/thai-boneless.jpeg"
-                        alt="Thai Boneless">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Thai Boneless
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-thai-boneless">
-                            ₹400/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Thai Boneless', 400)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- LOLLIPOP -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/lollipop.jpeg"
-                        alt="Lollipop">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Lollipop
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-lollipop">
-                            ₹280/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Lollipop', 280)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- LIVER -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/liver.jpeg"
-                        alt="Liver">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Liver
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-liver">
-                            ₹150/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Liver', 150)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- GIZZARD -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/gizzard.jpeg"
-                        alt="Gizzard">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Gizzard
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-gizzard">
-                            ₹150/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Gizzard', 150)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- TANDOORI -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/tandoori.jpeg"
-                        alt="Tandoori Chicken">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Tandoori Chicken
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-tandoori">
-                            ₹250 / 1 Piece
-                        </p>
-
-                        <button
-                            onclick="addToCart('Tandoori', 250)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BROILER -->
-
-                <div class="product-card">
-
-                    <img
-                        class="product-image"
-                        src="./images/broiler.jpeg"
-                        alt="Broiler Chicken">
-
-                    <div class="product-info">
-
-
-                        <h3>
-                            Broiler Chicken
-                        </h3>
-
-                        <p
-                            class="price"
-                            id="price-broiler">
-                            ₹250/kg
-                        </p>
-
-                        <button
-                            onclick="addToCart('Broiler', 250)">
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
+                <img
+                    src="./images/bombay-legs.jpeg"
+                    alt="Bombay Legs"
+                >
 
             </div>
 
-        </section>
+            <div class="product-info">
 
-    </main>
+                <h3>
+                    Bombay Legs
+                </h3>
 
-<!-- =====================================================
-     CART MODAL
-===================================================== -->
+                <div
+                    class="price"
+                    id="price-bombay-legs"
+                >
+                    ₹270 <small>/ kg</small>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Bombay Legs', 270)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- WINGS -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/wings.jpeg"
+                    alt="Wings"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Wings
+                </h3>
+
+                <div
+                    class="price"
+                    id="price-wings"
+                >
+                    ₹270 <small>/ kg</small>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Wings', 270)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DRUMSTICKS -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/drumsticks.jpeg"
+                    alt="Drumsticks"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Drumsticks
+                </h3>
+
+                <div
+                    class="price"
+                    id="price-drumsticks"
+                >
+                    ₹270 <small>/ kg</small>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Drumsticks', 270)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CURRY CUT -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/curry-cut.jpeg"
+                    alt="Curry Cut"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Curry Cut
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-curry-cut"
+                >
+                    ₹270 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Curry Cut', 270)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BONELESS -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/boneless.jpeg"
+                    alt="Boneless"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Boneless
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-boneless"
+                >
+                    ₹400 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Boneless', 400)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- THAI BONELESS -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/thai-boneless.jpeg"
+                    alt="Thai Boneless"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Thai Boneless
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-thai-boneless"
+                >
+                    ₹400 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Thai Boneless', 400)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOLLIPOP -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/lollipop.jpeg"
+                    alt="Lollipop"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Lollipop
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-lollipop"
+                >
+                    ₹280 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Lollipop', 280)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LIVER -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/liver.jpeg"
+                    alt="Liver"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Liver
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-liver"
+                >
+                    ₹150 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Liver', 150)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- GIZZARD -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/gizzard.jpeg"
+                    alt="Gizzard"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Gizzard
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-gizzard"
+                >
+                    ₹150 <small>/ kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Gizzard', 150)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TANDOORI -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/tandoori.jpeg"
+                    alt="Tandoori Chicken"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Tandoori Chicken
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-tandoori"
+                >
+                    ₹250 <small>/ 1 piece</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Tandoori', 250)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BROILER -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <img
+                    src="./images/broiler.jpeg"
+                    alt="Broiler Chicken"
+                >
+
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Broiler Chicken
+                </h3>
+
+                <p
+                    class="price"
+                    id="price-broiler"
+                >
+                    ₹250 <small>/ 1 kg</small>
+                </p>
+
+                <button
+                    type="button"
+                    onclick="addToCart('Broiler', 250)"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CART MODAL ================= -->
+
 <div
     class="cart-modal"
     id="cart-modal"
 >
+
     <div class="cart-box">
+
         <button
             class="close-cart"
             type="button"
@@ -504,49 +652,65 @@
         >
             ×
         </button>
+
         <h2>
             Your Cart
         </h2>
+
         <div id="cart-items">
+
             <p class="empty-cart">
                 Your cart is empty.
             </p>
+
         </div>
+
         <h3 id="cart-total">
             Total: ₹0
         </h3>
+
+
         <form
             class="order-form"
             id="order-form"
             onsubmit="placeOrder(event)"
         >
+
             <input
                 type="text"
                 id="customer-name"
                 placeholder="Your Name"
                 required
             >
+
             <input
                 type="tel"
                 id="customer-phone"
                 placeholder="Phone Number"
                 required
             >
+
             <textarea
                 id="customer-address"
                 placeholder="Delivery Address"
                 required
             ></textarea>
+
             <textarea
-    id="order-description"
-    placeholder="Description / Special Instructions"
-    rows="3"
-></textarea>
+                id="order-description"
+                placeholder="Description / Special Instructions"
+                rows="3"
+            ></textarea>
+
+
             <div class="payment-method">
+
                 <h3>
                     Payment Method
                 </h3>
+
                 <label>
+
                     <input
                         type="radio"
                         name="payment"
@@ -554,62 +718,87 @@
                         required
                         onchange="showUPI()"
                     >
+
                     UPI / Online Payment
+
                 </label>
+
+
                 <label>
+
                     <input
                         type="radio"
                         name="payment"
                         value="Cash on Delivery"
                         onchange="hideUPI()"
                     >
+
                     Cash on Delivery
+
                 </label>
+
             </div>
+
+
             <div
                 class="upi-payment"
                 id="upi-payment"
             >
+
                 <h3>
                     Pay Using UPI
                 </h3>
+
                 <img
                     src="./images/payment-qr.jpeg"
                     alt="UPI QR Code"
                     class="payment-qr"
                 >
+
                 <p>
                     Scan the QR code using your UPI app
                     and complete the payment.
                 </p>
+
             </div>
+
+
             <button
                 type="submit"
                 class="place-order-btn"
             >
+
                 <span>
                     Place Order
                 </span>
+
                 <span>
                     →
                 </span>
+
             </button>
+
         </form>
+
     </div>
+
 </div>
-<!-- =====================================================
-     MY ORDERS MODAL
-===================================================== -->
+
+
+<!-- ================= MY ORDERS ================= -->
+
 <div
     id="orders-modal"
     aria-hidden="true"
 >
+
     <div
         class="orders-box"
         role="dialog"
         aria-modal="true"
         aria-labelledby="orders-title"
     >
+
         <button
             type="button"
             class="close-orders"
@@ -618,32 +807,45 @@
         >
             ×
         </button>
+
         <h2 id="orders-title">
             🧾 My Orders
         </h2>
+
         <p class="orders-subtitle">
             View your previous orders and manage them easily.
         </p>
+
         <div id="my-orders-content">
+
             <div class="orders-loading">
+
                 <div style="font-size:40px;">
                     ⏳
                 </div>
+
                 <p>
                     Loading your orders...
                 </p>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
-<!-- =====================================================
-     FLOATING CART
-===================================================== -->
+
+
+<!-- ================= FLOATING CART ================= -->
+
 <div
     id="floating-cart"
     class="floating-cart"
 >
+
     <div class="floating-cart-info">
+
         <span id="floating-cart-count">
             0 items
         </span>
@@ -651,6 +853,7 @@
         <strong id="floating-cart-total">
             ₹0
         </strong>
+
     </div>
 
     <button
@@ -659,7 +862,11 @@
     >
         View Cart 🛒
     </button>
+
 </div>
+
+
+<!-- ================= SCRIPT ================= -->
 
 <script
     type="module"
