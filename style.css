@@ -3879,4 +3879,42 @@ footer {
 .cart-modal .cart-title,
 #cart-modal h2 {
     color: #4a3f41 !important;
+}/* =====================================================
+   MOBILE HERO BANNER — FULL IMAGE VISIBILITY
+===================================================== */
+
+@media (max-width: 550px) {
+
+    .editorial-hero {
+        min-height: 620px !important;
+        height: auto !important;
+    }
+
+    .editorial-hero-image {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .editorial-hero-image img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center center !important;
+        display: block !important;
+    }
+
+    .editorial-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+    }
+
+    .editorial-content {
+        position: relative !important;
+        z-index: 5 !important;
+    }
+}.features .feature p {
+    color: #5f5658 !important;
 }
