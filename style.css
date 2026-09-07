@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap');
 /* ================= RESET ================= */
 
 * {
@@ -3547,8 +3548,10 @@ footer {
 .features .feature h3 {
     color: #4a3f41 !important;
 }.editorial-hero h1 em {
-    font-family: cursive !important;
-    font-style: cursive !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    letter-spacing: 2px !important;
 }/* =========================================
    ROYAL CHICKEN PREMIUM BANNER POPUP
 ========================================= */
@@ -3880,14 +3883,15 @@ footer {
 #cart-modal h2 {
     color: #4a3f41 !important;
 }/* =====================================================
-   MOBILE HERO BANNER — FULL IMAGE VISIBILITY
+   MOBILE HERO BANNER
 ===================================================== */
 
 @media (max-width: 550px) {
 
     .editorial-hero {
         min-height: 620px !important;
-        height: auto !important;
+        height: 620px !important;
+        overflow: hidden !important;
     }
 
     .editorial-hero-image {
@@ -3901,7 +3905,7 @@ footer {
     .editorial-hero-image img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
+        object-fit: contain !important;
         object-position: center center !important;
         display: block !important;
     }
@@ -3911,10 +3915,59 @@ footer {
         inset: 0 !important;
     }
 
+    /* CONTENT */
     .editorial-content {
-        position: relative !important;
+        position: absolute !important;
         z-index: 5 !important;
+
+        right: 18px !important;
+        left: auto !important;
+        top: 50% !important;
+
+        transform: translateY(-50%) !important;
+
+        width: auto !important;
+        text-align: right !important;
+    }
+
+    /* ORDER NOW */
+    .editorial-kicker {
+        display: inline-block !important;
+        margin-bottom: 8px !important;
+    }
+
+    .editorial-button {
+        display: inline-flex !important;
+        width: auto !important;
+        margin-left: auto !important;
     }
 }.features .feature p {
     color: #5f5658 !important;
+}/* =========================================
+   ROYAL CHICKEN — MOBILE HERO TEXT
+========================================= */
+
+@media (max-width: 550px) {
+
+    .editorial-content h1 {
+        font-size: 42px !important;
+        line-height: 0.95 !important;
+        margin: 8px 0 14px !important;
+        text-align: right !important;
+    }
+
+    .editorial-content h1 em {
+        display: block !important;
+        font-family: "Cormorant Garamond", Georgia, serif !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        letter-spacing: 1.5px !important;
+        white-space: nowrap !important;
+    }
+
+    .editorial-content {
+        right: 18px !important;
+        left: auto !important;
+        text-align: right !important;
+    }
 }
