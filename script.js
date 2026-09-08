@@ -19,9 +19,9 @@ import {
     getDocs,
     getDoc,
     doc,
-    updateDoc
+    updateDoc,
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 import {
     getMessaging,
     getToken,
@@ -51,7 +51,6 @@ const app =
 const db =
     getFirestore(app);
 let messaging = null;
-
 try {
     messaging = getMessaging(app);
 } catch (error) {
@@ -60,77 +59,71 @@ try {
         error
     );
 }
-const VAPID_KEY = "BNlMSym2ILeQdfEo2R4pOM9BGqgzEZlOBo0ZQ1zuxqkH9IbjoN6Qiy5Q6hXtUcUiV_zvHcxG72fcPLHHmDgDIn8";
+const VAPID_KEY =
+    "BNlMSym2ILeQdfEo2R4pOM9BGqgzEZlOBo0ZQ1zuxqkH9IbjoN6Qiy5Q6hXtUcUiV_zvHcxG72fcPLHHmDgDIn8";
 /* =====================================================
    CUSTOMER NOTIFICATIONS
 ===================================================== */
-
 async function enableRoyalChickenNotifications() {
     if (!messaging) {
-    return null;
-}
+        return null;
+    }
     try {
-
         if (!messaging) {
             console.log(
                 "Notifications not supported in this browser/webview."
             );
             return;
         }
-
         if (!("Notification" in window)) {
             console.log(
                 "This browser does not support notifications."
             );
             return;
         }
-
         const permission =
             await Notification.requestPermission();
-
         if (permission !== "granted") {
             console.log(
                 "Notification permission denied."
             );
             return;
         }
-
         if (!("serviceWorker" in navigator)) {
             console.log(
                 "Service Worker not supported."
             );
             return;
         }
-
         const registration =
             await navigator.serviceWorker.register(
                 "/firebase-messaging-sw.js"
             );
-
         const token =
-            await getToken(messaging, {
-                vapidKey: VAPID_KEY,
-                serviceWorkerRegistration:
-                    registration
-            });
-
+            await getToken(
+                messaging,
+                {
+                    vapidKey:
+                        VAPID_KEY,
+                    serviceWorkerRegistration:
+                        registration
+                }
+            );
         if (!token) {
-            console.log("FCM token nahi mila.");
+            console.log(
+                "FCM token nahi mila."
+            );
             return;
         }
-
         localStorage.setItem(
             "royalChickenFCMToken",
             token
         );
-
         console.log(
             "ROYAL CHICKEN FCM TOKEN:",
             token
         );
-
     } catch (error) {
-
         console.log(
             "Notification unavailable:",
             error
@@ -140,23 +133,26 @@ async function enableRoyalChickenNotifications() {
 /* =====================================================
    GET CUSTOMER FCM TOKEN
 ===================================================== */
-
 async function getRoyalChickenFCMToken() {
     try {
-        let token = localStorage.getItem("royalChickenFCMToken");
-
+        let token =
+            localStorage.getItem(
+                "royalChickenFCMToken"
+            );
         if (token) {
             return token;
         }
-
         await enableRoyalChickenNotifications();
-
-        token = localStorage.getItem("royalChickenFCMToken");
-
+        token =
+            localStorage.getItem(
+                "royalChickenFCMToken"
+            );
         return token || null;
-
     } catch (error) {
-        console.error("FCM token error:", error);
+        console.error(
+            "FCM token error:",
+            error
+        );
         return null;
     }
 }
@@ -164,10 +160,9 @@ async function getRoyalChickenFCMToken() {
    CART
 ===================================================== */
 let cart = [];
-// =====================================================
-// DAILY RATES FROM FIREBASE
-// =====================================================
-
+/* =====================================================
+   DAILY RATES FROM FIREBASE
+===================================================== */
 const DEFAULT_RATES = {
     "kheema": 400,
     "bombay-legs": 270,
@@ -182,7 +177,6 @@ const DEFAULT_RATES = {
     "tandoori": 250,
     "broiler": 250
 };
-
 const PRODUCT_RATE_IDS = {
     "Kheema": "kheema",
     "Bombay Legs": "bombay-legs",
@@ -197,60 +191,179 @@ const PRODUCT_RATE_IDS = {
     "Tandoori": "tandoori",
     "Broiler": "broiler"
 };
-
-let liveRates = { ...DEFAULT_RATES };
-
-async function loadProductRates() {
-    try {
-        const snapshot = await getDocs(
-            collection(db, "productRates")
+let liveRates = {
+    ...DEFAULT_RATES
+};
+/* =====================================================
+   SHOP OPEN / CLOSE STATUS
+===================================================== */
+let shopIsOpen = true;
+function listenToShopStatus() {
+    const shopStatusRef =
+        doc(
+            db,
+            "shopStatus",
+            "current"
         );
-
-        snapshot.forEach((rateDoc) => {
-            const data = rateDoc.data();
-
-            if (data.price !== undefined) {
-                liveRates[rateDoc.id] = Number(data.price);
+    onSnapshot(
+        shopStatusRef,
+        function(snapshot) {
+            if (snapshot.exists()) {
+                const data =
+                    snapshot.data();
+                shopIsOpen =
+                    data.isOpen !== false;
+            } else {
+                shopIsOpen = true;
             }
-        });
-
-        updateProductPrices();
-
-        console.log("Daily Rates Loaded:", liveRates);
-
-    } catch (error) {
-        console.error("Daily Rates Error:", error);
+            updateShopClosedUI();
+        },
+        function(error) {
+            console.error(
+                "SHOP STATUS LISTENER ERROR:",
+                error
+            );
+        }
+    );
+}
+/* =====================================================
+   SHOP CLOSED UI
+===================================================== */
+function updateShopClosedUI() {
+    let overlay =
+        document.getElementById(
+            "shop-closed-overlay"
+        );
+    if (!overlay) {
+        overlay =
+            document.createElement(
+                "div"
+            );
+        overlay.id =
+            "shop-closed-overlay";
+        overlay.innerHTML = `
+            <div class="shop-closed-box">
+               <div class="shop-closed-icon">
+    <img
+        src="./images/closed-logo.jpeg"
+        alt="Royal Chicken"
+    >
+</div>
+                <h2>
+                    SHOP CLOSED
+                </h2>
+                <p>
+                    We are currently closed.
+                </p>
+                <div class="shop-hours">
+                    <strong>
+                        Opening Hours
+                    </strong>
+                    <span>
+                        Morning: 8:00 AM – 1:30 PM
+                    </span>
+                    <span>
+                        Evening: 5:00 PM – 8:00 PM
+                    </span>
+                </div>
+                <button
+                    type="button"
+                    onclick="
+                        document
+                        .getElementById('shop-closed-overlay')
+                        .classList
+                        .remove('active')
+                    "
+                >
+                    CLOSE
+                </button>
+            </div>
+        `;
+        document.body.appendChild(
+            overlay
+        );
+    }
+    if (shopIsOpen) {
+        overlay.classList.remove(
+            "active"
+        );
+    } else {
+        overlay.classList.add(
+            "active"
+        );
     }
 }
+/* =====================================================
+   LOAD PRODUCT RATES
+===================================================== */
+async function loadProductRates() {
+    try {
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "productRates"
+                )
+            );
+        snapshot.forEach(
+            (rateDoc) => {
+                const data =
+                    rateDoc.data();
+                if (
+                    data.price !== undefined
+                ) {
+                    liveRates[
+                        rateDoc.id
+                    ] =
+                        Number(
+                            data.price
+                        );
+                }
+            }
+        );
+        updateProductPrices();
+        console.log(
+            "Daily Rates Loaded:",
+            liveRates
+        );
+    } catch (error) {
+        console.error(
+            "Daily Rates Error:",
+            error
+        );
+    }
+}
+/* =====================================================
+   UPDATE PRODUCT PRICES
+===================================================== */
 function updateProductPrices() {
-
-    Object.entries(PRODUCT_RATE_IDS).forEach(
+    Object.entries(
+        PRODUCT_RATE_IDS
+    ).forEach(
         ([productName, rateId]) => {
-
             const priceElement =
-                document.getElementById("price-" + rateId);
-
-            if (!priceElement) return;
-
+                document.getElementById(
+                    "price-" + rateId
+                );
+            if (!priceElement) {
+                return;
+            }
             const price =
                 liveRates[rateId] ??
                 DEFAULT_RATES[rateId];
-
-            if (rateId === "tandoori") {
-
+            if (
+                rateId === "tandoori"
+            ) {
                 priceElement.innerHTML =
                     `₹${price} <small>/ 1 piece</small>`;
-
-            } else if (rateId === "broiler") {
-
+            } else if (
+                rateId === "broiler"
+            ) {
                 priceElement.innerHTML =
                     `₹${price} <small>/ 1 kg</small>`;
-
             } else {
-
                 priceElement.innerHTML =
                     `₹${price} <small>/ kg</small>`;
-
             }
         }
     );
@@ -258,31 +371,40 @@ function updateProductPrices() {
 /* =====================================================
    ADD TO CART
 ===================================================== */
-function addToCart(name, price) {
-
-    const rateId = PRODUCT_RATE_IDS[name];
-
+function addToCart(
+    name,
+    price
+) {
+    /* SHOP CLOSED CHECK */
+    if (!shopIsOpen) {
+        updateShopClosedUI();
+        return;
+    }
+    const rateId =
+        PRODUCT_RATE_IDS[name];
     const currentPrice =
-        rateId && liveRates[rateId] !== undefined
+        rateId &&
+        liveRates[rateId] !== undefined
             ? liveRates[rateId]
             : Number(price);
-
     const existingItem =
         cart.find(
             item =>
                 item.name === name
         );
-
     if (existingItem) {
-        existingItem.quantity += 0.5;
+        existingItem.quantity +=
+            0.5;
     } else {
         cart.push({
-            name: name,
-            price: currentPrice,
-            quantity: 1
+            name:
+                name,
+            price:
+                currentPrice,
+            quantity:
+                1
         });
     }
-
     updateCart();
 }
 /* =====================================================
@@ -453,7 +575,8 @@ function increaseItem(index) {
     if (!cart[index]) {
         return;
     }
-    cart[index].quantity += 0.5;
+    cart[index].quantity +=
+        0.5;
     updateCart();
 }
 /* =====================================================
@@ -463,13 +586,17 @@ function decreaseItem(index) {
     if (!cart[index]) {
         return;
     }
-
-    if (cart[index].quantity > 1) {
-        cart[index].quantity -= 0.5;
+    if (
+        cart[index].quantity > 1
+    ) {
+        cart[index].quantity -=
+            0.5;
     } else {
-        cart.splice(index, 1);
+        cart.splice(
+            index,
+            1
+        );
     }
-
     updateCart();
 }
 /* =====================================================
@@ -570,6 +697,13 @@ function searchProducts() {
 async function placeOrder(event) {
     event.preventDefault();
     /* =================================================
+       SHOP CLOSED CHECK
+    ================================================= */
+    if (!shopIsOpen) {
+        updateShopClosedUI();
+        return;
+    }
+    /* =================================================
        CHECK CART
     ================================================= */
     if (cart.length === 0) {
@@ -623,8 +757,13 @@ async function placeOrder(event) {
             )
             .value
             .trim();
-            const description =
-    document.getElementById("order-description")?.value.trim() || "";
+    const description =
+        document
+            .getElementById(
+                "order-description"
+            )
+            ?.value
+            .trim() || "";
     if (
         !name ||
         !phone ||
@@ -718,44 +857,32 @@ async function placeOrder(event) {
     /* =================================================
        SAVE TO FIREBASE
     ================================================= */
-try {
-
-    const notificationToken =
-        await getRoyalChickenFCMToken();
-
-    const orderData = {
-        orderNumber:
-            orderNumber,
-
-        customerName:
-            name,
-
-        phone:
-            cleanPhone,
-
-        address:
-            address,
-
-        description:
-            description,
-
-        paymentMethod:
-            paymentMethod,
-
-        items:
-            orderItems,
-
-        total:
-            total,
-
-        status:
-            "Pending",
-
-        notificationToken:
-            notificationToken || null,
-
-        createdAt:
-            serverTimestamp()
+    try {
+        const notificationToken =
+            await getRoyalChickenFCMToken();
+        const orderData = {
+            orderNumber:
+                orderNumber,
+            customerName:
+                name,
+            phone:
+                cleanPhone,
+            address:
+                address,
+            description:
+                description,
+            paymentMethod:
+                paymentMethod,
+            items:
+                orderItems,
+            total:
+                total,
+            status:
+                "Pending",
+            notificationToken:
+                notificationToken || null,
+            createdAt:
+                serverTimestamp()
         };
         await addDoc(
             collection(
@@ -1266,28 +1393,29 @@ async function openMyOrders() {
                             >
                                 👀 View Order
                             </button>
-                           ${
-    status === "Pending" &&
-    order.createdAt &&
-    (
-        Date.now() -
-        (
-            order.createdAt.seconds * 1000
-        )
-    ) < 5 * 60 * 1000
-    ?
-    `
-    <button
-        type="button"
-        class="cancel-order-btn"
-        onclick="cancelOrder('${order.id}')"
-    >
-        ❌ Cancel Order
-    </button>
-    `
-    :
-    ""
-}
+                            ${
+                                status === "Pending" &&
+                                order.createdAt &&
+                                (
+                                    Date.now() -
+                                    (
+                                        order.createdAt.seconds *
+                                        1000
+                                    )
+                                ) < 5 * 60 * 1000
+                                ?
+                                `
+                                <button
+                                    type="button"
+                                    class="cancel-order-btn"
+                                    onclick="cancelOrder('${order.id}')"
+                                >
+                                    ❌ Cancel Order
+                                </button>
+                                `
+                                :
+                                ""
+                            }
                             <button
                                 type="button"
                                 class="reorder-btn"
@@ -1344,7 +1472,6 @@ function closeMyOrders() {
 }
 /* =====================================================
    VIEW ORDER
-   FIXED
 ===================================================== */
 async function viewOrder(orderId) {
     const content =
@@ -1590,11 +1717,9 @@ async function cancelOrder(orderId) {
         confirm(
             "Are you sure you want to cancel this order?"
         );
-
     if (!confirmCancel) {
         return;
     }
-
     try {
         const orderRef =
             doc(
@@ -1602,22 +1727,18 @@ async function cancelOrder(orderId) {
                 "orders",
                 orderId
             );
-
         const orderSnap =
             await getDoc(
                 orderRef
             );
-
         if (!orderSnap.exists()) {
             alert(
                 "Order not found."
             );
             return;
         }
-
         const order =
             orderSnap.data();
-
         /* =========================================
            CHECK ORDER STATUS
         ========================================= */
@@ -1630,7 +1751,6 @@ async function cancelOrder(orderId) {
             );
             return;
         }
-
         /* =========================================
            5 MINUTE CANCELLATION LIMIT
         ========================================= */
@@ -1643,17 +1763,13 @@ async function cancelOrder(orderId) {
             );
             return;
         }
-
         const orderTime =
             order.createdAt.seconds *
             1000;
-
         const currentTime =
             Date.now();
-
         const fiveMinutes =
             5 * 60 * 1000;
-
         if (
             currentTime -
             orderTime >=
@@ -1662,11 +1778,9 @@ async function cancelOrder(orderId) {
             alert(
                 "Cancellation time has expired. Orders can only be cancelled within 5 minutes."
             );
-
             await openMyOrders();
             return;
         }
-
         /* =========================================
            CANCEL ORDER
         ========================================= */
@@ -1675,24 +1789,19 @@ async function cancelOrder(orderId) {
             {
                 status:
                     "Cancelled",
-
                 cancelledAt:
                     serverTimestamp()
             }
         );
-
         alert(
             "Your order has been cancelled successfully."
         );
-
         await openMyOrders();
-
     } catch (error) {
         console.error(
             "CANCEL ORDER ERROR:",
             error
         );
-
         alert(
             "Order cancel nahi ho paya. Please try again."
         );
@@ -1702,6 +1811,13 @@ async function cancelOrder(orderId) {
    REORDER
 ===================================================== */
 async function reorderItems(orderId) {
+    /* =================================================
+       SHOP CLOSED CHECK
+    ================================================= */
+    if (!shopIsOpen) {
+        updateShopClosedUI();
+        return;
+    }
     try {
         const orderRef =
             doc(
@@ -1754,15 +1870,16 @@ async function reorderItems(orderId) {
             }
         );
         updateCart();
-closeMyOrders();
-openCart();
-
-const orderForm = document.querySelector(".order-form");
-
-if (orderForm) {
-    orderForm.style.display = "block";
-}
-
+        closeMyOrders();
+        openCart();
+        const orderForm =
+            document.querySelector(
+                ".order-form"
+            );
+        if (orderForm) {
+            orderForm.style.display =
+                "block";
+        }
     } catch (error) {
         console.error(
             "REORDER ERROR:",
@@ -1933,123 +2050,337 @@ document.addEventListener(
     async function() {
         await loadProductRates();
         updateCart();
-
+        listenToShopStatus();
         await enableRoyalChickenNotifications();
     }
-);/* =========================================
+);
+/* =========================================
    ROYAL CHICKEN MOBILE AUTO CAROUSEL
 ========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const productGrid = document.querySelector(".product-grid");
-
-    if (!productGrid) return;
-
-    let autoSlide;
-
-    function startAutoSlide() {
-
-        clearInterval(autoSlide);
-
-        autoSlide = setInterval(() => {
-
-            if (window.innerWidth > 550) return;
-
-            const cards = productGrid.querySelectorAll(".product-card");
-
-            if (cards.length <= 3) return;
-
-            const cardWidth = cards[0].offsetWidth;
-
-            const gap = parseInt(
-                getComputedStyle(productGrid).gap
-            ) || 0;
-
-            const moveAmount = (cardWidth + gap) * 3;
-
-            const maxScroll =
-                productGrid.scrollWidth -
-                productGrid.clientWidth;
-
-            if (productGrid.scrollLeft >= maxScroll - 5) {
-
-                productGrid.scrollTo({
-                    left: 0,
-                    behavior: "smooth"
-                });
-
-            } else {
-
-                productGrid.scrollBy({
-                    left: moveAmount,
-                    behavior: "smooth"
-                });
-
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+        const productGrid =
+            document.querySelector(
+                ".product-grid"
+            );
+        if (!productGrid) {
+            return;
+        }
+        let autoSlide;
+        function startAutoSlide() {
+            clearInterval(
+                autoSlide
+            );
+            autoSlide =
+                setInterval(
+                    () => {
+                        if (
+                            window.innerWidth >
+                            550
+                        ) {
+                            return;
+                        }
+                        const cards =
+                            productGrid.querySelectorAll(
+                                ".product-card"
+                            );
+                        if (
+                            cards.length <= 3
+                        ) {
+                            return;
+                        }
+                        const cardWidth =
+                            cards[0].offsetWidth;
+                        const gap =
+                            parseInt(
+                                getComputedStyle(
+                                    productGrid
+                                ).gap
+                            ) || 0;
+                        const moveAmount =
+                            (
+                                cardWidth +
+                                gap
+                            ) * 3;
+                        const maxScroll =
+                            productGrid.scrollWidth -
+                            productGrid.clientWidth;
+                        if (
+                            productGrid.scrollLeft >=
+                            maxScroll - 5
+                        ) {
+                            productGrid.scrollTo({
+                                left:
+                                    0,
+                                behavior:
+                                    "smooth"
+                            });
+                        } else {
+                            productGrid.scrollBy({
+                                left:
+                                    moveAmount,
+                                behavior:
+                                    "smooth"
+                            });
+                        }
+                    },
+                    3500
+                );
+        }
+        function stopAutoSlide() {
+            clearInterval(
+                autoSlide
+            );
+        }
+        /* Finger swipe ke time autoplay pause */
+        productGrid.addEventListener(
+            "touchstart",
+            stopAutoSlide,
+            {
+                passive:
+                    true
             }
-
-        }, 3500);
+        );
+        /* Finger chhodne ke baad autoplay wapas */
+        productGrid.addEventListener(
+            "touchend",
+            () => {
+                setTimeout(
+                    startAutoSlide,
+                    2500
+                );
+            },
+            {
+                passive:
+                    true
+            }
+        );
+        startAutoSlide();
     }
-
-    function stopAutoSlide() {
-        clearInterval(autoSlide);
-    }
-
-    /* Finger swipe ke time autoplay pause */
-
-    productGrid.addEventListener(
-        "touchstart",
-        stopAutoSlide,
-        { passive: true }
-    );
-
-    /* Finger chhodne ke baad autoplay wapas */
-
-    productGrid.addEventListener(
-        "touchend",
-        () => {
-            setTimeout(startAutoSlide, 2500);
-        },
-        { passive: true }
-    );
-
-    startAutoSlide();
-
-});
+);
 /* =========================================
    PREMIUM BANNER POPUP
 ========================================= */
-
-window.openBannerModal = function () {
-
-    const modal = document.getElementById("banner-modal");
-
-    if (!modal) return;
-
-    modal.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-};
-
-
-window.closeBannerModal = function () {
-
-    const modal = document.getElementById("banner-modal");
-
-    if (!modal) return;
-
-    modal.classList.remove("active");
-
-    document.body.style.overflow = "";
-};
-
-
+window.openBannerModal =
+    function() {
+        const modal =
+            document.getElementById(
+                "banner-modal"
+            );
+        if (!modal) {
+            return;
+        }
+        modal.classList.add(
+            "active"
+        );
+        document.body.style.overflow =
+            "hidden";
+    };
+window.closeBannerModal =
+    function() {
+        const modal =
+            document.getElementById(
+                "banner-modal"
+            );
+        if (!modal) {
+            return;
+        }
+        modal.classList.remove(
+            "active"
+        );
+        document.body.style.overflow =
+            "";
+    };
 /* ESC KEY TO CLOSE */
-
-document.addEventListener("keydown", function (event) {
-
-    if (event.key === "Escape") {
-        window.closeBannerModal();
+document.addEventListener(
+    "keydown",
+    function(event) {
+        if (
+            event.key ===
+            "Escape"
+        ) {
+            window.closeBannerModal();
+        }
     }
+);
+/* =====================================================
+   SHOP CLOSED PREMIUM DESIGN
+===================================================== */
+const shopClosedStyle =
+    document.createElement(
+        "style"
+    );
+shopClosedStyle.textContent = `
+#shop-closed-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        rgba(
+            43,
+            32,
+            34,
+            0.72
+        );
+    backdrop-filter:
+        blur(10px);
+    -webkit-backdrop-filter:
+        blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+#shop-closed-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.shop-closed-box {
+    width:
+        min(
+            390px,
+            100%
+        );
+    padding:
+        34px
+        26px
+        28px;
+    text-align:
+        center;
+    background:
+        #ffffff;
+    border:
+        1px solid
+        #ded4d6;
+    border-radius:
+        22px;
+    box-shadow:
+        0
+        25px
+        70px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+}
+.shop-closed-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-});
+.shop-closed-icon img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    display: block;
+}
+.shop-closed-box h2 {
+    margin:
+        0 0 8px;
+    color:
+        #4a3f41;
+    font-size:
+        27px;
+    letter-spacing:
+        2px;
+}
+.shop-closed-box > p {
+    margin:
+        0 0 22px;
+    color:
+        #756b6e;
+    font-size:
+        14px;
+}
+.shop-hours {
+    display:
+        flex;
+    flex-direction:
+        column;
+    gap:
+        9px;
+    padding:
+        16px;
+    margin-bottom:
+        22px;
+    background:
+        #f7f4f1;
+    border:
+        1px solid
+        #e3dadd;
+    border-radius:
+        14px;
+}
+.shop-hours strong {
+    margin-bottom:
+        3px;
+    color:
+        #4a3f41;
+    font-size:
+        14px;
+}
+.shop-hours span {
+    color:
+        #5f5658;
+    font-size:
+        13px;
+}
+.shop-closed-box button {
+    width:
+        100%;
+    padding:
+        12px 18px;
+    border:
+        none;
+    border-radius:
+        10px;
+    background:
+        #4a3f41;
+    color:
+        #ffffff;
+    font-size:
+        12px;
+    font-weight:
+        700;
+    letter-spacing:
+        1px;
+    cursor:
+        pointer;
+}
+.shop-closed-box button:hover {
+    background:
+        #3a3032;
+}
+@media (max-width: 550px) {
+    .shop-closed-box {
+        padding:
+            30px
+            20px
+            22px;
+        border-radius:
+            18px;
+    }
+    .shop-closed-box h2 {
+        font-size:
+            23px;
+    }
+}
+`;
+document.head.appendChild(
+    shopClosedStyle
+);

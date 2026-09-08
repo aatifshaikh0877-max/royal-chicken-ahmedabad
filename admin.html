@@ -212,19 +212,41 @@
     
 
 
-    <!-- SIDEBAR FOOTER -->
     <div class="sidebar-footer">
 
-        <div class="admin-status">
-            <span class="status-dot"></span>
-            System Online
+    <!-- SHOP CONTROL -->
+    <div class="shop-control">
+
+        <div class="shop-control-title">
+            SHOP STATUS
         </div>
 
-        <p>
-            Royal Chicken © 2026
-        </p>
+        <button
+            type="button"
+            id="shop-status-btn"
+            class="shop-status-btn closed"
+            onclick="toggleShopStatus()"
+        >
+            🔴 CLOSE SHOP
+        </button>
+
+        <span id="shop-status-text">
+            Shop is currently open
+        </span>
 
     </div>
+
+
+    <div class="admin-status">
+        <span class="status-dot"></span>
+        System Online
+    </div>
+
+    <p>
+        Royal Chicken ©️ 2026
+    </p>
+
+</div>
 
 </aside>
 

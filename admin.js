@@ -57,6 +57,151 @@ let currentSalesPeriod = "today";
 
 let orderListenerStarted = false;
 let firstOrderSnapshot = true;
+/* =====================================================
+   SHOP OPEN / CLOSE CONTROL
+===================================================== */
+
+let shopIsOpen = true;
+
+async function loadShopStatus() {
+
+    try {
+
+        const shopStatusRef = doc(
+            db,
+            "shopStatus",
+            "current"
+        );
+
+        const snapshot = await getDoc(shopStatusRef);
+
+        if (snapshot.exists()) {
+
+            const data = snapshot.data();
+
+            shopIsOpen =
+                data.isOpen !== false;
+
+        } else {
+
+            shopIsOpen = true;
+
+            await setDoc(
+                shopStatusRef,
+                {
+                    isOpen: true,
+                    updatedAt: serverTimestamp()
+                }
+            );
+        }
+
+        updateShopStatusUI();
+
+    } catch (error) {
+
+        console.error(
+            "SHOP STATUS ERROR:",
+            error
+        );
+
+    }
+
+}
+
+
+function updateShopStatusUI() {
+
+    const button =
+        document.getElementById("shop-status-btn");
+
+    const text =
+        document.getElementById("shop-status-text");
+
+    if (!button || !text) return;
+
+
+    if (shopIsOpen) {
+
+        button.textContent = "🔴 CLOSE SHOP";
+
+        button.classList.remove("open");
+
+        button.classList.add("closed");
+
+        text.textContent =
+            "Shop is currently open";
+
+    } else {
+
+        button.textContent = "🟢 OPEN SHOP";
+
+        button.classList.remove("closed");
+
+        button.classList.add("open");
+
+        text.textContent =
+            "Shop is currently closed";
+
+    }
+
+}
+
+
+window.toggleShopStatus = async function () {
+
+    const button =
+        document.getElementById("shop-status-btn");
+
+    if (!button) return;
+
+
+    button.disabled = true;
+
+    try {
+
+        const newStatus =
+            !shopIsOpen;
+
+        const shopStatusRef =
+            doc(
+                db,
+                "shopStatus",
+                "current"
+            );
+
+        await setDoc(
+            shopStatusRef,
+            {
+                isOpen: newStatus,
+                updatedAt: serverTimestamp()
+            },
+            {
+                merge: true
+            }
+        );
+
+        shopIsOpen = newStatus;
+
+        updateShopStatusUI();
+
+    } catch (error) {
+
+        console.error(
+            "TOGGLE SHOP STATUS ERROR:",
+            error
+        );
+
+        alert(
+            "Unable to change shop status. Please try again."
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+    }
+
+};
 
 
 /* =========================================================
@@ -3627,6 +3772,7 @@ document.addEventListener(
             try {
 
                 await loadDailyRates();
+                await loadShopStatus();
 
                 loadOrders();
 
