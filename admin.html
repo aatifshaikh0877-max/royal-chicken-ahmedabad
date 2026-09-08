@@ -107,6 +107,49 @@
         font-size: 10px;
         text-align: center;
     }
+    @media (max-width: 550px) {
+
+    .sidebar-shop-status {
+        margin: 10px auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .shop-status-label,
+    #shop-status-text {
+        display: none !important;
+    }
+
+    .sidebar-shop-status .shop-status-btn {
+        width: 42px !important;
+        height: 42px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        font-size: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15) !important;
+    }
+
+    .sidebar-shop-status .shop-status-btn.closed {
+        background: #4a3f41 !important;
+    }
+
+    .sidebar-shop-status .shop-status-btn.open {
+        background: #168a45 !important;
+    }
+
+    .sidebar-shop-status .shop-status-btn::after {
+        content: "●";
+        font-size: 18px !important;
+        color: #ffffff !important;
+    }
+
+}
 </style>
 </head>
 <body>
