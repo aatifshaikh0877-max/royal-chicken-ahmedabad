@@ -110,29 +110,34 @@
     @media (max-width: 550px) {
 
     .sidebar-shop-status {
-        margin: 10px auto !important;
+        display: block !important;
+        width: 44px !important;
+        height: 44px !important;
+        margin: 12px auto !important;
         padding: 0 !important;
         background: transparent !important;
-        border: none !important;
-        width: 42px !important;
-        height: 42px !important;
+        border: 0 !important;
     }
 
-    .shop-status-label,
-    #shop-status-text {
+    .sidebar-shop-status .shop-status-label,
+    .sidebar-shop-status #shop-status-text {
         display: none !important;
     }
 
     .sidebar-shop-status .shop-status-btn {
-        width: 42px !important;
-        height: 42px !important;
+        display: flex !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        margin: 0 !important;
         padding: 0 !important;
+        border: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
-        display: flex !important;
+        line-height: 0 !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15) !important;
     }
 
     .sidebar-shop-status .shop-status-btn.closed {
@@ -144,9 +149,12 @@
     }
 
     .sidebar-shop-status .shop-status-btn::after {
-        content: "●";
-        font-size: 18px !important;
-        color: #ffffff !important;
+        content: "" !important;
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 50% !important;
+        background: #ffffff !important;
+        display: block !important;
     }
 
 }
