@@ -2380,6 +2380,19 @@ shopClosedStyle.textContent = `
             23px;
     }
 }
+    @media (max-width: 550px) {
+    #shop-closed-overlay {
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 20px 14px;
+    }
+
+    .shop-closed-box {
+        margin: auto 0;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+}
 `;
 document.head.appendChild(
     shopClosedStyle
