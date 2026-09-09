@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta name="google-site-verification" content="xGR-CDeFxxU3tPsPRu7DXngFcIwkqs4N1HvQNbclKiI" />
+
+    <meta name="google-site-verification"
+          content="xGR-CDeFxxU3tPsPRu7DXngFcIwkqs4N1HvQNbclKiI">
 
     <meta charset="UTF-8">
 
@@ -17,515 +19,2803 @@
     <link rel="stylesheet"
           href="style.css">
 
-    <!-- =====================================================
-         MY ORDERS DESIGN
-    ====================================================== -->
 
-    <style>
+<style>
 
-        /* ================= MY ORDERS OVERLAY ================= */
+/* =====================================================
+   ROYAL CHICKEN
+   PREMIUM HOME PAGE
+===================================================== */
 
-        #orders-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
-            overflow-y: auto;
-        }
 
-        #orders-modal.show {
-            display: flex !important;
-        }
+/* =====================================================
+   GLOBAL HOME BACKGROUND
+===================================================== */
 
-        /* ================= ORDERS BOX ================= */
+body {
 
-        .orders-box {
-            position: relative;
-            width: 100%;
-            max-width: 850px;
-            max-height: 90vh;
-            overflow-y: auto;
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.30);
-            border: 1px solid #e5e5e5;
-            animation: ordersBoxIn 0.25s ease;
-        }
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212,175,55,0.06),
+            transparent 35%
+        ),
+        #0b0b0b !important;
 
-        @keyframes ordersBoxIn {
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.96);
-            }
+}
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
 
-        /* ================= CLOSE ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
-        .close-orders {
-            position: absolute;
-            top: 16px;
-            right: 18px;
-            width: 42px;
-            height: 42px;
-            border: none;
-            border-radius: 50%;
-            background: #f1f1f1;
-            color: #333;
-            font-size: 28px;
-            line-height: 1;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
+.header {
 
-        .close-orders:hover {
-            background: #e53935;
-            color: #fff;
-            transform: rotate(90deg);
-        }
+    background:
+        rgba(10,10,10,0.96) !important;
 
-        /* ================= TITLE ================= */
+    border-bottom:
+        1px solid
+        rgba(212,175,55,0.18) !important;
 
-        .orders-box > h2 {
-            margin: 0;
-            padding-right: 50px;
-            font-size: 28px;
-            color: #087f23;
-            font-weight: 800;
-        }
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,0.35) !important;
 
-        .orders-subtitle {
-            margin: 7px 0 25px;
-            color: #777;
-            font-size: 14px;
-        }
+    position: relative;
 
-        /* ================= LOADING ================= */
+    z-index: 100;
 
-        .orders-loading {
-            text-align: center;
-            padding: 50px 20px;
-            color: #777;
-        }
+}
 
-        /* ================= ORDER CARD ================= */
 
-        .order-card {
-            background: linear-gradient(
-                135deg,
-                #ffffff,
-                #f7fff8
+.header .brand {
+
+    color:
+        #d4af37 !important;
+
+    font-weight:
+        900 !important;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.header nav a {
+
+    color:
+        rgba(255,255,255,0.78) !important;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+
+.header nav a:hover,
+.header nav a.active {
+
+    color:
+        #d4af37 !important;
+
+}
+
+
+.header-buttons button {
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.royal-hero {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        78vh;
+
+    min-height:
+        560px;
+
+    overflow:
+        hidden;
+
+    background:
+        #080808;
+
+    perspective:
+        1200px;
+
+}
+
+
+/* =====================================================
+   SLIDER
+===================================================== */
+
+.royal-hero-slider {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+}
+
+
+.royal-slide {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    transform:
+        scale(1.08);
+
+    transition:
+        opacity 0.9s ease,
+        transform 3s cubic-bezier(.22,.61,.36,1),
+        visibility 0.9s ease;
+
+}
+
+
+.royal-slide.active {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    transform:
+        scale(1);
+
+}
+
+
+/* =====================================================
+   CHICKEN IMAGE
+===================================================== */
+
+.royal-slide img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    cursor:
+        pointer;
+
+    filter:
+        saturate(0.96)
+        contrast(1.04)
+        brightness(0.78);
+
+    transform:
+        scale(1.04);
+
+}
+
+
+.royal-slide.active img {
+
+    animation:
+        royalImageMotion
+        3s
+        cubic-bezier(.22,.61,.36,1)
+        both;
+
+}
+
+
+@keyframes royalImageMotion {
+
+    from {
+
+        transform:
+            scale(1.10)
+            translate3d(1%,0,0);
+
+    }
+
+    to {
+
+        transform:
+            scale(1.02)
+            translate3d(0,0,0);
+
+    }
+
+}
+
+
+/* =====================================================
+   CINEMATIC DARK OVERLAY
+===================================================== */
+
+.royal-hero-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        2;
+
+    pointer-events:
+        none;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.94) 0%,
+            rgba(0,0,0,0.80) 22%,
+            rgba(0,0,0,0.50) 45%,
+            rgba(0,0,0,0.16) 72%,
+            rgba(0,0,0,0.38) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.20),
+            rgba(0,0,0,0.48)
+        );
+
+}
+
+
+/* =====================================================
+   GOLD LIGHT
+===================================================== */
+
+.royal-hero::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        520px;
+
+    height:
+        520px;
+
+    right:
+        -180px;
+
+    top:
+        -200px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,0.13),
+            transparent 68%
+        );
+
+    pointer-events:
+        none;
+
+    z-index:
+        3;
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.royal-hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        6;
+
+    height:
+        100%;
+
+    max-width:
+        540px;
+
+    margin-left:
+        7%;
+
+    padding:
+        0 20px 0 0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    align-items:
+        flex-start;
+
+    text-align:
+        left;
+
+    animation:
+        luxuryHeroEnter
+        0.8s
+        ease
+        both;
+
+}
+
+
+@keyframes luxuryHeroEnter {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            rotateX(5deg);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            rotateX(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   KICKER
+===================================================== */
+
+.royal-hero-kicker {
+
+    display:
+        inline-block;
+
+    margin-bottom:
+        17px;
+
+    color:
+        #d4af37;
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        4px;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+/* =====================================================
+   MAIN TITLE
+===================================================== */
+
+.royal-hero-content h1 {
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    font-size:
+        clamp(
+            54px,
+            7vw,
+            92px
+        );
+
+    line-height:
+        0.88;
+
+    letter-spacing:
+        -3px;
+
+    font-weight:
+        950;
+
+}
+
+
+/* =====================================================
+   ROYAL
+===================================================== */
+
+.royal-word {
+
+    display:
+        block;
+
+    color:
+        #ffffff;
+
+    text-shadow:
+
+        2px 2px 0
+        rgba(212,175,55,0.70),
+
+        5px 5px 0
+        rgba(0,0,0,0.65),
+
+        0 15px 35px
+        rgba(0,0,0,0.55);
+
+}
+
+
+/* =====================================================
+   CHICKEN
+===================================================== */
+
+.chicken-word {
+
+    display:
+        block;
+
+    color:
+        #d4af37;
+
+    text-shadow:
+
+        2px 2px 0
+        #8f6d0b,
+
+        5px 5px 0
+        rgba(0,0,0,0.65),
+
+        0 15px 35px
+        rgba(0,0,0,0.55);
+
+}
+
+
+/* =====================================================
+   GOLD LINE
+===================================================== */
+
+.royal-hero-line {
+
+    width:
+        105px;
+
+    height:
+        3px;
+
+    margin:
+        25px 0 19px;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b8860b,
+            #d4af37,
+            transparent
+        );
+
+    box-shadow:
+        0 0 14px
+        rgba(212,175,55,0.28);
+
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.royal-hero-content p {
+
+    max-width:
+        390px;
+
+    margin:
+        0 0 27px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =====================================================
+   ORDER BUTTON
+===================================================== */
+
+.royal-hero-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+    width:
+        fit-content;
+
+    padding:
+        15px 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    border-radius:
+        5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a87908,
+            #d4af37,
+            #a87908
+        );
+
+    color:
+        #ffffff !important;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
+    box-shadow:
+
+        0 12px 30px
+        rgba(212,175,55,0.20),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.royal-hero-button:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+
+        0 18px 40px
+        rgba(212,175,55,0.32),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.30);
+
+}
+
+
+/* =====================================================
+   ARROWS
+===================================================== */
+
+.royal-slider-arrow {
+
+    position:
+        absolute;
+
+    z-index:
+        8;
+
+    top:
+        50%;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    transform:
+        translateY(-50%);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        0;
+
+    border:
+        1px solid
+        rgba(212,175,55,0.40);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(0,0,0,0.42);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    color:
+        #ffffff;
+
+    font-size:
+        31px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.royal-slider-arrow:hover {
+
+    background:
+        rgba(212,175,55,0.85);
+
+    border-color:
+        #d4af37;
+
+    color:
+        #111;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+    box-shadow:
+        0 10px 25px
+        rgba(212,175,55,0.20);
+
+}
+
+
+.royal-prev {
+
+    left:
+        24px;
+
+}
+
+
+.royal-next {
+
+    right:
+        24px;
+
+}
+
+
+/* =====================================================
+   DOTS
+===================================================== */
+
+.royal-slider-dots {
+
+    position:
+        absolute;
+
+    z-index:
+        8;
+
+    bottom:
+        28px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+}
+
+
+.royal-dot {
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    padding:
+        0;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,0.38);
+
+    cursor:
+        pointer;
+
+    transition:
+        all 0.35s ease;
+
+}
+
+
+.royal-dot.active {
+
+    width:
+        28px;
+
+    border-radius:
+        10px;
+
+    background:
+        #d4af37;
+
+    box-shadow:
+        0 0 12px
+        rgba(212,175,55,0.50);
+
+}
+
+
+/* =====================================================
+   SLIDE NUMBER
+===================================================== */
+
+.royal-slide-counter {
+
+    position:
+        absolute;
+
+    z-index:
+        8;
+
+    right:
+        35px;
+
+    bottom:
+        28px;
+
+    color:
+        rgba(255,255,255,0.50);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.features {
+
+    position:
+        relative;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+
+    padding:
+        55px 6%;
+
+    background:
+        #0b0b0b;
+
+    border-top:
+        1px solid
+        rgba(212,175,55,0.12);
+
+}
+
+
+.feature {
+
+    position:
+        relative;
+
+    padding:
+        28px 22px;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0d0d0d
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,0.16);
+
+    border-radius:
+        16px;
+
+    box-shadow:
+
+        0 15px 35px
+        rgba(0,0,0,0.40),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.03);
+
+    transform:
+        translateY(0);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+
+}
+
+
+.feature:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(212,175,55,0.45);
+
+    box-shadow:
+
+        0 22px 45px
+        rgba(0,0,0,0.55),
+
+        0 0 25px
+        rgba(212,175,55,0.05);
+
+}
+
+
+/* =====================================================
+   FEATURE ENTRANCE
+===================================================== */
+
+@keyframes luxuryCard {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            rotateX(5deg);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            rotateX(0);
+
+    }
+
+}
+
+
+@media (min-width: 801px) {
+
+    .feature:nth-child(1) {
+
+        animation:
+            luxuryCard
+            0.7s
+            ease
+            both;
+
+    }
+
+    .feature:nth-child(2) {
+
+        animation:
+            luxuryCard
+            0.7s
+            0.10s
+            ease
+            both;
+
+    }
+
+    .feature:nth-child(3) {
+
+        animation:
+            luxuryCard
+            0.7s
+            0.20s
+            ease
+            both;
+
+    }
+
+    .feature:nth-child(4) {
+
+        animation:
+            luxuryCard
+            0.7s
+            0.30s
+            ease
+            both;
+
+    }
+
+}
+
+
+/* =====================================================
+   FEATURE ICON
+===================================================== */
+
+.feature-icon {
+
+    width:
+        55px;
+
+    height:
+        55px;
+
+    margin:
+        0 auto 17px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(212,175,55,0.08);
+
+    border:
+        1px solid
+        rgba(212,175,55,0.22);
+
+    font-size:
+        24px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,0.25);
+
+}
+
+
+.feature h3 {
+
+    margin:
+        0 0 9px;
+
+    color:
+        #d4af37;
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+}
+
+
+.feature p {
+
+    margin:
+        0;
+
+    color:
+        rgba(255,255,255,0.58);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    padding:
+        45px 20px;
+
+    text-align:
+        center;
+
+    background:
+        #070707;
+
+    border-top:
+        1px solid
+        rgba(212,175,55,0.12);
+
+}
+
+
+footer h3 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        #d4af37;
+
+    font-size:
+        22px;
+
+    font-weight:
+        900;
+
+}
+
+
+footer p {
+
+    color:
+        rgba(255,255,255,0.55);
+
+}
+
+
+footer .founder strong {
+
+    color:
+        #d4af37;
+
+}
+
+
+footer .phone-numbers {
+
+    color:
+        rgba(255,255,255,0.70);
+
+}
+
+
+footer .copyright {
+
+    margin-top:
+        18px;
+
+    font-size:
+        12px;
+
+    color:
+        rgba(255,255,255,0.35);
+
+}
+
+
+/* =====================================================
+   MOBILE HERO
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .royal-hero {
+
+        height:
+            76vh;
+
+        min-height:
+            570px;
+
+    }
+
+
+    .royal-slide img {
+
+        object-position:
+            center center;
+
+        filter:
+            saturate(0.95)
+            contrast(1.04)
+            brightness(0.68);
+
+    }
+
+
+    .royal-hero-overlay {
+
+        background:
+
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,0.30) 0%,
+                rgba(0,0,0,0.48) 38%,
+                rgba(0,0,0,0.92) 100%
             );
-            border: 1px solid #dcefe0;
-            border-left: 5px solid #18a538;
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-            transition: 0.25s ease;
-        }
 
-        .order-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.11);
-        }
+    }
 
-        /* ================= CARD TOP ================= */
 
-        .order-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eeeeee;
-        }
+    .royal-hero-content {
 
-        .order-label {
-            display: block;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            color: #999;
-            margin-bottom: 4px;
-        }
+        margin:
+            0;
 
-        .order-card-top strong {
-            color: #222;
-            font-size: 17px;
-        }
+        padding:
+            0 25px 82px;
 
-        /* ================= STATUS ================= */
+        max-width:
+            100%;
 
-        .order-status {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 100px;
-            padding: 7px 13px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
+        justify-content:
+            flex-end;
 
-        .order-status.pending {
-            background: #fff4cc;
-            color: #a06b00;
-        }
+    }
 
-        .order-status.preparing {
-            background: #e8f0ff;
-            color: #2459b8;
-        }
 
-        .order-status.out-for-delivery {
-            background: #e8f8ff;
-            color: #087a9e;
-        }
+    .royal-hero-kicker {
 
-        .order-status.delivered {
-            background: #dcf8e3;
-            color: #16833a;
-        }
+        margin-bottom:
+            13px;
 
-        .order-status.cancelled {
-            background: #ffe1e1;
-            color: #c62828;
-        }
+        font-size:
+            9px;
 
-        /* ================= INFO ================= */
+        letter-spacing:
+            3px;
 
-        .order-card-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            padding: 18px 0;
-        }
+    }
 
-        .order-card-info > div {
-            background: #f7f7f7;
-            border-radius: 12px;
-            padding: 12px;
-        }
 
-        .order-card-info span {
-            display: block;
-            color: #999;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
+    .royal-hero-content h1 {
 
-        .order-card-info strong {
-            color: #222;
-            font-size: 14px;
-        }
-
-        /* ================= BUTTONS ================= */
-
-        .order-card-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            padding-top: 5px;
-        }
-
-        .order-card-buttons button {
-            flex: 1;
-            min-width: 140px;
-            border: none;
-            border-radius: 10px;
-            padding: 11px 13px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-        .order-card-buttons button:first-child {
-            background: #087f23;
-            color: #fff;
-        }
-
-        .order-card-buttons button:first-child:hover {
-            background: #05661b;
-            transform: translateY(-1px);
-        }
-
-        .cancel-order-btn {
-            background: #ffe8e8;
-            color: #d32f2f;
-        }
-
-        .cancel-order-btn:hover {
-            background: #ffd5d5;
-        }
-
-        .reorder-btn {
-            background: #fff1d6;
-            color: #9b5b00;
-        }
-
-        .reorder-btn:hover {
-            background: #ffe4b3;
-        }
-
-        /* ================= NO ORDERS ================= */
-
-        .no-orders {
-            text-align: center;
-            padding: 55px 20px;
-            background: linear-gradient(
-                135deg,
-                #f8fff9,
-                #ffffff
+        font-size:
+            clamp(
+                48px,
+                16vw,
+                76px
             );
-            border: 1px solid #e1eee3;
-            border-radius: 18px;
-        }
 
-        .no-orders-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
+        line-height:
+            0.90;
 
-        .no-orders h3 {
-            margin: 0 0 8px;
-            color: #222;
-        }
+        letter-spacing:
+            -2px;
 
-        .no-orders p {
-            margin: 0;
-            color: #777;
-            font-size: 14px;
-        }
+    }
 
-        /* ================= VIEW ORDER ================= */
 
-        .view-order-page {
-            animation: ordersBoxIn 0.2s ease;
-        }
+    .royal-hero-line {
 
-        .back-orders-btn {
-            border: none;
-            background: #edf8ef;
-            color: #087f23;
-            border-radius: 10px;
-            padding: 10px 15px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-bottom: 18px;
-        }
+        width:
+            80px;
 
-        .back-orders-btn:hover {
-            background: #d9f1dd;
-        }
+        height:
+            2px;
 
-        .view-order-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            background: linear-gradient(
-                135deg,
-                #087f23,
-                #19a83d
+        margin:
+            20px 0 15px;
+
+    }
+
+
+    .royal-hero-content p {
+
+        max-width:
+            300px;
+
+        margin-bottom:
+            21px;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.6;
+
+    }
+
+
+    .royal-hero-button {
+
+        padding:
+            13px 20px;
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            1.5px;
+
+    }
+
+
+    .royal-slider-arrow {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+        font-size:
+            25px;
+
+    }
+
+
+    .royal-prev {
+
+        left:
+            10px;
+
+    }
+
+
+    .royal-next {
+
+        right:
+            10px;
+
+    }
+
+
+    .royal-slider-dots {
+
+        bottom:
+            25px;
+
+    }
+
+
+    .royal-slide-counter {
+
+        display:
+            none;
+
+    }
+
+
+    .features {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            12px;
+
+        padding:
+            30px 12px;
+
+    }
+
+
+    .feature {
+
+        padding:
+            22px 12px;
+
+        border-radius:
+            13px;
+
+    }
+
+
+    .feature-icon {
+
+        width:
+            48px;
+
+        height:
+            48px;
+
+        font-size:
+            20px;
+
+    }
+
+
+    .feature h3 {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .feature p {
+
+        font-size:
+            11px;
+
+    }
+
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .royal-hero {
+
+        min-height:
+            540px;
+
+        height:
+            73vh;
+
+    }
+
+
+    .royal-hero-content {
+
+        padding:
+            0 21px 78px;
+
+    }
+
+
+    .royal-hero-content h1 {
+
+        font-size:
+            clamp(
+                43px,
+                15vw,
+                62px
             );
-            color: #fff;
-            padding: 20px;
-            border-radius: 17px;
-            margin-bottom: 15px;
-        }
 
-        .view-order-header span:first-child {
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            opacity: 0.8;
-        }
+    }
 
-        .view-order-header h3 {
-            margin: 5px 0 0;
-            font-size: 20px;
-        }
 
-        .view-order-header .order-status {
-            background: #fff;
-            color: #087f23;
-        }
+    .royal-hero-content p {
 
-        .view-order-section {
-            background: #fff;
-            border: 1px solid #e7e7e7;
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 14px;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
-        }
+        font-size:
+            13px;
 
-        .view-order-section h3 {
-            margin: 0 0 15px;
-            color: #087f23;
-            font-size: 16px;
-        }
+    }
 
-        .view-order-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 13px 0;
-            border-bottom: 1px solid #eeeeee;
-        }
 
-        .view-order-item:last-child {
-            border-bottom: none;
-        }
+    .royal-hero-button {
 
-        .view-order-item div {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        padding:
+            12px 17px;
 
-        .view-order-item strong {
-            color: #222;
-        }
+    }
 
-        .view-order-item span {
-            color: #888;
-            font-size: 12px;
-        }
 
-        .view-order-detail {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 11px 0;
-            border-bottom: 1px solid #eeeeee;
-        }
+    .features {
 
-        .view-order-detail:last-child {
-            border-bottom: none;
-        }
+        grid-template-columns:
+            1fr;
 
-        .view-order-detail span {
-            color: #777;
-            font-size: 13px;
-        }
+        padding:
+            25px 14px;
 
-        .view-order-detail strong {
-            color: #222;
-            text-align: right;
-        }
+    }
 
-        .view-order-detail.address-detail {
-            align-items: flex-start;
-        }
+}
 
-        .total-detail {
-            margin-top: 5px;
-            padding: 15px;
-            background: #effaf1;
-            border-radius: 10px;
-            border: none;
-        }
 
-        .total-detail strong {
-            color: #087f23;
-            font-size: 18px;
-        }
+/* =====================================================
+   MY ORDERS OVERLAY
+===================================================== */
 
-        .view-order-footer {
-            text-align: center;
-            color: #087f23;
-            font-weight: 800;
-            padding: 12px;
-        }
+#orders-modal {
 
-        /* ================= MOBILE ================= */
+    position:
+        fixed;
 
-        @media (max-width: 700px) {
+    inset:
+        0;
 
-            #orders-modal {
-                align-items: flex-start;
-                padding: 12px;
-            }
+    z-index:
+        99999;
 
-            .orders-box {
-                margin-top: 10px;
-                max-height: 94vh;
-                padding: 20px 15px;
-                border-radius: 20px;
-            }
+    display:
+        none;
 
-            .orders-box > h2 {
-                font-size: 23px;
-            }
+    align-items:
+        center;
 
-            .order-card {
-                padding: 15px;
-                border-radius: 15px;
-            }
+    justify-content:
+        center;
 
-            .order-card-top {
-                align-items: flex-start;
-                flex-direction: column;
-            }
+    padding:
+        20px;
 
-            .order-status {
-                min-width: 90px;
-            }
+    background:
+        rgba(0,0,0,0.78);
 
-            .order-card-info {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
+    backdrop-filter:
+        blur(8px);
 
-            .order-card-buttons {
-                flex-direction: column;
-            }
+    -webkit-backdrop-filter:
+        blur(8px);
 
-            .order-card-buttons button {
-                width: 100%;
-                min-width: 0;
-            }
+    overflow-y:
+        auto;
 
-            .view-order-header {
-                align-items: flex-start;
-                flex-direction: column;
-            }
+}
 
-            .view-order-detail {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 5px;
-            }
 
-            .view-order-detail strong {
-                text-align: left;
-            }
-        }
+#orders-modal.show {
 
-    </style>
+    display:
+        flex !important;
+
+}
+
+
+/* =====================================================
+   ORDERS BOX
+===================================================== */
+
+.orders-box {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        850px;
+
+    max-height:
+        90vh;
+
+    overflow-y:
+        auto;
+
+    background:
+        #ffffff;
+
+    border-radius:
+        24px;
+
+    padding:
+        30px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.45);
+
+    border:
+        1px solid
+        #e5e5e5;
+
+    animation:
+        ordersBoxIn
+        0.25s
+        ease;
+
+}
+
+
+@keyframes ordersBoxIn {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            scale(0.96);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   CLOSE ORDERS
+===================================================== */
+
+.close-orders {
+
+    position:
+        absolute;
+
+    top:
+        16px;
+
+    right:
+        18px;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        #f1f1f1;
+
+    color:
+        #333;
+
+    font-size:
+        28px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.close-orders:hover {
+
+    background:
+        #e53935;
+
+    color:
+        #fff;
+
+    transform:
+        rotate(90deg);
+
+}
+
+
+/* =====================================================
+   ORDERS TITLE
+===================================================== */
+
+.orders-box > h2 {
+
+    margin:
+        0;
+
+    padding-right:
+        50px;
+
+    font-size:
+        28px;
+
+    color:
+        #087f23;
+
+    font-weight:
+        800;
+
+}
+
+
+.orders-subtitle {
+
+    margin:
+        7px 0 25px;
+
+    color:
+        #777;
+
+    font-size:
+        14px;
+
+}
+
+
+.orders-loading {
+
+    text-align:
+        center;
+
+    padding:
+        50px 20px;
+
+    color:
+        #777;
+
+}
+
+
+/* =====================================================
+   ORDER CARD
+===================================================== */
+
+.order-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f7fff8
+        );
+
+    border:
+        1px solid
+        #dcefe0;
+
+    border-left:
+        5px solid
+        #18a538;
+
+    border-radius:
+        18px;
+
+    padding:
+        20px;
+
+    margin-bottom:
+        16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.07);
+
+    transition:
+        0.25s ease;
+
+}
+
+
+.order-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,0.11);
+
+}
+
+
+.order-card-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding-bottom:
+        15px;
+
+    border-bottom:
+        1px solid
+        #eeeeee;
+
+}
+
+
+.order-label {
+
+    display:
+        block;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1.5px;
+
+    color:
+        #999;
+
+    margin-bottom:
+        4px;
+
+}
+
+
+.order-card-top strong {
+
+    color:
+        #222;
+
+    font-size:
+        17px;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.order-status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-width:
+        100px;
+
+    padding:
+        7px 13px;
+
+    border-radius:
+        30px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.order-status.pending {
+
+    background:
+        #fff4cc;
+
+    color:
+        #a06b00;
+
+}
+
+
+.order-status.preparing {
+
+    background:
+        #e8f0ff;
+
+    color:
+        #2459b8;
+
+}
+
+
+.order-status.out-for-delivery {
+
+    background:
+        #e8f8ff;
+
+    color:
+        #087a9e;
+
+}
+
+
+.order-status.delivered {
+
+    background:
+        #dcf8e3;
+
+    color:
+        #16833a;
+
+}
+
+
+.order-status.cancelled {
+
+    background:
+        #ffe1e1;
+
+    color:
+        #c62828;
+
+}
+
+
+/* =====================================================
+   ORDER INFO
+===================================================== */
+
+.order-card-info {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:
+        12px;
+
+    padding:
+        18px 0;
+
+}
+
+
+.order-card-info > div {
+
+    background:
+        #f7f7f7;
+
+    border-radius:
+        12px;
+
+    padding:
+        12px;
+
+}
+
+
+.order-card-info span {
+
+    display:
+        block;
+
+    color:
+        #999;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1px;
+
+    margin-bottom:
+        5px;
+
+}
+
+
+.order-card-info strong {
+
+    color:
+        #222;
+
+    font-size:
+        14px;
+
+}
+
+
+/* =====================================================
+   ORDER BUTTONS
+===================================================== */
+
+.order-card-buttons {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        9px;
+
+    padding-top:
+        5px;
+
+}
+
+
+.order-card-buttons button {
+
+    flex:
+        1;
+
+    min-width:
+        140px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    padding:
+        11px 13px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.order-card-buttons button:first-child {
+
+    background:
+        #087f23;
+
+    color:
+        #fff;
+
+}
+
+
+.order-card-buttons button:first-child:hover {
+
+    background:
+        #05661b;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.cancel-order-btn {
+
+    background:
+        #ffe8e8;
+
+    color:
+        #d32f2f;
+
+}
+
+
+.cancel-order-btn:hover {
+
+    background:
+        #ffd5d5;
+
+}
+
+
+.reorder-btn {
+
+    background:
+        #fff1d6;
+
+    color:
+        #9b5b00;
+
+}
+
+
+.reorder-btn:hover {
+
+    background:
+        #ffe4b3;
+
+}
+
+
+/* =====================================================
+   NO ORDERS
+===================================================== */
+
+.no-orders {
+
+    text-align:
+        center;
+
+    padding:
+        55px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fff9,
+            #ffffff
+        );
+
+    border:
+        1px solid
+        #e1eee3;
+
+    border-radius:
+        18px;
+
+}
+
+
+.no-orders-icon {
+
+    font-size:
+        48px;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.no-orders h3 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        #222;
+
+}
+
+
+.no-orders p {
+
+    margin:
+        0;
+
+    color:
+        #777;
+
+    font-size:
+        14px;
+
+}
+
+
+/* =====================================================
+   VIEW ORDER
+===================================================== */
+
+.view-order-page {
+
+    animation:
+        ordersBoxIn
+        0.2s
+        ease;
+
+}
+
+
+.back-orders-btn {
+
+    border:
+        none;
+
+    background:
+        #edf8ef;
+
+    color:
+        #087f23;
+
+    border-radius:
+        10px;
+
+    padding:
+        10px 15px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.view-order-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087f23,
+            #19a83d
+        );
+
+    color:
+        #fff;
+
+    padding:
+        20px;
+
+    border-radius:
+        17px;
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.view-order-header h3 {
+
+    margin:
+        5px 0 0;
+
+    font-size:
+        20px;
+
+}
+
+
+.view-order-header .order-status {
+
+    background:
+        #fff;
+
+    color:
+        #087f23;
+
+}
+
+
+.view-order-section {
+
+    background:
+        #fff;
+
+    border:
+        1px solid
+        #e7e7e7;
+
+    border-radius:
+        16px;
+
+    padding:
+        18px;
+
+    margin-bottom:
+        14px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.05);
+
+}
+
+
+.view-order-section h3 {
+
+    margin:
+        0 0 15px;
+
+    color:
+        #087f23;
+
+    font-size:
+        16px;
+
+}
+
+
+.view-order-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        13px 0;
+
+    border-bottom:
+        1px solid
+        #eeeeee;
+
+}
+
+
+.view-order-item:last-child {
+
+    border-bottom:
+        none;
+
+}
+
+
+.view-order-item div {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        4px;
+
+}
+
+
+.view-order-item strong {
+
+    color:
+        #222;
+
+}
+
+
+.view-order-item span {
+
+    color:
+        #888;
+
+    font-size:
+        12px;
+
+}
+
+
+.view-order-detail {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        11px 0;
+
+    border-bottom:
+        1px solid
+        #eeeeee;
+
+}
+
+
+.view-order-detail:last-child {
+
+    border-bottom:
+        none;
+
+}
+
+
+.view-order-detail span {
+
+    color:
+        #777;
+
+    font-size:
+        13px;
+
+}
+
+
+.view-order-detail strong {
+
+    color:
+        #222;
+
+    text-align:
+        right;
+
+}
+
+
+.view-order-detail.address-detail {
+
+    align-items:
+        flex-start;
+
+}
+
+
+.total-detail {
+
+    margin-top:
+        5px;
+
+    padding:
+        15px;
+
+    background:
+        #effaf1;
+
+    border-radius:
+        10px;
+
+    border:
+        none;
+
+}
+
+
+.total-detail strong {
+
+    color:
+        #087f23;
+
+    font-size:
+        18px;
+
+}
+
+
+.view-order-footer {
+
+    text-align:
+        center;
+
+    color:
+        #087f23;
+
+    font-weight:
+        800;
+
+    padding:
+        12px;
+
+}
+
+
+/* =====================================================
+   ORDERS MOBILE
+===================================================== */
+
+@media (max-width:700px) {
+
+    #orders-modal {
+
+        align-items:
+            flex-start;
+
+        padding:
+            12px;
+
+    }
+
+
+    .orders-box {
+
+        margin-top:
+            10px;
+
+        max-height:
+            94vh;
+
+        padding:
+            20px 15px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .orders-box > h2 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .order-card {
+
+        padding:
+            15px;
+
+        border-radius:
+            15px;
+
+    }
+
+
+    .order-card-top {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .order-status {
+
+        min-width:
+            90px;
+
+    }
+
+
+    .order-card-info {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            8px;
+
+    }
+
+
+    .order-card-buttons {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .order-card-buttons button {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+    }
+
+
+    .view-order-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .view-order-detail {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            5px;
+
+    }
+
+
+    .view-order-detail strong {
+
+        text-align:
+            left;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .royal-slide,
+    .royal-slide.active img,
+    .royal-hero-content,
+    .feature {
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
+
+    }
+
+}/* =====================================================
+   HOME HEADER — MOBILE PREMIUM
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .header {
+        min-height: 64px !important;
+        padding: 10px 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+    }
+
+    .header .brand {
+        font-size: 18px !important;
+        white-space: nowrap !important;
+    }
+
+    .header nav {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 12px !important;
+        margin-left: auto !important;
+    }
+
+    .header nav a {
+        font-size: 11px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Hero mobile */
+
+    .royal-hero {
+        height: 72vh !important;
+        min-height: 520px !important;
+    }
+
+    .royal-hero-content {
+        margin-left: 7% !important;
+        margin-right: 7% !important;
+        padding: 0 0 75px !important;
+    }
+
+    .royal-hero-kicker {
+        font-size: 9px !important;
+        letter-spacing: 2.5px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .royal-hero-content h1 {
+        font-size: clamp(48px, 15vw, 70px) !important;
+        line-height: 0.9 !important;
+        letter-spacing: -2px !important;
+    }
+
+    .royal-hero-line {
+        width: 75px !important;
+        margin: 20px 0 15px !important;
+    }
+
+    .royal-hero-content p {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        max-width: 290px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .royal-hero-button {
+        padding: 13px 19px !important;
+        font-size: 10px !important;
+        letter-spacing: 1.5px !important;
+    }
+
+    .royal-slider-arrow {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 25px !important;
+    }
+
+    .royal-prev {
+        left: 8px !important;
+    }
+
+    .royal-next {
+        right: 8px !important;
+    }
+
+    .royal-slider-dots {
+        bottom: 20px !important;
+        gap: 7px !important;
+    }
+
+    .royal-dot {
+        width: 7px !important;
+        height: 7px !important;
+    }
+
+    .royal-dot.active {
+        width: 24px !important;
+    }
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-<!-- ================= SPLASH SCREEN ================= -->
+
+<!-- =====================================================
+     SPLASH SCREEN
+===================================================== -->
 
 <div id="splash-screen">
 
@@ -544,89 +2834,249 @@
 </div>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
-    <a href="index.html" class="brand">
+    <a
+        href="index.html"
+        class="brand"
+    >
         Royal Chicken
     </a>
 
+
     <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+
+        <a
+            href="index.html"
+            class="active"
+        >
+            Home
+        </a>
+
+        <a href="products.html">
+            Products
+        </a>
+
+        <a href="about.html">
+            About Us
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
     </nav>
-
-    <div class="header-buttons">
-
-        <button
-            class="orders-btn"
-            type="button"
-            onclick="openMyOrders()"
-        >
-            🧾 My Orders
-        </button>
-
-        <button
-            class="cart-btn"
-            type="button"
-            onclick="openCart()"
-        >
-            🛒 View Cart
-            (<span id="cart-count">0</span>)
-        </button>
-
-    </div>
 
 </header>
 
 
-<!-- ================= EDITORIAL HERO ================= -->
-<section class="hero editorial-hero" id="home">
-    <div
-    class="editorial-hero-image"
-    onclick="openBannerModal()"
-    style="cursor:pointer;"
->
-    <img
-        src="./images/royal-chicken-banner.jpeg"
-        alt="Royal Chicken"
-    >
+<!-- =====================================================
+     PREMIUM HERO CAROUSEL
+===================================================== -->
 
-    <div class="editorial-overlay"></div>
-</div>
-    <div class="editorial-content">
-        <span class="editorial-kicker">
-            ORDER NOW
+<section
+    class="hero royal-hero"
+    id="home"
+>
+
+
+    <!-- ================= SLIDER ================= -->
+
+    <div class="royal-hero-slider">
+
+
+        <!-- SLIDE 1 -->
+
+        <div class="royal-slide active">
+
+            <img
+                src="./images/kheema.jpeg"
+                alt="Fresh Chicken Kheema"
+                onclick="openBannerModal()"
+            >
+
+        </div>
+
+
+        <!-- SLIDE 2 -->
+
+        <div class="royal-slide">
+
+            <img
+                src="./images/bombay-legs.jpeg"
+                alt="Fresh Chicken Bombay Legs"
+                onclick="openBannerModal()"
+            >
+
+        </div>
+
+
+        <!-- SLIDE 3 -->
+
+        <div class="royal-slide">
+
+            <img
+                src="./images/wings.jpeg"
+                alt="Fresh Chicken Wings"
+                onclick="openBannerModal()"
+            >
+
+        </div>
+
+
+        <!-- SLIDE 4 -->
+
+        <div class="royal-slide">
+
+            <img
+                src="./images/drumsticks.jpeg"
+                alt="Fresh Chicken Drumsticks"
+                onclick="openBannerModal()"
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="royal-hero-overlay"></div>
+
+
+    <!-- ================= HERO CONTENT ================= -->
+
+    <div class="royal-hero-content">
+
+
+        <span class="royal-hero-kicker">
+
+            FRESH • HYGIENIC • PREMIUM
+
         </span>
+
+
         <h1>
-            <em>ROYAL.</em>
-            <em>CHICKEN.</em>
+
+            <span class="royal-word">
+                ROYAL.
+            </span>
+
+            <span class="chicken-word">
+                CHICKEN.
+            </span>
+
         </h1>
-        <div class="editorial-rule"></div>
+
+
+        <div class="royal-hero-line"></div>
+
+
         <p>
-            Premium chicken, prepared fresh
-            for your table.
+
+            Fresh quality chicken,
+            carefully prepared for your table.
+
         </p>
+
+
         <a
             href="products.html"
-            class="editorial-button"
+            class="royal-hero-button"
         >
-            SHOP NOW
-            <span>↗</span>
+
+            ORDER FRESH CHICKEN
+
+            <span>
+                →
+            </span>
+
         </a>
+
+
     </div>
-    <div class="editorial-scroll">
-        <span>SCROLL TO EXPLORE</span>
-        <div></div>
+
+
+    <!-- ================= PREVIOUS ================= -->
+
+    <button
+        type="button"
+        class="royal-slider-arrow royal-prev"
+        onclick="royalPrevSlide()"
+        aria-label="Previous slide"
+    >
+
+        ‹
+
+    </button>
+
+
+    <!-- ================= NEXT ================= -->
+
+    <button
+        type="button"
+        class="royal-slider-arrow royal-next"
+        onclick="royalNextSlide()"
+        aria-label="Next slide"
+    >
+
+        ›
+
+    </button>
+
+
+    <!-- ================= DOTS ================= -->
+
+    <div class="royal-slider-dots">
+
+        <button
+            type="button"
+            class="royal-dot active"
+            onclick="royalGoToSlide(0)"
+            aria-label="Slide 1"
+        ></button>
+
+
+        <button
+            type="button"
+            class="royal-dot"
+            onclick="royalGoToSlide(1)"
+            aria-label="Slide 2"
+        ></button>
+
+
+        <button
+            type="button"
+            class="royal-dot"
+            onclick="royalGoToSlide(2)"
+            aria-label="Slide 3"
+        ></button>
+
+
+        <button
+            type="button"
+            class="royal-dot"
+            onclick="royalGoToSlide(3)"
+            aria-label="Slide 4"
+        ></button>
+
     </div>
+
+
 </section>
 
-<!-- ================= FEATURES ================= -->
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
 
 <section class="features">
+
 
     <div class="feature">
 
@@ -695,10 +3145,13 @@
 
     </div>
 
+
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -711,19 +3164,27 @@
     </p>
 
     <p class="founder">
+
         Founder:
+
         <strong>
             AARIF SHAIKH
         </strong>
+
     </p>
 
     <p class="phone-numbers">
+
         (+91 9377382938),
         (+91 8200348170)
+
     </p>
 
     <p class="copyright">
-        ©️ 2026 Royal Chicken. All Rights Reserved.
+
+        ©️ 2026 Royal Chicken.
+        All Rights Reserved.
+
     </p>
 
 </footer>
@@ -740,6 +3201,7 @@
 
     <div class="cart-box">
 
+
         <button
             class="close-cart"
             type="button"
@@ -748,9 +3210,11 @@
             ×
         </button>
 
+
         <h2>
             Your Cart
         </h2>
+
 
         <div id="cart-items">
 
@@ -759,6 +3223,7 @@
             </p>
 
         </div>
+
 
         <h3 id="cart-total">
             Total: ₹0
@@ -771,12 +3236,14 @@
             onsubmit="placeOrder(event)"
         >
 
+
             <input
                 type="text"
                 id="customer-name"
                 placeholder="Your Name"
                 required
             >
+
 
             <input
                 type="tel"
@@ -785,11 +3252,13 @@
                 required
             >
 
+
             <textarea
                 id="customer-address"
                 placeholder="Delivery Address"
                 required
             ></textarea>
+
 
             <textarea
                 id="order-description"
@@ -803,6 +3272,7 @@
                 <h3>
                     Payment Method
                 </h3>
+
 
                 <label>
 
@@ -844,11 +3314,13 @@
                     Pay Using UPI
                 </h3>
 
+
                 <img
                     src="./images/payment-qr.jpeg"
                     alt="UPI QR Code"
                     class="payment-qr"
                 >
+
 
                 <p>
                     Scan the QR code using your UPI app
@@ -873,6 +3345,7 @@
 
             </button>
 
+
         </form>
 
     </div>
@@ -896,6 +3369,7 @@
         aria-labelledby="orders-title"
     >
 
+
         <button
             type="button"
             class="close-orders"
@@ -905,29 +3379,38 @@
             ×
         </button>
 
+
         <h2 id="orders-title">
             🧾 My Orders
         </h2>
+
 
         <p class="orders-subtitle">
             View your previous orders and manage them easily.
         </p>
 
+
         <div id="my-orders-content">
 
+
             <div class="orders-loading">
+
 
                 <div style="font-size:40px;">
                     ⏳
                 </div>
 
+
                 <p>
                     Loading your orders...
                 </p>
 
+
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -943,41 +3426,328 @@
     class="floating-cart"
 >
 
+
     <div class="floating-cart-info">
+
 
         <span id="floating-cart-count">
             0 items
         </span>
 
+
         <strong id="floating-cart-total">
             ₹0
         </strong>
 
+
     </div>
+
 
     <button
         type="button"
         onclick="openCart()"
     >
+
         View Cart 🛒
+
     </button>
+
 
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- =====================================================
+     FIREBASE / EXISTING SCRIPT
+===================================================== -->
 
 <script
     type="module"
     src="script.js"
 ></script>
-<!-- PREMIUM BANNER POPUP -->
 
-<div id="banner-modal" class="banner-modal">
 
-    <div class="banner-modal-backdrop" onclick="closeBannerModal()"></div>
+<!-- =====================================================
+     HERO CAROUSEL JAVASCRIPT
+===================================================== -->
 
-    <div class="banner-modal-content">
+<script>
+
+let royalCurrentSlide = 0;
+
+const royalSlides =
+    document.querySelectorAll(
+        ".royal-slide"
+    );
+
+const royalDots =
+    document.querySelectorAll(
+        ".royal-dot"
+    );
+
+
+function royalShowSlide(index) {
+
+    if (!royalSlides.length) {
+        return;
+    }
+
+
+    if (index >= royalSlides.length) {
+
+        index = 0;
+
+    }
+
+
+    if (index < 0) {
+
+        index =
+            royalSlides.length - 1;
+
+    }
+
+
+    royalSlides.forEach(
+        slide => {
+
+            slide.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    royalDots.forEach(
+        dot => {
+
+            dot.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    royalSlides[index]
+        .classList.add(
+            "active"
+        );
+
+
+    if (royalDots[index]) {
+
+        royalDots[index]
+            .classList.add(
+                "active"
+            );
+
+    }
+
+
+    royalCurrentSlide =
+        index;
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function royalNextSlide() {
+
+    royalShowSlide(
+        royalCurrentSlide + 1
+    );
+
+}
+
+
+/* =====================================================
+   PREVIOUS
+===================================================== */
+
+function royalPrevSlide() {
+
+    royalShowSlide(
+        royalCurrentSlide - 1
+    );
+
+}
+
+
+/* =====================================================
+   DOT
+===================================================== */
+
+function royalGoToSlide(index) {
+
+    royalShowSlide(index);
+
+}
+
+
+/* =====================================================
+   AUTO SLIDER — 3 SECONDS
+===================================================== */
+
+let royalAutoSlide =
+    setInterval(
+        royalNextSlide,
+        3000
+    );
+
+
+/* =====================================================
+   PAUSE ON HOVER
+===================================================== */
+
+const royalHero =
+    document.querySelector(
+        ".royal-hero"
+    );
+
+
+if (royalHero) {
+
+    royalHero.addEventListener(
+        "mouseenter",
+        () => {
+
+            clearInterval(
+                royalAutoSlide
+            );
+
+        }
+    );
+
+
+    royalHero.addEventListener(
+        "mouseleave",
+        () => {
+
+            royalAutoSlide =
+                setInterval(
+                    royalNextSlide,
+                    3000
+                );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MOBILE SWIPE
+===================================================== */
+
+let royalTouchStartX = 0;
+
+let royalTouchEndX = 0;
+
+
+if (royalHero) {
+
+    royalHero.addEventListener(
+        "touchstart",
+        event => {
+
+            royalTouchStartX =
+                event.changedTouches[0].screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    royalHero.addEventListener(
+        "touchend",
+        event => {
+
+            royalTouchEndX =
+                event.changedTouches[0].screenX;
+
+
+            const difference =
+                royalTouchStartX -
+                royalTouchEndX;
+
+
+            if (Math.abs(difference) < 50) {
+                return;
+            }
+
+
+            if (difference > 0) {
+
+                royalNextSlide();
+
+            } else {
+
+                royalPrevSlide();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   KEYBOARD CONTROL
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "ArrowRight") {
+
+            royalNextSlide();
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            royalPrevSlide();
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- =====================================================
+     PREMIUM BANNER POPUP
+===================================================== -->
+
+<div
+    id="banner-modal"
+    class="banner-modal"
+>
+
+
+    <div
+        class="banner-modal-backdrop"
+        onclick="closeBannerModal()"
+    ></div>
+
+
+    <div
+        class="banner-modal-content"
+    >
+
 
         <button
             type="button"
@@ -988,20 +3758,37 @@
             ×
         </button>
 
+
         <div class="banner-modal-image">
+
             <img
                 src="./images/royal-chicken-banner.jpeg"
                 alt="Royal Chicken"
             >
+
         </div>
 
-        <a href="products.html" class="banner-order-btn">
-            ORDER NOW <span>↗</span>
+
+        <a
+            href="products.html"
+            class="banner-order-btn"
+        >
+
+            ORDER NOW
+
+            <span>
+                ↗️
+            </span>
+
         </a>
+
 
     </div>
 
+
 </div>
+
+
 </body>
 
 </html>

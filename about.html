@@ -4,349 +4,1261 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>About Us | Royal Chicken</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
     <style>
 
-        /* ================================
-           ABOUT PAGE
-        ================================= */
+        /* =========================================================
+           ROYAL CHICKEN — PREMIUM 3D ABOUT PAGE
+        ========================================================= */
 
-        .about-page {
-            min-height: calc(100vh - 75px);
-            padding: 60px 7%;
-            background: #f7f8f6;
+        :root {
+            --royal-black: #070605;
+            --royal-black-2: #100e0b;
+            --royal-card: #171411;
+            --royal-card-2: #211d17;
+            --royal-gold: #d4af37;
+            --royal-gold-light: #f0d36a;
+            --royal-gold-dark: #927016;
+            --royal-white: #fffaf0;
+            --royal-muted: #b8afa1;
+            --royal-border: rgba(212, 175, 55, 0.22);
         }
 
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .about-page {
+            position: relative;
+            min-height: calc(100vh - 75px);
+            padding: 75px 7% 110px;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(212, 175, 55, 0.13),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at -5% 50%,
+                    rgba(212, 175, 55, 0.06),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 105% 75%,
+                    rgba(212, 175, 55, 0.055),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #070605 0%,
+                    #100e0b 48%,
+                    #060504 100%
+                ) !important;
+
+            overflow: hidden;
+        }
+
+
+        .about-page::before {
+            content: "";
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            top: 80px;
+            left: -260px;
+
+            border-radius: 50%;
+
+            background: rgba(212, 175, 55, 0.055);
+
+            filter: blur(90px);
+
+            pointer-events: none;
+        }
+
+
+        .about-page::after {
+            content: "";
+            position: absolute;
+
+            width: 480px;
+            height: 480px;
+
+            right: -300px;
+            bottom: 30px;
+
+            border-radius: 50%;
+
+            background: rgba(212, 175, 55, 0.045);
+
+            filter: blur(100px);
+
+            pointer-events: none;
+        }
+
+
         .about-wrapper {
-            max-width: 1100px;
+            position: relative;
+            z-index: 2;
+
+            max-width: 1120px;
             margin: auto;
         }
 
-        .about-top {
-            text-align: center;
-            margin-bottom: 45px;
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+            background: rgba(8, 7, 6, 0.92) !important;
+
+            border-bottom:
+                1px solid
+                rgba(212, 175, 55, 0.20);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0, 0, 0, 0.45);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
         }
 
-        .about-label {
-            display: inline-block;
-            padding: 7px 16px;
-            border-radius: 30px;
-            background: #176b3a;
-            color: #ffffff;
-            font-size: 11px;
+
+        .header .brand a {
+            color:
+                var(--royal-gold-light) !important;
+
             font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
+
+            letter-spacing: 0.6px;
+
+            text-shadow:
+                0 0 18px
+                rgba(212, 175, 55, 0.18);
         }
+
+
+        .header nav a {
+            color: #eee6d8 !important;
+
+            transition:
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+
+        .header nav a:hover,
+        .header nav a.active {
+            color:
+                var(--royal-gold-light) !important;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================================================
+           TOP HEADING
+        ========================================================= */
+
+        .about-top {
+            text-align: center;
+
+            margin-bottom: 52px;
+        }
+
+
+        .about-label {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 8px 18px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(212, 175, 55, 0.18),
+                    rgba(212, 175, 55, 0.05)
+                ) !important;
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.35);
+
+            color:
+                var(--royal-gold-light) !important;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 17px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.25);
+        }
+
 
         .about-top h1 {
             margin: 0;
-            font-size: 46px;
-            color: #123d28;
-            font-weight: 800;
+
+            color:
+                var(--royal-white) !important;
+
+            font-size:
+                clamp(38px, 5vw, 58px);
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            letter-spacing: -1.2px;
+
+            text-shadow:
+                0 5px 25px
+                rgba(0, 0, 0, 0.55);
         }
+
+
+        .about-top h1::after {
+            content: "";
+
+            display: block;
+
+            width: 75px;
+            height: 2px;
+
+            margin:
+                20px auto 16px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--royal-gold),
+                    transparent
+                );
+        }
+
 
         .about-top h2 {
-            margin: 10px 0 0;
-            color: #c49a24;
-            font-size: 21px;
+            margin: 0;
+
+            color:
+                var(--royal-gold-light) !important;
+
+            font-size: 19px;
+
             font-weight: 600;
+
+            letter-spacing: 0.4px;
         }
 
-        /* MAIN CARD */
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
 
         .about-main {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 25px;
+
             margin-bottom: 25px;
         }
 
+
+        /* =========================================================
+           NORMAL CARD
+        ========================================================= */
+
         .about-card {
-            background: #ffffff;
-            padding: 38px;
-            border-radius: 20px;
-            border: 1px solid #e5e8e5;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 40px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(34, 30, 25, 0.95),
+                    rgba(13, 12, 10, 0.98)
+                ) !important;
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.18) !important;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.42),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.045);
+
+            transform:
+                perspective(1000px)
+                rotateX(0deg);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
         }
+
+
+        .about-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -120%;
+
+            width: 80%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    transparent,
+                    rgba(255,255,255,0.07),
+                    transparent
+                );
+
+            transform:
+                skewX(-18deg);
+
+            transition:
+                left 0.65s ease;
+
+            pointer-events: none;
+        }
+
+
+        .about-card:hover {
+            transform:
+                perspective(1000px)
+                rotateX(1deg)
+                translateY(-7px);
+
+            border-color:
+                rgba(212, 175, 55, 0.42) !important;
+
+            box-shadow:
+                0 30px 65px
+                rgba(0, 0, 0, 0.55),
+
+                0 0 30px
+                rgba(212, 175, 55, 0.06);
+        }
+
+
+        .about-card:hover::before {
+            left: 150%;
+        }
+
 
         .about-card h3 {
-            margin: 0 0 15px;
-            color: #176b3a;
-            font-size: 24px;
+            margin: 0 0 17px;
+
+            color:
+                var(--royal-gold-light) !important;
+
+            font-size: 25px;
+
+            font-weight: 850;
         }
+
 
         .about-card p {
-            margin: 0 0 14px;
-            color: #555;
+            margin: 0 0 15px;
+
+            color:
+                #c5bdb1 !important;
+
             font-size: 15px;
-            line-height: 1.8;
+
+            line-height: 1.85;
         }
+
+
+        .about-card p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================================
+           HIGHLIGHT CARD
+        ========================================================= */
 
         .about-highlight {
-            background: linear-gradient(135deg, #123d28, #176b3a);
-            color: #ffffff;
-            padding: 38px;
-            border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 40px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #29231a 0%,
+                    #17130e 52%,
+                    #0b0907 100%
+                ) !important;
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.30);
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.50),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.055);
         }
+
+
+        .about-highlight::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            top: -100px;
+            right: -70px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.20);
+
+            box-shadow:
+                0 0 0 20px
+                rgba(212, 175, 55, 0.025),
+
+                0 0 0 40px
+                rgba(212, 175, 55, 0.018);
+
+            pointer-events: none;
+        }
+
+
+        .about-highlight::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            bottom: -190px;
+            left: -100px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(212, 175, 55, 0.06);
+
+            filter: blur(35px);
+
+            pointer-events: none;
+        }
+
 
         .about-highlight h3 {
+            position: relative;
+            z-index: 2;
+
             margin: 0 0 18px;
-            color: #d4af37;
-            font-size: 24px;
+
+            color:
+                var(--royal-gold-light) !important;
+
+            font-size: 25px;
+
+            font-weight: 850;
         }
+
 
         .about-highlight p {
+            position: relative;
+            z-index: 2;
+
             margin: 0;
-            color: rgba(255,255,255,0.88);
+
+            color:
+                #ded6ca !important;
+
             font-size: 15px;
-            line-height: 1.8;
+
+            line-height: 1.85;
         }
 
-        /* FEATURES */
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
 
         .about-features {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
             gap: 15px;
-            margin-bottom: 35px;
+
+            margin-bottom: 40px;
         }
+
 
         .about-feature {
-            background: #ffffff;
-            border: 1px solid #e5e8e5;
-            border-radius: 16px;
-            padding: 25px 15px;
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 27px 15px;
+
             text-align: center;
-            box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #201c17,
+                    #0f0d0b
+                ) !important;
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.16) !important;
+
+            box-shadow:
+                0 12px 32px
+                rgba(0, 0, 0, 0.35),
+
+                inset 0 1px 0
+                rgba(255,255,255,0.035);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
         }
+
+
+        .about-feature::before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -55px;
+
+            width: 120px;
+            height: 120px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(212, 175, 55, 0.055);
+
+            filter: blur(25px);
+
+            pointer-events: none;
+        }
+
+
+        .about-feature:hover {
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(212, 175, 55, 0.38) !important;
+
+            box-shadow:
+                0 22px 45px
+                rgba(0, 0, 0, 0.48),
+
+                0 0 25px
+                rgba(212, 175, 55, 0.05);
+        }
+
 
         .about-feature-icon {
-            font-size: 28px;
-            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+
+            width: 55px;
+            height: 55px;
+
+            margin:
+                0 auto 13px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212, 175, 55, 0.16),
+                    rgba(212, 175, 55, 0.03)
+                );
+
+            border:
+                1px solid
+                rgba(212, 175, 55, 0.28);
+
+            font-size: 25px;
+
+            filter:
+                drop-shadow(
+                    0 6px 10px
+                    rgba(0,0,0,0.35)
+                );
         }
+
 
         .about-feature strong {
+            position: relative;
+            z-index: 2;
+
             display: block;
-            color: #176b3a;
+
+            color:
+                var(--royal-gold-light) !important;
+
             font-size: 16px;
-            margin-bottom: 6px;
+
+            margin-bottom: 7px;
         }
+
 
         .about-feature span {
-            color: #777;
+            position: relative;
+            z-index: 2;
+
+            color:
+                #aaa194 !important;
+
             font-size: 12px;
-            line-height: 1.5;
+
+            line-height: 1.55;
         }
 
-        /* BUTTON */
+
+        /* =========================================================
+           ORDER BUTTON
+        ========================================================= */
 
         .about-order {
             text-align: center;
         }
 
+
         .about-order a {
-            display: inline-block;
-            padding: 14px 30px;
-            background: #176b3a;
-            color: #ffffff;
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 230px;
+
+            padding: 15px 31px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d8b53e,
+                    #9e7817
+                ) !important;
+
+            color:
+                #171208 !important;
+
             text-decoration: none;
-            border-radius: 9px;
-            font-size: 15px;
-            font-weight: 700;
-            border: 2px solid #176b3a;
-            transition: 0.25s ease;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.40),
+
+                inset 0 1px 0
+                rgba(255,255,255,0.30);
+
+            transition:
+                transform 0.28s ease,
+                box-shadow 0.28s ease,
+                filter 0.28s ease;
         }
+
 
         .about-order a:hover {
-            background: #d4af37;
-            border-color: #d4af37;
-            color: #123d28;
+            transform:
+                translateY(-3px);
+
+            filter:
+                brightness(1.08);
+
+            box-shadow:
+                0 18px 38px
+                rgba(0, 0, 0, 0.52),
+
+                0 0 25px
+                rgba(212, 175, 55, 0.10);
         }
 
-        /* MOBILE */
+
+        .about-order a:active {
+            transform:
+                translateY(1px)
+                scale(0.98);
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .about-page {
+                padding-left: 4%;
+                padding-right: 4%;
+            }
+
+            .about-features {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
 
         @media (max-width: 750px) {
 
             .about-page {
-                padding: 40px 15px 55px;
+                padding:
+                    45px 15px 75px;
             }
+
 
             .about-top {
-                margin-bottom: 30px;
+                margin-bottom: 32px;
             }
+
+
+            .about-label {
+                padding: 7px 14px;
+
+                font-size: 8px;
+
+                letter-spacing: 2.3px;
+            }
+
 
             .about-top h1 {
-                font-size: 32px;
+                font-size: 34px;
+
+                letter-spacing: -0.7px;
             }
 
-            .about-top h2 {
-                font-size: 17px;
+
+            .about-top h1::after {
+                width: 55px;
+
+                margin:
+                    14px auto 12px;
             }
+
+
+            .about-top h2 {
+                font-size: 15px;
+            }
+
 
             .about-main {
                 grid-template-columns: 1fr;
-                gap: 15px;
+
+                gap: 14px;
+
+                margin-bottom: 15px;
             }
+
 
             .about-card,
             .about-highlight {
-                padding: 25px 20px;
+                padding:
+                    26px 21px;
+
+                border-radius: 17px;
             }
+
 
             .about-card h3,
             .about-highlight h3 {
-                font-size: 20px;
+                font-size: 21px;
+
+                margin-bottom: 13px;
             }
+
 
             .about-card p,
             .about-highlight p {
                 font-size: 13px;
-                line-height: 1.7;
+
+                line-height: 1.75;
             }
+
 
             .about-features {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
                 gap: 10px;
+
                 margin-top: 15px;
+
+                margin-bottom: 28px;
             }
+
 
             .about-feature {
-                padding: 20px 10px;
+                padding:
+                    20px 9px;
+
+                border-radius: 14px;
             }
+
 
             .about-feature-icon {
-                font-size: 24px;
+                width: 45px;
+                height: 45px;
+
+                font-size: 21px;
+
+                margin-bottom: 10px;
             }
 
+
             .about-feature strong {
-                font-size: 14px;
+                font-size: 13px;
+
+                margin-bottom: 5px;
             }
+
 
             .about-feature span {
                 font-size: 10px;
+
+                line-height: 1.45;
             }
+
 
             .about-order a {
                 width: 100%;
-                box-sizing: border-box;
+
+                min-width: 0;
+
+                padding:
+                    14px 20px;
+
+                font-size: 13px;
             }
-        }/* ================================
-   ABOUT PAGE — PREMIUM DARK ROSE GOLD
-================================ */
+        }
+
+
+        /* =========================================================
+           VERY SMALL PHONES
+        ========================================================= */
+
+        @media (max-width: 370px) {
+
+            .about-page {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+
+            .about-top h1 {
+                font-size: 31px;
+            }
+
+
+            .about-card,
+            .about-highlight {
+                padding:
+                    23px 17px;
+            }
+
+
+            .about-feature {
+                padding:
+                    18px 7px;
+            }
+
+
+            .about-feature strong {
+                font-size: 12px;
+            }
+
+
+            .about-feature span {
+                font-size: 9px;
+            }
+        }
+
+
+        /* =========================================================
+           REDUCE MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .about-card,
+            .about-card::before,
+            .about-feature,
+            .about-order a {
+                transition: none !important;
+            }
+        }
+        /* =====================================================
+   CONTACT STYLE CARD ENTRANCE
+===================================================== */
+
+@keyframes luxuryCard {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            rotateX(5deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotateX(0);
+
+    }
+
+}
+
+
+@media (min-width: 801px) {
+
+    .about-card:nth-child(1) {
+        animation:
+            luxuryCard 0.7s ease both;
+    }
+
+    .about-highlight:nth-child(2) {
+        animation:
+            luxuryCard 0.7s 0.10s ease both;
+    }
+
+    .about-feature:nth-child(1) {
+        animation:
+            luxuryCard 0.7s 0.20s ease both;
+    }
+
+    .about-feature:nth-child(2) {
+        animation:
+            luxuryCard 0.7s 0.30s ease both;
+    }
+
+    .about-feature:nth-child(3) {
+        animation:
+            luxuryCard 0.7s 0.40s ease both;
+    }
+
+    .about-feature:nth-child(4) {
+        animation:
+            luxuryCard 0.7s 0.50s ease both;
+    }
+
+}/* =====================================================
+   ABOUT — WHITE LUXURY + DARK PREMIUM BOXES
+===================================================== */
 
 .about-page {
-    background: #f7f4f1 !important;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212, 175, 55, 0.08),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f5f0 50%,
+            #ffffff 100%
+        ) !important;
+
+    color: #222 !important;
 }
+
+
+/* =====================================================
+   DARK LUXURY BOXES
+===================================================== */
+
+.about-card,
+.about-highlight,
+.about-feature {
+
+    background:
+        linear-gradient(
+            145deg,
+            #292727 0%,
+            #171617 100%
+        ) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(
+        212,
+        175,
+        55,
+        0.38
+    ) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Gold shine inside cards */
+
+.about-card::before,
+.about-highlight::before,
+.about-feature::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -80px;
+    right: -80px;
+
+    width: 180px;
+    height: 180px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.about-card h3,
+.about-highlight h3,
+.about-feature h3 {
+
+    color: #f5f5f5 !important;
+}
+
+.about-card p,
+.about-highlight p,
+.about-feature p {
+
+    color: #c8c5c5 !important;
+}
+
+
+/* =====================================================
+   GOLD ACCENTS
+===================================================== */
 
 .about-label {
-    background: #2b2022 !important;
-    color: #f3d2e2 !important;
+    color: #b8860b !important;
 }
 
-.about-top h1 {
-    color: #2b2022 !important;
+.about-page h2 {
+    color: #9b720d !important;
 }
 
-.about-top h2 {
-    color: #b9828b !important;
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.about-card:hover,
+.about-highlight:hover,
+.about-feature:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(212, 175, 55, 0.75) !important;
+
+    box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.22),
+        0 0 25px rgba(212, 175, 55, 0.10) !important;
+}/* =====================================================
+   CONTACT US — ROYAL CHICKEN LOGO COLORS
+===================================================== */
+
+.about-page h1 {
+    color: #c94b4b !important;
+
+    text-shadow:
+        2px 2px 0 #8f3038,
+        4px 4px 0 rgba(70, 80, 110, 0.25),
+        0 8px 18px rgba(70, 50, 60, 0.18) !important;
 }
 
-.about-card {
-    background: #ffffff !important;
-    border-color: #eadde0 !important;
-}
 
-.about-card h3 {
-    color: #b9828b !important;
-}
+/* "Us" ko Chicken wala green color */
 
-.about-card p {
-    color: #5f5658 !important;
-}
+.about-page h1 .us {
+    color: #3f8b55 !important;
 
-.about-highlight {
-    background: linear-gradient(
-        135deg,
-        #1c1416 0%,
-        #2b2022 55%,
-        #3a292c 100%
-    ) !important;
-}
-
-.about-highlight h3 {
-    color: #e6b8a2 !important;
-}
-
-.about-highlight p {
-    color: #eadfe1 !important;
-}
-
-.about-feature {
-    background: #ffffff !important;
-    border-color: #eadde0 !important;
-}
-
-.about-feature strong {
-    color: #b9828b !important;
-}
-
-.about-feature span {
-    color: #756b6e !important;
-}
-
-.about-order a {
-    background: #2b2022 !important;
-    border-color: #2b2022 !important;
-    color: #ffffff !important;
-}
-
-.about-order a:hover {
-    background: #b9828b !important;
-    border-color: #b9828b !important;
-    color: #ffffff !important;
+    text-shadow:
+        2px 2px 0 #28633a,
+        4px 4px 0 rgba(70, 80, 110, 0.25),
+        0 8px 18px rgba(50, 70, 55, 0.18) !important;
 }
 
     </style>
 
 </head>
 
+
 <body>
 
-    <!-- HEADER -->
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
 
     <header class="header">
 
         <div class="brand">
+
             <a href="index.html">
                 Royal Chicken
             </a>
+
         </div>
 
+
         <nav>
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="about.html">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </nav>
 
     </header>
 
 
-    <!-- ABOUT PAGE -->
+    <!-- =========================================================
+         ABOUT PAGE
+    ========================================================= -->
 
     <main class="about-page">
 
         <div class="about-wrapper">
 
-            <!-- HEADING -->
+
+            <!-- =====================================================
+                 HEADING
+            ====================================================== -->
 
             <div class="about-top">
 
@@ -354,9 +1266,11 @@
                     ROYAL CHICKEN
                 </span>
 
+
                 <h1>
                     About Us
                 </h1>
+
 
                 <h2>
                     Freshness You Can Trust.
@@ -365,9 +1279,14 @@
             </div>
 
 
-            <!-- CONTENT -->
+            <!-- =====================================================
+                 MAIN CONTENT
+            ====================================================== -->
 
             <div class="about-main">
+
+
+                <!-- WHO WE ARE -->
 
                 <div class="about-card">
 
@@ -375,11 +1294,13 @@
                         Who We Are
                     </h3>
 
+
                     <p>
                         Welcome to Royal Chicken, your trusted
                         destination for fresh and quality chicken
                         in Ahmedabad.
                     </p>
+
 
                     <p>
                         We are committed to providing fresh
@@ -390,11 +1311,14 @@
                 </div>
 
 
+                <!-- WHY ROYAL CHICKEN -->
+
                 <div class="about-highlight">
 
                     <h3>
                         Why Royal Chicken?
                     </h3>
+
 
                     <p>
                         We believe quality starts with freshness.
@@ -408,9 +1332,14 @@
             </div>
 
 
-            <!-- FEATURES -->
+            <!-- =====================================================
+                 FEATURES
+            ====================================================== -->
 
             <div class="about-features">
+
+
+                <!-- FRESH -->
 
                 <div class="about-feature">
 
@@ -418,9 +1347,11 @@
                         🍗
                     </div>
 
+
                     <strong>
                         Fresh
                     </strong>
+
 
                     <span>
                         Freshly prepared chicken
@@ -429,15 +1360,19 @@
                 </div>
 
 
+                <!-- HYGIENIC -->
+
                 <div class="about-feature">
 
                     <div class="about-feature-icon">
                         ✨
                     </div>
 
+
                     <strong>
                         Hygienic
                     </strong>
+
 
                     <span>
                         Clean handling & preparation
@@ -446,15 +1381,19 @@
                 </div>
 
 
+                <!-- QUALITY -->
+
                 <div class="about-feature">
 
                     <div class="about-feature-icon">
                         ✓
                     </div>
 
+
                     <strong>
                         Quality
                     </strong>
+
 
                     <span>
                         Quality you can trust
@@ -463,15 +1402,19 @@
                 </div>
 
 
+                <!-- DELIVERY -->
+
                 <div class="about-feature">
 
                     <div class="about-feature-icon">
                         🚚
                     </div>
 
+
                     <strong>
                         Home Delivery
                     </strong>
+
 
                     <span>
                         Fresh chicken at your doorstep
@@ -482,7 +1425,9 @@
             </div>
 
 
-            <!-- BUTTON -->
+            <!-- =====================================================
+                 ORDER BUTTON
+            ====================================================== -->
 
             <div class="about-order">
 
@@ -495,6 +1440,7 @@
         </div>
 
     </main>
+
 
 </body>
 
