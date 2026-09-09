@@ -1509,7 +1509,6 @@ footer p {
     line-height: 1.5;
 }
 
-
 /* =====================================================
    FLOATING CART — BLINKIT STYLE MOBILE
 ===================================================== */
@@ -1517,10 +1516,15 @@ footer p {
 .floating-cart {
     position: fixed;
 
-    left: 50%;
+    left: 0;
+    right: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
     bottom: 16px;
 
-    transform: translate(-50%, 120px);
+    transform: translateY(120px);
 
     width: calc(100% - 40px);
     max-width: 360px;
@@ -1557,14 +1561,15 @@ footer p {
 }
 
 .floating-cart.show {
-    transform:
-        translate(-50%, 0);
+    transform: translateY(0);
 
     opacity: 1;
 }
 
 
-/* CART INFORMATION */
+/* =====================================================
+   CART INFORMATION
+===================================================== */
 
 .floating-cart-info {
     display: flex;
@@ -1591,7 +1596,9 @@ footer p {
 }
 
 
-/* VIEW CART BUTTON */
+/* =====================================================
+   VIEW CART BUTTON
+===================================================== */
 
 .floating-cart button {
     border: none;
@@ -1630,26 +1637,46 @@ footer p {
 }
 
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 550px) {
 
     .floating-cart {
 
+        left: 0 !important;
+        right: 0 !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
         width:
-            calc(100% - 70px);
+            calc(100% - 70px) !important;
 
         max-width:
-            340px;
+            340px !important;
 
         bottom:
-            14px;
+            14px !important;
 
         padding:
             10px 12px;
 
         border-radius:
             15px;
+
+        transform:
+            translateY(120px) !important;
+    }
+
+    .floating-cart.show {
+
+        transform:
+            translateY(0) !important;
+
+        opacity:
+            1;
     }
 
     .floating-cart-info span {
@@ -1676,6 +1703,8 @@ footer p {
             10px;
     }
 }
+
+
 /* =====================================================
    CUSTOMER REVIEWS
 ===================================================== */
@@ -1773,8 +1802,6 @@ footer p {
 
     font-size: 13px;
 }
-
-
 /* =====================================================
    REVIEW FORM
 ===================================================== */
@@ -3282,6 +3309,7 @@ footer p {
 
         font-size: 14px;
     }
+    
 
 
     /* =================================================
