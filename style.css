@@ -1511,27 +1511,32 @@ footer p {
 
 
 /* =====================================================
-   FLOATING CART
+   FLOATING CART — BLINKIT STYLE MOBILE
 ===================================================== */
 
 .floating-cart {
     position: fixed;
 
     left: 50%;
+    bottom: 16px;
 
-    bottom: 20px;
+    transform: translate(-50%, 120px);
 
-    transform: translate(-50%, 150px);
+    width: calc(100% - 40px);
+    max-width: 360px;
 
-    width: calc(100% - 30px);
+    background:
+        linear-gradient(
+            135deg,
+            #f6d65a,
+            #d4af37
+        );
 
-    max-width: 430px;
-
-    background: #ffffff;
+    border: 2px solid #1c1818;
 
     border-radius: 16px;
 
-    padding: 10px 12px;
+    padding: 11px 14px;
 
     display: flex;
 
@@ -1540,70 +1545,137 @@ footer p {
     justify-content: space-between;
 
     box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.20);
+        0 10px 30px rgba(0, 0, 0, 0.30);
 
     z-index: 9990;
 
     opacity: 0;
 
     transition:
-        transform 0.45s ease,
-        opacity 0.45s ease;
+        transform 0.35s ease,
+        opacity 0.35s ease;
 }
 
 .floating-cart.show {
-    transform: translate(-50%, 0);
+    transform:
+        translate(-50%, 0);
 
     opacity: 1;
 }
+
+
+/* CART INFORMATION */
 
 .floating-cart-info {
     display: flex;
 
     flex-direction: column;
 
-    padding-left: 8px;
+    padding-left: 5px;
 
-    gap: 3px;
+    gap: 2px;
 }
 
 .floating-cart-info span {
-    font-size: 13px;
+    font-size: 12px;
 
-    color: #666;
+    color: #302a20;
 }
 
 .floating-cart-info strong {
-    font-size: 16px;
+    font-size: 15px;
 
     color: #111;
+
+    font-weight: 800;
 }
+
+
+/* VIEW CART BUTTON */
 
 .floating-cart button {
     border: none;
 
-    background: #4a3f41;
+    background:
+        #111;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    padding: 13px 18px;
+    padding:
+        11px 17px;
 
-    border-radius: 12px;
+    border-radius:
+        11px;
 
-    font-size: 15px;
+    font-size:
+        14px;
 
-    font-weight: 700;
+    font-weight:
+        800;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    transition: transform 0.2s ease;
+    white-space:
+        nowrap;
+
+    transition:
+        transform 0.2s ease;
 }
 
 .floating-cart button:active {
-    transform: scale(0.95);
+    transform:
+        scale(0.95);
 }
 
 
+/* MOBILE */
+
+@media (max-width: 550px) {
+
+    .floating-cart {
+
+        width:
+            calc(100% - 70px);
+
+        max-width:
+            340px;
+
+        bottom:
+            14px;
+
+        padding:
+            10px 12px;
+
+        border-radius:
+            15px;
+    }
+
+    .floating-cart-info span {
+
+        font-size:
+            11px;
+    }
+
+    .floating-cart-info strong {
+
+        font-size:
+            14px;
+    }
+
+    .floating-cart button {
+
+        padding:
+            10px 15px;
+
+        font-size:
+            13px;
+
+        border-radius:
+            10px;
+    }
+}
 /* =====================================================
    CUSTOMER REVIEWS
 ===================================================== */

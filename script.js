@@ -992,6 +992,19 @@ function openCart() {
         orderForm.style.display =
             "block";
     }
+    const submitButton =
+    orderForm?.querySelector(
+        'button[type="submit"]'
+    );
+
+if (submitButton) {
+
+    submitButton.disabled =
+        false;
+
+    submitButton.textContent =
+        "Place Order";
+}
 
 
     updateCart();
