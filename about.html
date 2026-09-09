@@ -985,67 +985,56 @@
                 transition: none !important;
             }
         }
-        /* =====================================================
-   CONTACT STYLE CARD ENTRANCE
+       /* =====================================================
+   CONTACT STYLE CARD ENTRANCE — DESKTOP + MOBILE
 ===================================================== */
 
 @keyframes luxuryCard {
 
     from {
-
         opacity: 0;
-
         transform:
             translateY(25px)
             rotateX(5deg);
-
     }
 
     to {
-
         opacity: 1;
-
         transform:
             translateY(0)
             rotateX(0);
-
     }
 
 }
 
+.about-card:nth-child(1) {
+    animation:
+        luxuryCard 0.7s ease both;
+}
 
-@media (min-width: 801px) {
+.about-highlight:nth-child(2) {
+    animation:
+        luxuryCard 0.7s 0.10s ease both;
+}
 
-    .about-card:nth-child(1) {
-        animation:
-            luxuryCard 0.7s ease both;
-    }
+.about-feature:nth-child(1) {
+    animation:
+        luxuryCard 0.7s 0.20s ease both;
+}
 
-    .about-highlight:nth-child(2) {
-        animation:
-            luxuryCard 0.7s 0.10s ease both;
-    }
+.about-feature:nth-child(2) {
+    animation:
+        luxuryCard 0.7s 0.30s ease both;
+}
 
-    .about-feature:nth-child(1) {
-        animation:
-            luxuryCard 0.7s 0.20s ease both;
-    }
+.about-feature:nth-child(3) {
+    animation:
+        luxuryCard 0.7s 0.40s ease both;
+}
 
-    .about-feature:nth-child(2) {
-        animation:
-            luxuryCard 0.7s 0.30s ease both;
-    }
-
-    .about-feature:nth-child(3) {
-        animation:
-            luxuryCard 0.7s 0.40s ease both;
-    }
-
-    .about-feature:nth-child(4) {
-        animation:
-            luxuryCard 0.7s 0.50s ease both;
-    }
-
+.about-feature:nth-child(4) {
+    animation:
+        luxuryCard 0.7s 0.50s ease both;
 }/* =====================================================
    ABOUT — WHITE LUXURY + DARK PREMIUM BOXES
 ===================================================== */

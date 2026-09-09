@@ -1014,59 +1014,46 @@
 
 
         /* =====================================================
-           CARD ENTRANCE
-        ===================================================== */
+   CARD ENTRANCE — DESKTOP + MOBILE
+===================================================== */
 
-        @keyframes luxuryCard {
+@keyframes luxuryCard {
 
-            from {
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            rotateX(5deg);
+    }
 
-                opacity: 0;
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            rotateX(0);
+    }
 
-                transform:
-                    translateY(25px)
-                    rotateX(5deg);
+}
 
-            }
+.contact-card:nth-child(1) {
+    animation:
+        luxuryCard 0.7s ease both;
+}
 
-            to {
+.contact-card:nth-child(2) {
+    animation:
+        luxuryCard 0.7s 0.10s ease both;
+}
 
-                opacity: 1;
+.contact-card:nth-child(3) {
+    animation:
+        luxuryCard 0.7s 0.20s ease both;
+}
 
-                transform:
-                    translateY(0)
-                    rotateX(0);
-
-            }
-
-        }
-
-
-        @media (min-width: 801px) {
-
-            .contact-card:nth-child(1) {
-                animation:
-                    luxuryCard 0.7s ease both;
-            }
-
-            .contact-card:nth-child(2) {
-                animation:
-                    luxuryCard 0.7s 0.10s ease both;
-            }
-
-            .contact-card:nth-child(3) {
-                animation:
-                    luxuryCard 0.7s 0.20s ease both;
-            }
-
-            .contact-card:nth-child(4) {
-                animation:
-                    luxuryCard 0.7s 0.30s ease both;
-            }
-
-        }
-
-
+.contact-card:nth-child(4) {
+    animation:
+        luxuryCard 0.7s 0.30s ease both;
+}
         /* =====================================================
            TABLET
         ===================================================== */
