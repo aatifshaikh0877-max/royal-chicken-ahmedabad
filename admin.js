@@ -9,7 +9,8 @@ import {
 import {
     getAuth,
     signInWithEmailAndPassword,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
@@ -46,6 +47,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+window.adminLogout = async function () {
+    const confirmLogout = confirm("Kya aap logout karna chahte hain?");
+
+    if (!confirmLogout) return;
+
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.error("Logout error:", error);
+        alert("Logout nahi ho paya. Please dobara try karein.");
+    }
+};
 
 /* =========================================================
    GLOBAL DATA
@@ -711,8 +724,10 @@ function renderOrders(orders) {
         document.getElementById("orders-list");
 
     if (!container) return;
+    const activeOrders =
+    getActiveOrders(orders);
 
-    if (!orders.length) {
+    if (!activeOrders.length) {
 
         container.innerHTML = `
             <div class="empty-state">
@@ -723,7 +738,7 @@ function renderOrders(orders) {
         return;
     }
 
-    container.innerHTML = orders.map(order => {
+    container.innerHTML =activeOrders.map(order => {
 
         const date =
             getDateValue(order.createdAt);
@@ -3433,7 +3448,7 @@ window.setSalesPeriod = function(
 function calculateSales() {
 
     let orders =
-        [...allOrders];
+    getActiveOrders();
 
 
     const now =

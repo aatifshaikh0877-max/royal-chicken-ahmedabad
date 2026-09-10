@@ -370,7 +370,21 @@
                 </button>
 
             </nav>
+<div class="sidebar-admin-brand">
+    <div class="sidebar-admin-line"></div>
 
+    <div class="sidebar-admin-title">
+        ROYAL CHICKEN
+    </div>
+
+    <div class="sidebar-admin-subtitle">
+        ADMIN PANEL
+    </div>
+
+    <div class="sidebar-admin-desc">
+        Management • Orders • Accounts
+    </div>
+</div>
 
             <!-- Shop Status -->
 
@@ -419,7 +433,13 @@
                 <small>
                     © 2026 Royal Chicken
                 </small>
-
+            <button
+    type="button"
+    class="admin-logout-btn"
+    onclick="adminLogout()"
+>
+    🚪 Logout
+</button>
             </div>
 
         </aside>
@@ -517,6 +537,22 @@
                     >
                         🔊
                     </button>
+                    <button
+    type="button"
+    class="mobile-shop-btn"
+    onclick="toggleShopStatus()"
+    id="mobile-shop-status-btn"
+>
+    🟢 <span>Open</span>
+</button>
+
+<button
+    type="button"
+    class="mobile-logout-btn"
+    onclick="adminLogout()"
+>
+    ⇥
+</button>
 
                 </div>
 

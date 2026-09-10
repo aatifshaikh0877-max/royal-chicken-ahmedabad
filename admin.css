@@ -4984,14 +4984,19 @@ textarea:focus {
     }
 
 }/* =========================================================
-   MOBILE BOTTOM NAVIGATION
-   All admin sections accessible by horizontal swipe
+   ROYAL CHICKEN — MOBILE ADMIN
+   Premium Header + Compact Shop + Logout + Bottom Navigation
 ========================================================= */
 
 @media (max-width: 768px) {
 
+    /* =====================================================
+       MOBILE SIDEBAR / BOTTOM NAV
+    ===================================================== */
+
     .sidebar {
         position: fixed !important;
+
         left: 0 !important;
         right: 0 !important;
         bottom: 0 !important;
@@ -5008,10 +5013,12 @@ textarea:focus {
         margin: 0 !important;
 
         overflow: hidden !important;
+
+        background: #080808 !important;
     }
 
 
-    /* Hide desktop-only sidebar parts */
+    /* Old sidebar elements hidden on mobile */
 
     .sidebar-brand,
     .sidebar-menu-title,
@@ -5021,7 +5028,9 @@ textarea:focus {
     }
 
 
-    /* Horizontal mobile navigation */
+    /* =====================================================
+       BOTTOM NAVIGATION
+    ===================================================== */
 
     .sidebar-menu {
         width: 100% !important;
@@ -5044,15 +5053,22 @@ textarea:focus {
         -webkit-overflow-scrolling: touch;
 
         scrollbar-width: none;
+
+        background: #080808 !important;
+
+        border-top: 1px solid
+            rgba(212, 175, 55, 0.18) !important;
+
+        box-sizing: border-box !important;
     }
 
 
     .sidebar-menu::-webkit-scrollbar {
-        display: none;
+        display: none !important;
     }
 
 
-    /* Every menu button */
+    /* Every bottom navigation item */
 
     .sidebar-menu .menu-item {
         flex: 0 0 92px !important;
@@ -5076,6 +5092,10 @@ textarea:focus {
         border-radius: 14px !important;
 
         white-space: nowrap !important;
+
+        position: relative !important;
+
+        box-sizing: border-box !important;
     }
 
 
@@ -5114,7 +5134,163 @@ textarea:focus {
     }
 
 
-    /* Main content space for bottom navigation */
+    /* =====================================================
+       MOBILE HEADER — SHOP + LOGOUT
+       EXACT SAME SIZE AS REFRESH / BELL / SOUND
+    ===================================================== */
+
+    .mobile-shop-btn,
+    .mobile-logout-btn {
+
+        width: 58px !important;
+        height: 58px !important;
+
+        min-width: 58px !important;
+        max-width: 58px !important;
+
+        min-height: 58px !important;
+        max-height: 58px !important;
+
+        flex: 0 0 58px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        box-sizing: border-box !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        flex-shrink: 0 !important;
+
+        border-radius: 15px !important;
+
+        background:
+            linear-gradient(
+                145deg,
+                #1b1b1b,
+                #090909
+            ) !important;
+
+        color: #d4af37 !important;
+
+        border: 1px solid
+            rgba(212, 175, 55, 0.55) !important;
+
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0
+            rgba(255, 255, 255, 0.06) !important;
+
+        cursor: pointer !important;
+
+        transition:
+            transform 0.18s ease,
+            border-color 0.18s ease,
+            box-shadow 0.18s ease !important;
+    }
+
+
+    /* =====================================================
+       SHOP BUTTON
+    ===================================================== */
+
+    .mobile-shop-btn {
+        flex-direction: column !important;
+
+        gap: 1px !important;
+
+        font-size: 17px !important;
+
+        font-weight: 800 !important;
+    }
+
+
+    .mobile-shop-btn span {
+        font-size: 8px !important;
+
+        line-height: 1 !important;
+
+        color: #d4af37 !important;
+
+        font-weight: 800 !important;
+
+        letter-spacing: 0.3px !important;
+    }
+
+
+    /* =====================================================
+       LOGOUT BUTTON
+    ===================================================== */
+
+    .mobile-logout-btn {
+        font-size: 23px !important;
+
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+    }
+
+
+    /* =====================================================
+       HEADER RIGHT SIDE
+    ===================================================== */
+
+    .top-header-right {
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 6px !important;
+
+        flex-shrink: 0 !important;
+    }
+
+
+    /* Refresh + Bell + Sound + Shop + Logout
+       all same size */
+
+    .top-header-right > button {
+        width: 58px !important;
+        height: 58px !important;
+
+        min-width: 58px !important;
+        max-width: 58px !important;
+
+        min-height: 58px !important;
+        max-height: 58px !important;
+
+        flex: 0 0 58px !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    /* =====================================================
+       PREMIUM TOUCH EFFECT
+    ===================================================== */
+
+    .mobile-shop-btn:active,
+    .mobile-logout-btn:active {
+        transform: scale(0.94) !important;
+
+        border-color:
+            #d4af37 !important;
+
+        box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.3),
+            0 0 10px
+            rgba(212, 175, 55, 0.10) !important;
+    }
+
+
+    /* =====================================================
+       MAIN CONTENT
+    ===================================================== */
 
     .main-content {
         margin-left: 0 !important;
@@ -5122,4 +5298,322 @@ textarea:focus {
         padding-bottom: 100px !important;
     }
 
+}/* =========================================================
+   ROYAL CHICKEN — DESKTOP HEADER SHOP + LOGOUT
+========================================================= */
+
+@media (min-width: 769px) {
+
+    /* Shop + Logout same size as Refresh / Bell / Sound */
+
+    .mobile-shop-btn,
+    .mobile-logout-btn {
+        width: 58px !important;
+        height: 58px !important;
+
+        min-width: 58px !important;
+        min-height: 58px !important;
+
+        max-width: 58px !important;
+        max-height: 58px !important;
+
+        flex: 0 0 58px !important;
+
+        box-sizing: border-box !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        border-radius: 15px !important;
+
+        background:
+            linear-gradient(
+                145deg,
+                #1b1b1b,
+                #090909
+            ) !important;
+
+        color: #d4af37 !important;
+
+        border: 1px solid
+            rgba(212, 175, 55, 0.55) !important;
+
+        box-shadow:
+            0 4px 12px rgba(0,0,0,0.25),
+            inset 0 1px 0
+            rgba(255,255,255,0.06) !important;
+
+        cursor: pointer !important;
+    }
+
+
+    /* SHOP */
+
+    .mobile-shop-btn {
+        flex-direction: column !important;
+
+        gap: 2px !important;
+
+        font-size: 17px !important;
+
+        font-weight: 800 !important;
+    }
+
+
+    .mobile-shop-btn span {
+        color: #d4af37 !important;
+
+        font-size: 8px !important;
+
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+    }
+
+
+    /* LOGOUT */
+
+    .mobile-logout-btn {
+        font-size: 24px !important;
+
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+    }
+
+
+    /* HEADER GAP */
+
+    .top-header-right {
+        display: flex !important;
+
+        align-items: center !important;
+
+        gap: 6px !important;
+    }
+
+
+    /* Premium hover */
+
+    .mobile-shop-btn:hover,
+    .mobile-logout-btn:hover {
+        background:
+            linear-gradient(
+                145deg,
+                #242424,
+                #101010
+            ) !important;
+
+        border-color:
+            #d4af37 !important;
+
+        box-shadow:
+            0 6px 18px rgba(0,0,0,0.35),
+            0 0 12px
+            rgba(212,175,55,0.10) !important;
+
+        transform: translateY(-1px) !important;
+    }
+
+
+    .mobile-shop-btn:active,
+    .mobile-logout-btn:active {
+        transform: scale(0.95) !important;
+    }
+
+}/* =========================================================
+   DESKTOP — SHOP + LOGOUT FINAL POLISH
+========================================================= */
+
+@media (min-width: 769px) {
+
+    /* Shop button */
+    .mobile-shop-btn {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        max-width: 58px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 2px !important;
+        padding: 0 !important;
+
+        border-radius: 15px !important;
+
+        background: linear-gradient(
+            145deg,
+            #1c1c1c,
+            #090909
+        ) !important;
+
+        color: #d4af37 !important;
+
+        border: 1px solid
+            rgba(212,175,55,0.55) !important;
+
+        box-shadow:
+            0 4px 12px rgba(0,0,0,0.25),
+            inset 0 1px 0
+            rgba(255,255,255,0.07) !important;
+
+        font-size: 18px !important;
+        font-weight: 800 !important;
+    }
+
+    .mobile-shop-btn span {
+        display: block !important;
+
+        color: #d4af37 !important;
+
+        font-size: 9px !important;
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+
+        letter-spacing: 0.3px !important;
+    }
+
+
+    /* Logout button */
+    .mobile-logout-btn {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        max-width: 58px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+
+        border-radius: 15px !important;
+
+        background: linear-gradient(
+            145deg,
+            #1c1c1c,
+            #090909
+        ) !important;
+
+        color: #d4af37 !important;
+
+        border: 1px solid
+            rgba(212,175,55,0.55) !important;
+
+        box-shadow:
+            0 4px 12px rgba(0,0,0,0.25),
+            inset 0 1px 0
+            rgba(255,255,255,0.07) !important;
+
+        font-size: 24px !important;
+        line-height: 1 !important;
+        font-weight: 800 !important;
+    }
+
+
+    /* Premium hover */
+    .mobile-shop-btn:hover,
+    .mobile-logout-btn:hover {
+        border-color: #d4af37 !important;
+
+        background: linear-gradient(
+            145deg,
+            #242424,
+            #101010
+        ) !important;
+
+        box-shadow:
+            0 6px 16px rgba(0,0,0,0.35),
+            0 0 10px
+            rgba(212,175,55,0.10) !important;
+    }
+}/* =========================================================
+   REMOVE SIDEBAR SHOP STATUS + FOOTER
+   TOP HEADER SHOP + LOGOUT WILL REMAIN
+========================================================= */
+
+.sidebar-shop-status,
+.sidebar-footer {
+    display: none !important;
+}/* =========================================================
+   ROYAL CHICKEN — ADMIN PANEL SIDEBAR BRANDING
+========================================================= */
+
+.sidebar-admin-brand {
+    margin: 45px 18px 25px !important;
+    padding: 22px 15px !important;
+
+    text-align: center !important;
+
+    border-top: 1px solid
+        rgba(212, 175, 55, 0.25) !important;
+
+    border-bottom: 1px solid
+        rgba(212, 175, 55, 0.15) !important;
+
+    border-radius: 14px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.06),
+            transparent
+        ) !important;
+}
+
+.sidebar-admin-line {
+    width: 35px !important;
+    height: 2px !important;
+
+    margin: 0 auto 12px !important;
+
+    background: #d4af37 !important;
+
+    border-radius: 10px !important;
+}
+
+.sidebar-admin-title {
+    color: #d4af37 !important;
+
+    font-size: 15px !important;
+    font-weight: 900 !important;
+
+    letter-spacing: 2px !important;
+}
+
+.sidebar-admin-subtitle {
+    margin-top: 5px !important;
+
+    color: #ffffff !important;
+
+    font-size: 11px !important;
+    font-weight: 800 !important;
+
+    letter-spacing: 2px !important;
+}
+
+.sidebar-admin-desc {
+    margin-top: 9px !important;
+
+    color: #777 !important;
+
+    font-size: 9px !important;
+
+    letter-spacing: 0.4px !important;
+}
+
+
+/* Mobile par sidebar branding hide */
+@media (max-width: 768px) {
+    .sidebar-admin-brand {
+        display: none !important;
+    }
 }
