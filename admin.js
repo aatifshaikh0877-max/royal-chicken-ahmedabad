@@ -1378,13 +1378,25 @@ window.deleteOrder = async function(orderId) {
 
 };
 /* =========================================================
+   ACTIVE ORDERS ONLY
+   Recycle Bin wale orders business me count nahi honge
+========================================================= */
+
+function getActiveOrders(orders = allOrders) {
+
+    return orders.filter(
+        order => order.deleted !== true
+    );
+
+}
+/* =========================================================
    PENDING COUNT
 ========================================================= */
 
 function updatePendingCount() {
 
     const pending =
-        allOrders.filter(order =>
+    getActiveOrders().filter(order =>
             (order.status || "Pending") ===
             "Pending"
         ).length;
@@ -1414,7 +1426,7 @@ function updateDashboard() {
 
 
     const todayOrders =
-        allOrders.filter(order => {
+    getActiveOrders().filter(order => {
 
             const date =
                 getDateValue(order.createdAt);
@@ -1539,8 +1551,8 @@ function updateMonthlySummary() {
         new Date();
 
 
-    const monthOrders =
-        allOrders.filter(order => {
+   const monthOrders =
+    getActiveOrders().filter(order => {
 
             const date =
                 getDateValue(order.createdAt);
@@ -2228,8 +2240,8 @@ window.calculateAccounting = function() {
             ?.value;
 
 
-    let orders =
-        [...allOrders];
+let orders =
+    getActiveOrders();
 
 
     let expenses =
@@ -4231,38 +4243,79 @@ window.deleteInvoiceToRecycleBin = async function(orderId) {
         return;
     }
 
+    const order =
+        allOrders.find(
+            order => order.id === orderId
+        );
+
+    if (!order) {
+        alert("Invoice nahi mila.");
+        return;
+    }
 
     const confirmDelete =
         confirm(
-            "Kya aap is invoice ko Recycle Bin me bhejna chahte hain?"
+            `Kya aap invoice ${
+                order.orderNumber || ""
+            } ko Recycle Bin me bhejna chahte hain?`
         );
-
 
     if (!confirmDelete) return;
 
-
     try {
+
+        const deletedAt =
+            new Date().toISOString();
 
         const invoiceRef =
             doc(db, "orders", orderId);
 
+        await updateDoc(
+            invoiceRef,
+            {
+                deleted: true,
+                deletedAt: deletedAt
+            }
+        );
 
-        await updateDoc(invoiceRef, {
+        /* UPDATE LOCAL DATA */
 
-            deleted: true,
+        allOrders =
+            allOrders.map(order => {
 
-            deletedAt: new Date().toISOString()
+                if (order.id === orderId) {
 
-        });
+                    return {
+                        ...order,
+                        deleted: true,
+                        deletedAt: deletedAt
+                    };
 
+                }
 
-       alert("Invoice Recycle Bin me chala gaya.");
+                return order;
 
-loadInvoiceRecycleBin();
+            });
 
-if (typeof loadOrders === "function") {
-    loadOrders();
-}
+        /* REFRESH ADMIN DATA */
+
+        renderOrders(allOrders);
+
+        renderInvoices(allOrders);
+
+        updateDashboard();
+
+        calculateSales();
+
+        calculateAccounting();
+
+        updatePendingCount();
+
+        await loadInvoiceRecycleBin();
+
+        alert(
+            "✅ Invoice Recycle Bin me chala gaya."
+        );
 
     } catch (error) {
 
@@ -4270,7 +4323,6 @@ if (typeof loadOrders === "function") {
             "Recycle Bin Error:",
             error
         );
-
 
         alert(
             "Invoice delete nahi hua.\n\n" +
@@ -4280,8 +4332,6 @@ if (typeof loadOrders === "function") {
     }
 
 };
-
-
 /* =========================================================
    LOAD RECYCLE BIN
 ========================================================= */

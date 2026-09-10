@@ -1,1422 +1,2280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-<title>Royal Chicken - Admin Panel</title>
-<link
-    rel="stylesheet"
-    href="admin.css"
->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-    #admin-login-screen {
-        position: fixed;
-        inset: 0;
-        z-index: 99999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #ffffff;
-    }
-    .admin-login-box {
-        width: min(90%, 380px);
-        padding: 30px;
-        text-align: center;
-        border-radius: 16px;
-        box-shadow: 0 10px 35px rgba(0,0,0,0.15);
-        background: #fff;
-    }
-    .admin-login-box img {
-        width: 90px;
-        height: 90px;
-        object-fit: contain;
-        margin-bottom: 15px;
-    }
-    .admin-login-box h2 {
-        margin: 0 0 8px;
-    }
-    .admin-login-box p {
-        margin: 8px 0 18px;
-    }
-    #admin-password {
-        width: 100%;
-        padding: 13px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 16px;
-        box-sizing: border-box;
-        margin-bottom: 12px;
-    }
-    #admin-login-btn {
-        width: 100%;
-        padding: 13px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 600;
-    }
-    #admin-login-error {
-        color: #d00;
-        min-height: 20px;
-        margin-top: 12px;
-    }
-    /* SHOP STATUS */
-    .sidebar-shop-status {
-        margin: 14px 12px;
-        padding: 12px;
-        border-radius: 10px;
-        background: #f7f4f1;
-        border: 1px solid #e3dadd;
-    }
-    .shop-status-label {
-        margin-bottom: 8px;
-        color: #756b6e;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
-    .sidebar-shop-status .shop-status-btn {
-        width: 100%;
-        padding: 9px 8px;
-        border: none;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-    .sidebar-shop-status .shop-status-btn.closed {
-        background: #4a3f41;
-    }
-    .sidebar-shop-status .shop-status-btn.open {
-        background: #168a45;
-    }
-    .sidebar-shop-status .shop-status-btn:hover {
-        opacity: 0.9;
-    }
-    #shop-status-text {
-        display: block;
-        margin-top: 7px;
-        color: #756b6e;
-        font-size: 10px;
-        text-align: center;
-    }
-    @media (max-width: 550px) {
 
-    .sidebar-shop-status {
-        display: block !important;
-        width: 44px !important;
-        height: 44px !important;
-        margin: 12px auto !important;
-        padding: 0 !important;
-        background: transparent !important;
-        border: 0 !important;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    .sidebar-shop-status .shop-status-label,
-    .sidebar-shop-status #shop-status-text {
-        display: none !important;
-    }
+    <meta
+        name="theme-color"
+        content="#0b0b0b"
+    >
 
-    .sidebar-shop-status .shop-status-btn {
-        display: flex !important;
-        width: 44px !important;
-        height: 44px !important;
-        min-width: 44px !important;
-        min-height: 44px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: 0 !important;
-        border-radius: 50% !important;
-        font-size: 0 !important;
-        line-height: 0 !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
+    <title>Royal Chicken — Admin Panel</title>
 
-    .sidebar-shop-status .shop-status-btn.closed {
-        background: #a70623 !important;
-    }
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
 
-    .sidebar-shop-status .shop-status-btn.open {
-        background: #168a45 !important;
-    }
+    <!-- PDF / Invoice Libraries -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        defer
+    ></script>
 
-    .sidebar-shop-status .shop-status-btn::after {
-        content: "" !important;
-        width: 10px !important;
-        height: 10px !important;
-        border-radius: 50% !important;
-        background: #ffffff !important;
-        display: block !important;
-    }
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+        defer
+    ></script>
 
-}
-</style>
+
+    <!-- =====================================================
+         ADMIN LOGIN - BASIC FALLBACK STYLING
+         Main premium styling will come from admin.css
+    ====================================================== -->
+
+    <style>
+
+        #admin-login-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+        }
+
+        .admin-login-box {
+            width: min(430px, 100%);
+            padding: 38px 30px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .admin-login-logo {
+            width: 86px;
+            height: 86px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            margin: 0 auto 18px;
+
+            display: block;
+        }
+
+        .admin-login-box h2 {
+            margin: 0 0 8px;
+        }
+
+        .admin-login-box p {
+            margin: 0 0 26px;
+        }
+
+        #admin-password {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #admin-login-btn {
+            width: 100%;
+            margin-top: 14px;
+        }
+
+        #admin-login-error {
+            min-height: 20px;
+            margin-top: 12px;
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-<div id="admin-login-screen">
-<div class="admin-login-box">
-    <img
-        src="images/royal-chicken-logo.jpeg"
-        alt="Royal Chicken"
-    >
-    <h2>Admin Panel</h2>
-    <p>Enter Password</p>
-    <input
-        type="password"
-        id="admin-password"
-        placeholder="Enter Password"
-        autocomplete="current-password"
-    >
-    <button
-        type="button"
-        id="admin-login-btn"
-    >
-        LOGIN
-    </button>
-    <p id="admin-login-error"></p>
-</div>
-</div>
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
-<aside class="sidebar">
-<!-- BRAND -->
-<div class="brand">
-    <div class="brand-logo">
-        <img
-            src="images/royal-chicken-logo.jpeg"
-            alt="Royal Chicken"
-        >
-    </div>
-    <div class="brand-name">
-        <h2>Royal Chicken</h2>
-        <span>Admin Panel</span>
-    </div>
-</div>
-<!-- SIDEBAR MENU -->
-<nav class="sidebar-menu">
-    <!-- MAIN -->
-    <div class="sidebar-menu-title">
-        MAIN
-    </div>
-    <button
-        class="menu-item active"
-        onclick="showSection('dashboard', this)"
-    >
-        <span>📊</span>
-        Dashboard
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('orders', this)"
-    >
-        <span>🛒</span>
-        Orders
-        <b id="pending-order-count">0</b>
-    </button>
-    <!-- ACCOUNTING -->
-    <div class="sidebar-menu-title">
-        ACCOUNTING
-    </div>
-    <button
-        class="menu-item"
-        onclick="showSection('accounting', this)"
-    >
-        <span>💰</span>
-        Accounting
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('expenses', this)"
-    >
-        <span>💸</span>
-        Expenses
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('invoices', this)"
-    >
-        <span>🧾</span>
-        Invoices
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('invoice-recycle-bin', this)"
-    >
-        <span>♻️</span>
-        Recycle Bin
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('sales', this)"
-    >
-        <span>📈</span>
-        Sales
-    </button>
-    <button
-        class="menu-item"
-        onclick="showSection('daily-rates', this)"
-    >
-        <span>💰</span>
-        Daily Rates
-    </button>
-    <!-- =================================================
-         SHOP STATUS
-    ================================================= -->
-    <div class="sidebar-shop-status">
-        <div class="shop-status-label">
-            SHOP STATUS
-        </div>
-        <button
-            type="button"
-            id="shop-status-btn"
-            class="shop-status-btn closed"
-            onclick="toggleShopStatus()"
-        >
-            🔴 CLOSE SHOP
-        </button>
-        <span id="shop-status-text">
-            Shop is currently open
-        </span>
-    </div>
-</nav>
-<!-- SIDEBAR FOOTER -->
-<div class="sidebar-footer">
-    <div class="admin-status">
-        <span class="status-dot"></span>
-        System Online
-    </div>
-    <p>
-        Royal Chicken ©️ 2026
-    </p>
-</div>
-</aside>
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
-<main class="main-content">
-<!-- =================================================
-     TOP HEADER
-================================================= -->
-<header class="top-header">
-    <div>
-        <h1 id="page-title">
-            Dashboard
-        </h1>
-        <p id="page-subtitle">
-            Welcome to Royal Chicken Admin Panel
-        </p>
-    </div>
-    <div class="header-right">
-        <div
-            class="current-date"
-            id="current-date"
-        >
-            --
-        </div>
-        <button
-            type="button"
-            class="sound-enable-btn"
-            onclick="enableOrderAlerts()"
-        >
-            🔊 Enable Sound
-        </button>
-        <button
-            class="notification-btn"
-            onclick="showSection('orders')"
-        >
-            🔔
-            <span id="notification-count">0</span>
-        </button>
-    </div>
-</header>
-<!-- =================================================
-     DASHBOARD
-================================================= -->
-<section
-    id="dashboard"
-    class="section active"
->
-    <div class="section-heading">
-        <div>
-            <h2>
-                Business Overview
-            </h2>
-            <p>
-                Today's Royal Chicken summary
-            </p>
-        </div>
-        <button
-            class="refresh-btn"
-            onclick="loadOrders()"
-        >
-            ↻ Refresh
-        </button>
-    </div>
-    <!-- DASHBOARD CARDS -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon orders-icon">
-                🛒
-            </div>
-            <div class="stat-info">
-                <span>
-                    Today's Orders
-                </span>
-                <strong id="today-orders">
-                    0
-                </strong>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon sales-icon">
-                ₹
-            </div>
-            <div class="stat-info">
-                <span>
-                    Today's Sales
-                </span>
-                <strong id="today-sales">
-                    ₹0
-                </strong>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon pending-icon">
-                ⏳
-            </div>
-            <div class="stat-info">
-                <span>
-                    Pending Orders
-                </span>
-                <strong id="dashboard-pending">
-                    0
-                </strong>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon profit-icon">
-                📈
-            </div>
-            <div class="stat-info">
-                <span>
-                    Today's Profit
-                </span>
-                <strong id="today-profit">
-                    ₹0
-                </strong>
-            </div>
-        </div>
-    </div>
-    <!-- BUSINESS SUMMARY -->
-    <div class="dashboard-grid">
-        <div class="panel">
-            <div class="panel-header">
-                <div>
-                    <h3>
-                        Business Summary
-                    </h3>
-                    <span>
-                        Current month
-                    </span>
-                </div>
-            </div>
-            <div class="summary-list">
-                <div class="summary-row">
-                    <span>
-                        Total Sales
-                    </span>
-                    <strong id="month-sales">
-                        ₹0
-                    </strong>
-                </div>
-                <div class="summary-row">
-                    <span>
-                        Total Expenses
-                    </span>
-                    <strong id="month-expenses">
-                        ₹0
-                    </strong>
-                </div>
-                <div class="summary-row highlight">
-                    <span>
-                        Net Profit
-                    </span>
-                    <strong id="month-profit">
-                        ₹0
-                    </strong>
-                </div>
-            </div>
-        </div>
-        <div class="panel">
-            <div class="panel-header">
-                <div>
-                    <h3>
-                        Recent Orders
-                    </h3>
-                    <span>
-                        Latest customer orders
-                    </span>
-                </div>
-                <button
-                    class="text-btn"
-                    onclick="showSection('orders')"
-                >
-                    View All
-                </button>
-            </div>
-            <div
-                id="recent-orders"
-                class="recent-orders"
-            >
-                <div class="empty-state">
-                    No orders yet
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     ORDERS
-================================================= -->
-<section
-    id="orders"
-    class="section"
->
-    <div class="heading-actions">
-        <button
-            class="refresh-btn"
-            onclick="loadOrders()"
-        >
-            ↻ Refresh
-        </button>
-    </div>
-    <div class="filter-bar">
-        <div class="search-box">
-            <span>
-                🔍
-            </span>
-            <input
-                type="text"
-                id="order-search"
-                placeholder="Search order, customer or phone..."
-                oninput="filterOrders()"
-            >
-        </div>
-        <select
-            id="order-status-filter"
-            onchange="filterOrders()"
-        >
-            <option value="all">
-                All Status
-            </option>
-            <option value="Pending">
-                Pending
-            </option>
-            <option value="Accepted">
-                Accepted
-            </option>
-            <option value="Preparing">
-                Preparing
-            </option>
-            <option value="Out for Delivery">
-                Out for Delivery
-            </option>
-            <option value="Delivered">
-                Delivered
-            </option>
-            <option value="Cancelled">
-                Cancelled
-            </option>
-        </select>
-        <input
-            type="date"
-            id="order-date-filter"
-            onchange="filterOrders()"
-        >
-    </div>
-    <div class="orders-container">
-        <div id="orders-list">
-            <div class="loading-state">
-                Loading orders...
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     ACCOUNTING
-================================================= -->
-<section
-    id="accounting"
-    class="section"
->
-    <!-- ACCOUNTING FILTER -->
-    <div class="accounting-filter">
-        <div class="filter-field">
-            <label>
-                From Date
-            </label>
-            <input
-                type="date"
-                id="accounting-from"
-                onchange="calculateAccounting()"
-            >
-        </div>
-        <div class="filter-field">
-            <label>
-                To Date
-            </label>
-            <input
-                type="date"
-                id="accounting-to"
-                onchange="calculateAccounting()"
-            >
-        </div>
-        <button
-            class="primary-btn"
-            onclick="calculateAccounting()"
-        >
-            Calculate
-        </button>
-    </div>
-    <!-- ACCOUNTING CARDS -->
-    <div class="accounting-cards">
-        <div class="account-card">
-            <span>
-                Total Sales
-            </span>
-            <strong id="accounting-sales">
-                ₹0
-            </strong>
-        </div>
-        <div class="account-card expense">
-            <span>
-                Total Expenses
-            </span>
-            <strong id="accounting-expenses">
-                ₹0
-            </strong>
-        </div>
-        <div class="account-card profit">
-            <span>
-                Net Profit
-            </span>
-            <strong id="accounting-profit">
-                ₹0
-            </strong>
-        </div>
-        <div class="account-card orders">
-            <span>
-                Total Orders
-            </span>
-            <strong id="accounting-orders">
-                0
-            </strong>
-        </div>
-    </div>
-    <!-- PROFIT SUMMARY -->
-    <div class="panel accounting-summary">
-        <div class="panel-header">
-            <div>
-                <h3>
-                    Financial Summary
-                </h3>
-                <span>
-                    Selected period
-                </span>
-            </div>
-        </div>
-        <div class="financial-table">
-            <div class="financial-row">
-                <span>
-                    Gross Sales
-                </span>
-                <strong id="financial-sales">
-                    ₹0
-                </strong>
-            </div>
-            <div class="financial-row">
-                <span>
-                    Business Expenses
-                </span>
-                <strong id="financial-expenses">
-                    ₹0
-                </strong>
-            </div>
-            <div class="financial-row total-row">
-                <span>
-                    Net Business Profit
-                </span>
-                <strong id="financial-profit">
-                    ₹0
-                </strong>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     EXPENSES
-================================================= -->
-<section
-    id="expenses"
-    class="section"
->
-    <div class="expense-summary">
-        <div class="expense-summary-info">
-            <span>
-                Total Expenses
-            </span>
-            <strong id="total-expenses">
-                -₹0
-            </strong>
-        </div>
-    </div>
-    <div class="panel expense-panel">
-        <div class="panel-header">
-            <div>
-                <h3>
-                    Expense Records
-                </h3>
-                <span>
-                    All manually added expenses
-                </span>
-            </div>
-        </div>
-        <div
-            id="expenses-list"
-            class="expense-record-list"
-        >
-            <div class="empty-state">
-                No expenses added yet.
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     INVOICES
-================================================= -->
-<section
-    id="invoices"
-    class="section"
->
-    <div class="invoice-filter">
-        <div class="search-box">
-            <span>
-                🔍
-            </span>
-            <input
-                type="text"
-                id="invoice-search"
-                placeholder="Search invoice or customer..."
-                oninput="filterInvoices()"
-            >
-        </div>
-        <input
-            type="date"
-            id="invoice-date"
-            onchange="filterInvoices()"
-        >
-    </div>
+
+
+    <!-- =====================================================
+         ADMIN LOGIN
+    ====================================================== -->
+
     <div
-        id="invoices-list"
-        class="invoice-list"
+        id="admin-login-screen"
+        class="admin-login-screen"
     >
-        <div class="loading-state">
-            Loading invoices...
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     INVOICE RECYCLE BIN
-================================================= -->
-<section
-    id="invoice-recycle-bin"
-    class="section"
->
-    <div class="panel">
-        <div class="panel-header">
-            <div>
-                <h3>
-                    ♻️ Invoice Recycle Bin
-                </h3>
-                <span>
-                    Deleted invoices
-                </span>
-            </div>
-            <button
-                type="button"
-                class="danger-btn"
-                onclick="emptyInvoiceRecycleBin()"
+
+        <div class="admin-login-box">
+
+            <img
+                src="images/royal-chicken-logo.jpeg"
+                alt="Royal Chicken"
+                class="admin-login-logo"
             >
-                🗑 Empty Recycle Bin
-            </button>
-        </div>
-        <div
-            id="invoice-recycle-list"
-            class="invoice-list"
-        >
-            <div class="empty-state">
-                Recycle Bin is empty.
+
+            <div class="login-brand-kicker">
+                ROYAL CHICKEN
             </div>
-        </div>
-    </div>
-</section>
-<!-- =================================================
-     SALES
-================================================= -->
-<section
-    id="sales"
-    class="section"
->
-    <div class="sales-filter">
-        <button
-            class="period-btn active"
-            onclick="setSalesPeriod('today', this)"
-        >
-            Today
-        </button>
-        <button
-            class="period-btn"
-            onclick="setSalesPeriod('week', this)"
-        >
-            This Week
-        </button>
-        <button
-            class="period-btn"
-            onclick="setSalesPeriod('month', this)"
-        >
-            This Month
-        </button>
-        <button
-            class="period-btn"
-            onclick="setSalesPeriod('all', this)"
-        >
-            All Time
-        </button>
-    </div>
-    <div class="sales-cards">
-        <div class="sales-card">
-            <span>
-                Total Orders
-            </span>
-            <strong id="sales-orders">
-                0
-            </strong>
-        </div>
-        <div class="sales-card">
-            <span>
-                Total Revenue
-            </span>
-            <strong id="sales-revenue">
-                ₹0
-            </strong>
-        </div>
-        <div class="sales-card">
-            <span>
-                Average Order
-            </span>
-            <strong id="average-order">
-                ₹0
-            </strong>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-header">
-            <div>
-                <h3>
-                    Sales Records
-                </h3>
-                <span>
-                    Completed business sales
-                </span>
-            </div>
-            <button
-                class="secondary-btn"
-                onclick="exportSalesCSV()"
-            >
-                ↓ Export
-            </button>
-        </div>
-        <div
-            id="sales-list"
-            class="table-wrapper"
-        >
-            <div class="empty-state">
-                No sales records found.
-            </div>
-        </div>
-    </div>
-</section>
-<!-- =====================================================
-     DAILY RATES
-===================================================== -->
-<section
-    id="daily-rates"
-    class="section"
->
-    <div class="section-header">
-        <div>
+
             <h2>
-                Daily Rates
+                Admin Panel
             </h2>
+
             <p>
-                Chicken products ke daily prices yahan se change karein.
+                Secure business management portal
             </p>
-        </div>
-    </div>
-    <div class="panel daily-rates-panel">
-        <div class="daily-rates-grid">
-            <!-- KHEEMA -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Kheema
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-kheema"
-                        min="0"
-                        step="1"
-                        value="400"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- BOMBAY LEGS -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Bombay Legs
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-bombay-legs"
-                        min="0"
-                        step="1"
-                        value="270"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- WINGS -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Wings
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-wings"
-                        min="0"
-                        step="1"
-                        value="270"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- DRUMSTICKS -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Drumsticks
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-drumsticks"
-                        min="0"
-                        step="1"
-                        value="270"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- CURRY CUT -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Curry Cut
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-curry-cut"
-                        min="0"
-                        step="1"
-                        value="270"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- BONELESS -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Boneless
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-boneless"
-                        min="0"
-                        step="1"
-                        value="400"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- THAI BONELESS -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Thai Boneless
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-thai-boneless"
-                        min="0"
-                        step="1"
-                        value="400"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- LOLLIPOP -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Lollipop
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-lollipop"
-                        min="0"
-                        step="1"
-                        value="280"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- LIVER -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Liver
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-liver"
-                        min="0"
-                        step="1"
-                        value="150"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- GIZZARD -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Gizzard
-                    </strong>
-                    <span>
-                        Per KG
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-gizzard"
-                        min="0"
-                        step="1"
-                        value="150"
-                    >
-                    <span>
-                        / kg
-                    </span>
-                </div>
-            </div>
-            <!-- TANDOORI -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Tandoori
-                    </strong>
-                    <span>
-                        Per Piece
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-tandoori"
-                        min="0"
-                        step="1"
-                        value="250"
-                    >
-                    <span>
-                        / piece
-                    </span>
-                </div>
-            </div>
-            <!-- BROILER -->
-            <div class="rate-row">
-                <div class="rate-product">
-                    <strong>
-                        Broiler
-                    </strong>
-                    <span>
-                        Per Piece
-                    </span>
-                </div>
-                <div class="rate-input-box">
-                    <span>
-                        ₹
-                    </span>
-                    <input
-                        type="number"
-                        id="rate-broiler"
-                        min="0"
-                        step="1"
-                        value="250"
-                    >
-                    <span>
-                        / piece
-                    </span>
-                </div>
-            </div>
-            <!-- SAVE BUTTON -->
-            <div class="daily-rates-actions">
-                <button
-                    type="button"
-                    class="btn primary"
-                    onclick="saveDailyRates()"
-                >
-                    💾 Save Daily Rates
-                </button>
-                <span id="rates-save-status"></span>
-            </div>
-        </div>
-    </div>
-</section>
-</main>
-<!-- =====================================================
-     EXPENSE MODAL
-===================================================== -->
-<div
-    id="expense-modal"
-    class="modal-overlay"
->
-<div class="modal">
-    <div class="modal-header">
-        <div>
-            <h3>
-                Add Expense
-            </h3>
-            <p>
-                Add a new business expense
-            </p>
-        </div>
-        <button
-            type="button"
-            class="close-modal"
-            onclick="closeExpenseModal()"
-        >
-            ×
-        </button>
-    </div>
-    <form
-        id="expense-form"
-        onsubmit="saveExpense(event)"
-    >
-        <div class="form-group">
-            <label for="expense-name">
-                Expense Name
-            </label>
-            <input
-                type="text"
-                id="expense-name"
-                placeholder="Example: Chicken purchase"
-                required
-            >
-        </div>
-        <div class="form-row">
+
             <div class="form-group">
-                <label for="expense-amount">
-                    Amount
+
+                <label for="admin-password">
+                    Admin Password
                 </label>
+
                 <input
-                    type="number"
-                    id="expense-amount"
-                    placeholder="₹0"
-                    min="0"
-                    step="0.01"
-                    required
+                    type="password"
+                    id="admin-password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
                 >
+
             </div>
-            <div class="form-group">
-                <label for="expense-date">
-                    Date
-                </label>
-                <input
-                    type="date"
-                    id="expense-date"
-                    required
-                >
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="expense-category">
-                Category
-            </label>
-            <select id="expense-category">
-                <option value="Purchase">
-                    Purchase
-                </option>
-                <option value="Salary">
-                    Salary
-                </option>
-                <option value="Electricity">
-                    Electricity
-                </option>
-                <option value="Rent">
-                    Rent
-                </option>
-                <option value="Delivery">
-                    Delivery
-                </option>
-                <option value="Packaging">
-                    Packaging
-                </option>
-                <option value="Other">
-                    Other
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="expense-note">
-                Note
-            </label>
-            <textarea
-                id="expense-note"
-                placeholder="Optional note..."
-                rows="3"
-            ></textarea>
-        </div>
-        <div class="modal-actions">
+
             <button
                 type="button"
-                class="cancel-btn"
-                onclick="closeExpenseModal()"
-            >
-                Cancel
-            </button>
-            <button
-                type="submit"
+                id="admin-login-btn"
                 class="primary-btn"
             >
-                Save Expense
+                LOGIN
             </button>
-        </div>
-    </form>
-</div>
-</div>
-<!-- =====================================================
-     ORDER DETAILS MODAL
-===================================================== -->
-<div
-    id="order-modal"
-    class="modal-overlay"
->
-<div class="modal order-modal">
-    <div class="modal-header">
-        <div>
-            <h3>
-                Order Details
-            </h3>
-            <p id="order-modal-number">
-                --
-            </p>
-        </div>
-        <button
-            type="button"
-            class="close-modal"
-            onclick="closeOrderModal()"
-        >
-            ×
-        </button>
-    </div>
-    <div
-        id="order-details"
-        class="order-details"
-    >
-    </div>
-</div>
-</div>
-<!-- =====================================================
-     INVOICE MODAL
-===================================================== -->
-<div
-    id="invoice-modal"
-    class="modal-overlay"
->
-<div class="modal invoice-modal">
-    <div class="modal-header no-print">
-        <div>
-            <h3>
-                Invoice
-            </h3>
-            <p>
-                Royal Chicken
-            </p>
-        </div>
-        <button
-            type="button"
-            class="close-modal"
-            onclick="closeInvoiceModal()"
-        >
-            ×
-        </button>
-    </div>
-    <div
-        id="invoice-content"
-        class="invoice-content"
-    >
-    </div>
-    <div class="invoice-actions no-print">
-        <button
-            type="button"
-            class="cancel-btn"
-            onclick="closeInvoiceModal()"
-        >
-            Close
-        </button>
-        <button
-            type="button"
-            class="primary-btn"
-            onclick="printInvoice()"
-        >
-            🖨 Print / Save PDF
-        </button>
-    </div>
-</div>
-</div>
-<!-- =====================================================
-     NOTIFICATION SOUND
-===================================================== -->
 
-<audio
-id=“order-notification-sound”
-preload=“auto”
+            <div
+                id="admin-login-error"
+                role="alert"
+            ></div>
 
-</audio>
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-<script
-    type="module"
-    src="admin.js"
-></script>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ADMIN APPLICATION
+    ====================================================== -->
+
+    <div class="admin-app">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar">
+
+            <!-- Brand -->
+
+            <div class="sidebar-brand">
+
+                <div class="brand-logo-wrap">
+
+                    <img
+                        src="images/royal-chicken-logo.jpeg"
+                        alt="Royal Chicken Logo"
+                        class="brand-logo"
+                    >
+
+                </div>
+
+                <div class="brand-name">
+
+                    <h2>
+                        ROYAL
+                    </h2>
+
+                    <span>
+                        CHICKEN
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-menu">
+
+
+                <!-- MAIN -->
+
+                <div class="sidebar-menu-title">
+                    MAIN
+                </div>
+
+
+                <button
+                    type="button"
+                    class="menu-item active"
+                    onclick="showSection('dashboard', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>⌂</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Dashboard
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('orders', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>▣</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Orders
+                    </span>
+
+                    <b
+                        id="pending-order-count"
+                        class="menu-badge"
+                    >
+                        0
+                    </b>
+
+                </button>
+
+
+                <!-- ACCOUNTING -->
+
+                <div class="sidebar-menu-title accounting-title">
+                    ACCOUNTING
+                </div>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('accounting', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>₹</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Accounting
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('expenses', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>−₹</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Expenses
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('invoices', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>▤</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Invoices
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('invoice-recycle-bin', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>♻</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Recycle Bin
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('sales', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>↗</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Sales Report
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="menu-item"
+                    onclick="showSection('daily-rates', this)"
+                >
+
+                    <span class="menu-icon">
+                        <span>◆</span>
+                    </span>
+
+                    <span class="menu-text">
+                        Daily Rates
+                    </span>
+
+                </button>
+
+            </nav>
+
+
+            <!-- Shop Status -->
+
+            <div class="sidebar-shop-status">
+
+                <div class="shop-status-heading">
+
+                    <span class="shop-status-dot"></span>
+
+                    <span>
+                        SHOP STATUS
+                    </span>
+
+                </div>
+
+                <p id="shop-status-text">
+                    Shop is currently open
+                </p>
+
+                <button
+                    type="button"
+                    id="shop-status-btn"
+                    class="shop-status-btn closed"
+                    onclick="toggleShopStatus()"
+                >
+                    🔴 CLOSE SHOP
+                </button>
+
+            </div>
+
+
+            <!-- Sidebar Footer -->
+
+            <div class="sidebar-footer">
+
+                <div class="admin-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        Admin Online
+                    </span>
+
+                </div>
+
+                <small>
+                    © 2026 Royal Chicken
+                </small>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOP HEADER
+            ================================================== -->
+
+            <header class="top-header">
+
+                <div class="top-header-left">
+
+                    <div class="mobile-brand">
+
+                        <img
+                            src="images/royal-chicken-logo.jpeg"
+                            alt="Royal Chicken"
+                        >
+
+                        <span>
+                            ROYAL CHICKEN
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h1 id="page-title">
+                            Dashboard
+                        </h1>
+
+                        <p id="page-subtitle">
+                            Welcome to Royal Chicken Admin Panel
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="top-header-right">
+
+                    <div
+                        id="current-date"
+                        class="current-date"
+                    >
+                        --
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="refresh-btn"
+                        onclick="window.location.reload()"
+                        title="Refresh Admin Panel"
+                    >
+                        ↻
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="notification-btn"
+                        onclick="showSection('orders', document.querySelector('.menu-item:nth-of-type(2)'))"
+                        title="View Orders"
+                    >
+
+                        <span class="notification-icon">
+                            🔔
+                        </span>
+
+                        <span
+                            id="notification-count"
+                            class="notification-count"
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="sound-btn"
+                        onclick="enableOrderAlerts()"
+                        title="Enable New Order Voice"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 PAGE SECTIONS
+            ================================================== -->
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <section
+                id="dashboard"
+                class="section active"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            ROYAL CHICKEN
+                        </span>
+
+                        <h2>
+                            Business Overview
+                        </h2>
+
+                        <p>
+                            Monitor your orders, revenue and business performance.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-btn"
+                        onclick="loadOrders()"
+                    >
+                        ↻ Refresh Orders
+                    </button>
+
+                </div>
+
+
+                <!-- Stats -->
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orders-icon">
+                            ▣
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                Today's Orders
+                            </span>
+
+                            <strong id="today-orders">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon sales-icon">
+                            ₹
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                Today's Sales
+                            </span>
+
+                            <strong id="today-sales">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon pending-icon">
+                            ◷
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                Pending Orders
+                            </span>
+
+                            <strong id="dashboard-pending">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon profit-icon">
+                            ↗
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                Business Profit
+                            </span>
+
+                            <strong id="today-profit">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Dashboard Panels -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- Business Summary -->
+
+                    <div class="panel business-summary-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-kicker">
+                                    FINANCIAL SNAPSHOT
+                                </span>
+
+                                <h3>
+                                    Business Summary
+                                </h3>
+
+                            </div>
+
+                            <span class="panel-icon">
+                                ₹
+                            </span>
+
+                        </div>
+
+
+                        <div class="summary-list">
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Monthly Sales
+                                </span>
+
+                                <strong id="month-sales">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-row">
+
+                                <span>
+                                    Monthly Expenses
+                                </span>
+
+                                <strong id="month-expenses">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="summary-row highlight">
+
+                                <span>
+                                    Monthly Profit
+                                </span>
+
+                                <strong id="month-profit">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Recent Orders -->
+
+                    <div class="panel recent-orders-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-kicker">
+                                    LIVE ACTIVITY
+                                </span>
+
+                                <h3>
+                                    Recent Orders
+                                </h3>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="text-btn"
+                                onclick="showSection('orders', document.querySelectorAll('.menu-item')[1])"
+                            >
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="recent-orders"
+                            class="recent-orders"
+                        >
+
+                            <div class="empty-state">
+                                No orders yet
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ORDERS
+            ================================================== -->
+
+            <section
+                id="orders"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            ORDER MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Customer Orders
+                        </h2>
+
+                        <p>
+                            View, manage and update incoming orders.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filter-bar">
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="order-search"
+                            placeholder="Search order, customer or phone..."
+                            oninput="filterOrders()"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="order-status-filter">
+                            Status
+                        </label>
+
+                        <select
+                            id="order-status-filter"
+                            onchange="filterOrders()"
+                        >
+
+                            <option value="all">
+                                All Status
+                            </option>
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Accepted">
+                                Accepted
+                            </option>
+
+                            <option value="Preparing">
+                                Preparing
+                            </option>
+
+                            <option value="Out for Delivery">
+                                Out for Delivery
+                            </option>
+
+                            <option value="Delivered">
+                                Delivered
+                            </option>
+
+                            <option value="Cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="order-date-filter">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="order-date-filter"
+                            onchange="filterOrders()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="orders-list"
+                    class="orders-list"
+                >
+
+                    <div class="loading-state">
+                        Loading orders...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACCOUNTING
+            ================================================== -->
+
+            <section
+                id="accounting"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            FINANCE
+                        </span>
+
+                        <h2>
+                            Accounting
+                        </h2>
+
+                        <p>
+                            Complete business financial overview.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="accounting-filter">
+
+                    <div class="filter-field">
+
+                        <label for="accounting-from">
+                            From Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="accounting-from"
+                            onchange="calculateAccounting()"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="accounting-to">
+                            To Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="accounting-to"
+                            onchange="calculateAccounting()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="accounting-cards">
+
+
+                    <div class="account-card">
+
+                        <div class="stat-icon sales-icon">
+                            ₹
+                        </div>
+
+                        <span>
+                            Total Sales
+                        </span>
+
+                        <strong id="accounting-sales">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-card">
+
+                        <div class="stat-icon pending-icon">
+                            −
+                        </div>
+
+                        <span>
+                            Total Expenses
+                        </span>
+
+                        <strong id="accounting-expenses">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-card">
+
+                        <div class="stat-icon profit-icon">
+                            ↗
+                        </div>
+
+                        <span>
+                            Net Profit
+                        </span>
+
+                        <strong id="accounting-profit">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="account-card">
+
+                        <div class="stat-icon orders-icon">
+                            #
+                        </div>
+
+                        <span>
+                            Total Orders
+                        </span>
+
+                        <strong id="accounting-orders">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel financial-summary-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                FINANCIAL SUMMARY
+                            </span>
+
+                            <h3>
+                                Business Statement
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="financial-list">
+
+                        <div class="financial-row">
+
+                            <span>
+                                Sales Revenue
+                            </span>
+
+                            <strong id="financial-sales">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="financial-row">
+
+                            <span>
+                                Business Expenses
+                            </span>
+
+                            <strong id="financial-expenses">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="financial-row total-row">
+
+                            <span>
+                                Net Profit
+                            </span>
+
+                            <strong id="financial-profit">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 EXPENSES
+            ================================================== -->
+
+            <section
+                id="expenses"
+                class="section"
+            >
+
+                <div
+                    id="expenses-list"
+                    class="expenses-list"
+                >
+
+                    <div class="loading-state">
+                        Loading expenses...
+                    </div>
+
+                </div>
+
+                <!-- Hidden/legacy total target required by JS -->
+
+                <span
+                    id="total-expenses"
+                    hidden
+                >
+                    -₹0
+                </span>
+
+            </section>
+
+
+            <!-- =================================================
+                 INVOICES
+            ================================================== -->
+
+            <section
+                id="invoices"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            BILLING
+                        </span>
+
+                        <h2>
+                            Customer Invoices
+                        </h2>
+
+                        <p>
+                            View and generate customer invoices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="invoice-filter">
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="invoice-search"
+                            placeholder="Search invoice, customer or phone..."
+                            oninput="filterInvoices()"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="invoice-date">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="invoice-date"
+                            onchange="filterInvoices()"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="invoices-list"
+                    class="invoices-list"
+                >
+
+                    <div class="loading-state">
+                        Loading invoices...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 INVOICE RECYCLE BIN
+            ================================================== -->
+
+            <section
+                id="invoice-recycle-bin"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            RECOVERY
+                        </span>
+
+                        <h2>
+                            Invoice Recycle Bin
+                        </h2>
+
+                        <p>
+                            Restore deleted invoices or permanently remove them.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="danger-btn"
+                        onclick="emptyInvoiceRecycleBin()"
+                    >
+                        Empty Recycle Bin
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="invoice-recycle-list"
+                    class="invoice-recycle-list"
+                >
+
+                    <div class="empty-state">
+                        Recycle Bin is empty.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SALES REPORT
+            ================================================== -->
+
+            <section
+                id="sales"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            PERFORMANCE
+                        </span>
+
+                        <h2>
+                            Sales Report
+                        </h2>
+
+                        <p>
+                            Track date-wise and monthly sales.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="exportSalesCSV()"
+                    >
+                        ↓ Export CSV
+                    </button>
+
+                </div>
+
+
+                <div class="sales-filter">
+
+                    <button
+                        type="button"
+                        class="period-btn active"
+                        onclick="setSalesPeriod('today', this)"
+                    >
+                        Today
+                    </button>
+
+                    <button
+                        type="button"
+                        class="period-btn"
+                        onclick="setSalesPeriod('week', this)"
+                    >
+                        Last 7 Days
+                    </button>
+
+                    <button
+                        type="button"
+                        class="period-btn"
+                        onclick="setSalesPeriod('month', this)"
+                    >
+                        This Month
+                    </button>
+
+                    <button
+                        type="button"
+                        class="period-btn"
+                        onclick="setSalesPeriod('all', this)"
+                    >
+                        All Time
+                    </button>
+
+                </div>
+
+
+                <div class="sales-cards">
+
+
+                    <div class="sales-card">
+
+                        <div class="stat-icon orders-icon">
+                            #
+                        </div>
+
+                        <span>
+                            Orders
+                        </span>
+
+                        <strong id="sales-orders">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="sales-card">
+
+                        <div class="stat-icon sales-icon">
+                            ₹
+                        </div>
+
+                        <span>
+                            Revenue
+                        </span>
+
+                        <strong id="sales-revenue">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="sales-card">
+
+                        <div class="stat-icon profit-icon">
+                            ↗
+                        </div>
+
+                        <span>
+                            Average Order
+                        </span>
+
+                        <strong id="average-order">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel sales-records-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                SALES RECORDS
+                            </span>
+
+                            <h3>
+                                Orders & Revenue
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="sales-list"
+                        class="sales-list"
+                    >
+
+                        <div class="empty-state">
+                            No sales records found.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DAILY RATES
+            ================================================== -->
+
+            <section
+                id="daily-rates"
+                class="section"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-kicker">
+                            PRODUCT MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Daily Rates
+                        </h2>
+
+                        <p>
+                            Update product prices from the admin panel.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel daily-rates-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                LIVE PRODUCT PRICING
+                            </span>
+
+                            <h3>
+                                Chicken Product Rates
+                            </h3>
+
+                            <span>
+                                Changes are saved to your product rates database.
+                            </span>
+
+                        </div>
+
+                        <div class="daily-rates-badge">
+                            LIVE
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-rates-grid">
+
+
+                        <!-- Kheema -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Kheema
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-kheema"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Bombay Legs -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Bombay Legs
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-bombay-legs"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Wings -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Wings
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-wings"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Drumsticks -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Drumsticks
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-drumsticks"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Curry Cut -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Curry Cut
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-curry-cut"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Boneless -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Boneless
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-boneless"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Thai Boneless -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Thai Boneless
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-thai-boneless"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Lollipop -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Lollipop
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-lollipop"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Liver -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Liver
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-liver"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Gizzard -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Gizzard
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-gizzard"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Tandoori -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Tandoori Chicken
+                                </strong>
+
+                                <span>
+                                    Per piece
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-tandoori"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Broiler -->
+
+                        <div class="rate-row">
+
+                            <div class="rate-product">
+
+                                <strong>
+                                    Broiler Chicken
+                                </strong>
+
+                                <span>
+                                    Per kg
+                                </span>
+
+                            </div>
+
+                            <div class="rate-input-box">
+
+                                <span>
+                                    ₹
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="rate-broiler"
+                                    min="0"
+                                    step="1"
+                                    inputmode="numeric"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="daily-rates-actions">
+
+                        <span
+                            id="rates-save-status"
+                            class="rates-save-status"
+                        ></span>
+
+                        <button
+                            type="button"
+                            class="primary-btn"
+                            onclick="saveDailyRates()"
+                        >
+                            💾 Save Daily Rates
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         EXPENSE MODAL
+    ====================================================== -->
+
+    <div
+        id="expense-modal"
+        class="modal-overlay"
+        style="display:none;"
+    >
+
+        <div
+            class="modal expense-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="expense-modal-title"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-kicker">
+                        BUSINESS EXPENSE
+                    </span>
+
+                    <h3 id="expense-modal-title">
+                        Add Expense
+                    </h3>
+
+                    <p>
+                        Record a new business expense.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="close-modal"
+                    onclick="closeExpenseModal()"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form
+                id="expense-form"
+                onsubmit="saveExpense(event)"
+            >
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="expense-name">
+                            Expense Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="expense-name"
+                            placeholder="e.g. Chicken purchase"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expense-amount">
+                            Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expense-amount"
+                            placeholder="Enter amount"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expense-date">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="expense-date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expense-category">
+                            Category
+                        </label>
+
+                        <select id="expense-category">
+
+                            <option value="Stock">
+                                Stock
+                            </option>
+
+                            <option value="Electricity">
+                                Electricity
+                            </option>
+
+                            <option value="Rent">
+                                Rent
+                            </option>
+
+                            <option value="Delivery">
+                                Delivery
+                            </option>
+
+                            <option value="Packaging">
+                                Packaging
+                            </option>
+
+                            <option value="Salary">
+                                Salary
+                            </option>
+
+                            <option value="Maintenance">
+                                Maintenance
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group form-group-full">
+
+                        <label for="expense-note">
+                            Note
+                        </label>
+
+                        <textarea
+                            id="expense-note"
+                            rows="4"
+                            placeholder="Optional note..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeExpenseModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Expense
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ORDER DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        id="order-modal"
+        class="modal-overlay"
+        style="display:none;"
+    >
+
+        <div
+            class="modal order-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="order-modal-number"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="modal-kicker">
+                        ORDER DETAILS
+                    </span>
+
+                    <h3 id="order-modal-number">
+                        Order Details
+                    </h3>
+
+                    <p>
+                        Complete customer order information.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="close-modal"
+                    onclick="closeOrderModal()"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="order-details"
+                class="order-details"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         INVOICE MODAL
+    ====================================================== -->
+
+    <div
+        id="invoice-modal"
+        class="modal-overlay invoice-modal"
+        style="display:none;"
+    >
+
+        <div
+            class="invoice-content"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Royal Chicken Invoice"
+        >
+
+            <div class="invoice-modal-toolbar no-print">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeInvoiceModal()"
+                >
+                    Close
+                </button>
+
+                <div class="invoice-modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn invoice-action"
+                        onclick="printInvoice()"
+                    >
+                        🖨 Print Invoice
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary-btn invoice-action"
+                        onclick="sendInvoiceWhatsApp()"
+                    >
+                        Invoice PDF WhatsApp
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="invoice-content"
+                class="invoice-content-body"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ORDER NOTIFICATION AUDIO
+         Kept for compatibility with existing markup.
+    ====================================================== -->
+
+    <audio
+        id="order-notification-sound"
+        preload="auto"
+    ></audio>
+
+
+    <!-- =====================================================
+         ADMIN JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        type="module"
+        src="admin.js"
+    ></script>
+
+
 </body>
+
 </html>
