@@ -5616,4 +5616,87 @@ textarea:focus {
     .sidebar-admin-brand {
         display: none !important;
     }
+}/* =========================================================
+   MOBILE — SMALL HEADER BUTTONS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .top-header-right {
+        gap: 4px !important;
+    }
+
+    .top-header-right > button,
+    .mobile-shop-btn,
+    .mobile-logout-btn {
+        width: 44px !important;
+        height: 44px !important;
+
+        min-width: 44px !important;
+        max-width: 44px !important;
+
+        min-height: 44px !important;
+        max-height: 44px !important;
+
+        flex: 0 0 44px !important;
+
+        border-radius: 12px !important;
+    }
+
+    .mobile-shop-btn {
+        font-size: 14px !important;
+        gap: 1px !important;
+    }
+
+    .mobile-shop-btn span {
+        font-size: 7px !important;
+    }
+
+    .mobile-logout-btn {
+        font-size: 19px !important;
+    }
+}/* =========================================================
+   DESKTOP — ALL HEADER BUTTONS SAME SMALL SIZE
+========================================================= */
+
+@media (min-width: 769px) {
+
+    .top-header-right > button,
+    .mobile-shop-btn,
+    .mobile-logout-btn {
+
+        width: 48px !important;
+        height: 48px !important;
+
+        min-width: 48px !important;
+        max-width: 48px !important;
+
+        min-height: 48px !important;
+        max-height: 48px !important;
+
+        flex: 0 0 48px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 13px !important;
+    }
+
+    .top-header-right {
+        gap: 6px !important;
+    }
+
+    .mobile-shop-btn {
+        font-size: 15px !important;
+    }
+
+    .mobile-shop-btn span {
+        font-size: 7px !important;
+    }
+
+    .mobile-logout-btn {
+        font-size: 21px !important;
+    }
 }

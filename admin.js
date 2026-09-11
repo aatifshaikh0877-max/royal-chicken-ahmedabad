@@ -130,30 +130,96 @@ function updateShopStatusUI() {
     const text =
         document.getElementById("shop-status-text");
 
-    if (!button || !text) return;
+    const mobileButton =
+        document.getElementById(
+            "mobile-shop-status-btn"
+        );
 
+
+    /* =====================================================
+       SHOP IS OPEN
+    ===================================================== */
 
     if (shopIsOpen) {
 
-        button.textContent = "🔴 CLOSE SHOP";
+        /* Desktop button */
+        if (button) {
 
-        button.classList.remove("open");
+            button.textContent =
+                "🔴 CLOSE SHOP";
 
-        button.classList.add("closed");
+            button.classList.remove("open");
 
-        text.textContent =
-            "Shop is currently open";
+            button.classList.add("closed");
+        }
 
-    } else {
 
-        button.textContent = "🟢 OPEN SHOP";
+        /* Desktop status text */
+        if (text) {
 
-        button.classList.remove("closed");
+            text.textContent =
+                "Shop is currently open";
+        }
 
-        button.classList.add("open");
 
-        text.textContent =
-            "Shop is currently closed";
+        /* Mobile header button */
+        if (mobileButton) {
+
+            mobileButton.innerHTML =
+                '🟢 <span>Open</span>';
+
+            mobileButton.classList.remove(
+                "closed"
+            );
+
+            mobileButton.classList.add(
+                "open"
+            );
+        }
+
+    }
+
+
+    /* =====================================================
+       SHOP IS CLOSED
+    ===================================================== */
+
+    else {
+
+        /* Desktop button */
+        if (button) {
+
+            button.textContent =
+                "🟢 OPEN SHOP";
+
+            button.classList.remove("closed");
+
+            button.classList.add("open");
+        }
+
+
+        /* Desktop status text */
+        if (text) {
+
+            text.textContent =
+                "Shop is currently closed";
+        }
+
+
+        /* Mobile header button */
+        if (mobileButton) {
+
+            mobileButton.innerHTML =
+                '🔴 <span>Closed</span>';
+
+            mobileButton.classList.remove(
+                "open"
+            );
+
+            mobileButton.classList.add(
+                "closed"
+            );
+        }
 
     }
 
