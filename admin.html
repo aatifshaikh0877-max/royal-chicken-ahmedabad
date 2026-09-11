@@ -415,218 +415,258 @@
 
             </div>
 
+<!-- Sidebar Footer -->
 
-            <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
 
-            <div class="sidebar-footer">
+            <div class="admin-status">
 
-                <div class="admin-status">
+                <span class="status-dot"></span>
 
-                    <span class="status-dot"></span>
+                <span>
+                    Admin Online
+                </span>
 
-                    <span>
-                        Admin Online
-                    </span>
+            </div>
+
+            <small>
+                ©️ 2026 Royal Chicken
+            </small>
+
+            <button
+                type="button"
+                class="admin-logout-btn"
+                onclick="adminLogout()"
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+
+            <div class="top-header-left">
+
+                <div>
+
+                    <h1 id="page-title">
+                        Business Overview
+                    </h1>
+
+                    <p id="page-subtitle">
+                        Monitor your orders, revenue and business performance.
+                    </p>
 
                 </div>
 
-                <small>
-                    © 2026 Royal Chicken
-                </small>
-            <button
-    type="button"
-    class="admin-logout-btn"
-    onclick="adminLogout()"
->
-    🚪 Logout
-</button>
             </div>
 
-        </aside>
+
+            <div class="top-header-right">
 
 
-       <div class="top-header-right">
-
-    <div
-        id="current-date"
-        class="current-date"
-    >
-        --
-    </div>
-
-
-    <!-- REFRESH -->
-
-    <button
-        type="button"
-        class="refresh-btn"
-        onclick="window.location.reload()"
-        title="Refresh Admin Panel"
-    >
-        ↻
-    </button>
-
-
-    <!-- NOTIFICATIONS -->
-
-    <button
-        type="button"
-        class="notification-btn"
-        onclick="showSection('orders', document.querySelector('.menu-item:nth-of-type(2)'))"
-        title="View Orders"
-    >
-
-        <span class="notification-icon">
-            🔔
-        </span>
-
-        <span
-            id="notification-count"
-            class="notification-count"
-        >
-            0
-        </span>
-
-    </button>
-
-
-    <!-- SETTINGS -->
-
-    <button
-        type="button"
-        class="admin-settings-btn"
-        onclick="toggleAdminSettings()"
-        title="Settings"
-        aria-label="Settings"
-    >
-        ⚙️
-    </button>
-
-
-    <!-- SETTINGS PANEL -->
-
-    <div
-        id="admin-settings-panel"
-        class="admin-settings-panel"
-    >
-
-        <div class="settings-panel-header">
-
-            <div class="settings-header-icon">
-                ⚙️
-            </div>
-
-            <div>
-                <h3>
-                    Settings
-                </h3>
-
-                <p>
-                    Manage your preferences
-                </p>
-            </div>
-
-        </div>
-
-
-        <!-- ORDER SOUND -->
-
-        <div class="settings-item">
-
-            <div class="settings-item-icon">
-                🔊
-            </div>
-
-            <div class="settings-item-info">
-
-                <strong>
-                    Order Sound
-                </strong>
-
-                <span>
-                    Play sound for new orders
-                </span>
-
-            </div>
-
-            <button
-                type="button"
-                class="settings-action-btn"
-                onclick="enableOrderAlerts()"
-            >
-                ON
-            </button>
-
-        </div>
-
-
-        <!-- SHOP STATUS -->
-
-        <div class="settings-item">
-
-            <div class="settings-item-icon">
-                🏪
-            </div>
-
-            <div class="settings-item-info">
-
-                <strong>
-                    Shop Status
-                </strong>
-
-                <span
-                    id="mobile-shop-settings-text"
+                <div
+                    id="current-date"
+                    class="current-date"
                 >
-                    Currently Open
-                </span>
+                    --
+                </div>
+
+
+                <!-- REFRESH -->
+
+                <button
+                    type="button"
+                    class="refresh-btn"
+                    onclick="window.location.reload()"
+                    title="Refresh Admin Panel"
+                    aria-label="Refresh Admin Panel"
+                >
+                    ↻
+                </button>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <button
+                    type="button"
+                    class="notification-btn"
+                    onclick="showSection('orders', document.querySelectorAll('.menu-item')[1])"
+                    title="View Orders"
+                    aria-label="View Orders"
+                >
+
+                    <span class="notification-icon">
+                        🔔
+                    </span>
+
+                    <span
+                        id="notification-count"
+                        class="notification-count"
+                    >
+                        0
+                    </span>
+
+                </button>
+
+
+                <!-- SETTINGS -->
+
+                <button
+                    type="button"
+                    class="admin-settings-btn"
+                    onclick="toggleAdminSettings()"
+                    title="Settings"
+                    aria-label="Settings"
+                >
+                    ⚙️
+                </button>
+
+
+                <!-- SETTINGS PANEL -->
+
+                <div
+                    id="admin-settings-panel"
+                    class="admin-settings-panel"
+                >
+
+                    <div class="settings-panel-header">
+
+                        <div class="settings-header-icon">
+                            ⚙️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Settings
+                            </h3>
+
+                            <p>
+                                Manage your preferences
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ORDER SOUND -->
+
+                    <div class="settings-item">
+
+                        <div class="settings-item-icon">
+                            🔊
+                        </div>
+
+                        <div class="settings-item-info">
+
+                            <strong>
+                                Order Sound
+                            </strong>
+
+                            <span>
+                                Play sound for new orders
+                            </span>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="settings-action-btn"
+                            onclick="enableOrderAlerts()"
+                        >
+                            ON
+                        </button>
+
+                    </div>
+
+
+                    <!-- SHOP STATUS -->
+
+                    <div class="settings-item">
+
+                        <div class="settings-item-icon">
+                            🏪
+                        </div>
+
+                        <div class="settings-item-info">
+
+                            <strong>
+                                Shop Status
+                            </strong>
+
+                            <span id="mobile-shop-settings-text">
+                                Currently Open
+                            </span>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="settings-shop-btn mobile-shop-btn"
+                            onclick="toggleShopStatus()"
+                            id="mobile-shop-status-btn"
+                        >
+                            🟢 <span>Open</span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- LOGOUT -->
+
+                    <div class="settings-item settings-logout-item">
+
+                        <div class="settings-item-icon">
+                            ⇥
+                        </div>
+
+                        <div class="settings-item-info">
+
+                            <strong>
+                                Logout
+                            </strong>
+
+                            <span>
+                                Sign out from admin panel
+                            </span>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="settings-logout-btn mobile-logout-btn"
+                            onclick="adminLogout()"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
-            <button
-                type="button"
-                class="settings-shop-btn mobile-shop-btn"
-                onclick="toggleShopStatus()"
-                id="mobile-shop-status-btn"
-            >
-                🟢 <span>Open</span>
-            </button>
 
-        </div>
-
-
-        <!-- LOGOUT -->
-
-        <div class="settings-item settings-logout-item">
-
-            <div class="settings-item-icon">
-                ⇥
-            </div>
-
-            <div class="settings-item-info">
-
-                <strong>
-                    Logout
-                </strong>
-
-                <span>
-                    Sign out from admin panel
-                </span>
-
-            </div>
-
-            <button
-                type="button"
-                class="settings-logout-btn mobile-logout-btn"
-                onclick="adminLogout()"
-            >
-                →
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+        </header>
             <!-- =================================================
                  PAGE SECTIONS
             ================================================== -->
