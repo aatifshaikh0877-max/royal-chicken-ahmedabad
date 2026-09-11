@@ -5104,4 +5104,15 @@ onAuthStateChanged(auth, function(user) {
 
     }
 
-});
+});window.toggleAdminSettings = function () {
+
+    const panel =
+        document.getElementById(
+            "admin-settings-panel"
+        );
+
+    if (!panel) return;
+
+    panel.classList.toggle("active");
+
+};
