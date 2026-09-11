@@ -48,15 +48,37 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 window.adminLogout = async function () {
-    const confirmLogout = confirm("Kya aap logout karna chahte hain?");
+
+    const confirmLogout =
+        confirm("Kya aap logout karna chahte hain?");
 
     if (!confirmLogout) return;
 
     try {
+
+        // Settings panel close karo
+        const settingsPanel =
+            document.getElementById(
+                "admin-settings-panel"
+            );
+
+        if (settingsPanel) {
+            settingsPanel.classList.remove("active");
+        }
+
+        // Firebase logout
         await signOut(auth);
+
     } catch (error) {
-        console.error("Logout error:", error);
-        alert("Logout nahi ho paya. Please dobara try karein.");
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        alert(
+            "Logout nahi ho paya. Please dobara try karein."
+        );
     }
 };
 
