@@ -14,6 +14,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
+    getAuth,
+    RecaptchaVerifier,
+    signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
     getFirestore,
     collection,
     addDoc,
@@ -39,7 +45,7 @@ import {
 
 const firebaseConfig = {
 
-    apiKey:
+    apiKey: 
         "AIzaSyB8sETr78mZtqlL__3DMz96AYffpSQaFqM",
 
     authDomain:
@@ -62,15 +68,47 @@ const firebaseConfig = {
 };
 
 
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
 const app =
     initializeApp(firebaseConfig);
 
+
+/* =====================================================
+   FIRESTORE
+===================================================== */
 
 const db =
     getFirestore(app);
 
 
-let messaging = null;
+/* =====================================================
+   FIREBASE AUTHENTICATION
+===================================================== */
+
+const auth =
+    getAuth(app);
+
+
+/* =====================================================
+   PHONE OTP / RECAPTCHA
+===================================================== */
+
+let recaptchaVerifier =
+    null;
+
+let confirmationResult =
+    null;
+
+
+/* =====================================================
+   FIREBASE MESSAGING
+===================================================== */
+
+let messaging =
+    null;
 
 
 try {
@@ -87,10 +125,12 @@ try {
 }
 
 
+/* =====================================================
+   FCM VAPID KEY
+===================================================== */
+
 const VAPID_KEY =
     "BNlMSym2ILeQdfEo2R4pOM9BGqgzEZlOBo0ZQ1zuxqkH9IbjoN6Qiy5Q6hXtUcUiV_zvHcxG72fcPLHHmDgDIn8";
-
-
 /* =====================================================
    CUSTOMER NOTIFICATIONS
 ===================================================== */
@@ -1249,7 +1289,25 @@ async function placeOrder(event) {
             cleanPhone
         );
 
+        /* CUSTOMER AUTHENTICATION */
 
+if (!auth.currentUser) {
+
+    const verified =
+        await verifyCustomerPhone(
+            cleanPhone
+        );
+
+    if (!verified) {
+
+        restoreOrderButton(
+            submitButton
+        );
+
+        return;
+    }
+
+}
         /* PAYMENT */
 
         const paymentSelected =
@@ -1354,42 +1412,57 @@ async function placeOrder(event) {
                 .toString()
                 .slice(-6);
 
+/* NOTIFICATION TOKEN */
 
-        /* NOTIFICATION TOKEN */
+let notificationToken =
+    localStorage.getItem(
+        "royalChickenFCMToken"
+    ) || null;
 
-        let notificationToken =
-            null;
 
+/*
+   FCM notification token should never
+   block the customer order.
+*/
 
-        try {
+getRoyalChickenFCMToken()
+    .then(function(token) {
 
-            notificationToken =
-                await getRoyalChickenFCMToken();
-
-        } catch (notificationError) {
+        if (token) {
 
             console.log(
-                "Notification token skipped:",
-                notificationError
+                "FCM token ready."
             );
 
-            notificationToken =
-                null;
         }
 
+    })
+    .catch(function(notificationError) {
+
+        console.log(
+            "Notification token skipped:",
+            notificationError
+        );
+
+    });
 
         /* FIREBASE ORDER DATA */
 
-        const orderData = {
+       const orderData = {
 
-            orderNumber:
-                orderNumber,
+    orderNumber:
+        orderNumber,
 
-            customerName:
-                name,
+    customerUid:
+        auth.currentUser
+            ? auth.currentUser.uid
+            : null,
 
-            phone:
-                cleanPhone,
+    customerName:
+        name,
+
+    phone:
+        cleanPhone,
 
             address:
                 address,
@@ -1936,7 +2009,142 @@ function hideUPI() {
             "none";
     }
 }
+/* =====================================================
+   CUSTOMER PHONE OTP VERIFICATION
+===================================================== */
 
+async function verifyCustomerPhone(phone) {
+
+    try {
+
+        /* CREATE RECAPTCHA */
+
+        if (!recaptchaVerifier) {
+
+            recaptchaVerifier =
+                new RecaptchaVerifier(
+                    auth,
+                    "recaptcha-container",
+                    {
+                        size: "invisible",
+
+                        callback:
+                            function() {
+
+                                console.log(
+                                    "reCAPTCHA verified."
+                                );
+
+                            }
+                    }
+                );
+        }
+
+
+        /* SEND OTP */
+
+        confirmationResult =
+            await signInWithPhoneNumber(
+                auth,
+                "+91" + phone,
+                recaptchaVerifier
+            );
+
+
+        /* ASK OTP */
+
+        const otp =
+            prompt(
+                "Enter the 6 digit OTP sent to your mobile number:"
+            );
+
+
+        if (!otp) {
+
+            return false;
+        }
+
+
+        const cleanOTP =
+            otp.replace(
+                /\D/g,
+                ""
+            );
+
+
+        if (
+            cleanOTP.length !== 6
+        ) {
+
+            alert(
+                "Please enter a valid 6 digit OTP."
+            );
+
+            return false;
+        }
+
+
+        /* VERIFY OTP */
+
+        await confirmationResult.confirm(
+            cleanOTP
+        );
+
+
+        console.log(
+            "Customer phone verified successfully."
+        );
+
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            "PHONE OTP ERROR:",
+            error
+        );
+
+
+        if (recaptchaVerifier) {
+
+            try {
+
+                recaptchaVerifier.clear();
+
+            } catch (recaptchaError) {
+
+                console.error(
+                    "RECAPTCHA CLEAR ERROR:",
+                    recaptchaError
+                );
+
+            }
+
+            recaptchaVerifier =
+                null;
+        }
+
+
+        confirmationResult =
+            null;
+
+
+       alert(
+    "Phone verification failed.\n\n" +
+    "Code: " +
+    (error?.code || "unknown") +
+    "\n\n" +
+    "Message: " +
+    (error?.message || "Unknown error")
+);
+
+
+        return false;
+    }
+
+}
 
 /* =====================================================
    MY ORDERS
@@ -2091,29 +2299,87 @@ async function openMyOrders() {
     }
 
 
-    /* GET ORDERS */
+ /* GET ORDERS */
 
-    try {
+try {
 
-        const ordersQuery =
-            query(
-                collection(
-                    db,
-                    "orders"
-                ),
-                where(
-                    "phone",
-                    "==",
-                    phone
-                )
+    /* CUSTOMER MUST BE AUTHENTICATED */
+
+    if (!auth.currentUser) {
+
+        const verified =
+            await verifyCustomerPhone(
+                phone
             );
 
 
-        const snapshot =
-            await getDocs(
-                ordersQuery
-            );
+        if (!verified) {
 
+            content.innerHTML = `
+
+                <div class="no-orders">
+
+                    <div class="no-orders-icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        Verification Required
+                    </h3>
+
+                    <p>
+                        Please verify your phone number
+                        to view your orders.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+    }
+
+
+    /* GET CUSTOMER UID */
+
+    const customerUid =
+        auth.currentUser?.uid;
+
+
+    if (!customerUid) {
+
+        throw new Error(
+            "Customer authentication UID not found."
+        );
+
+    }
+
+
+    /* GET ONLY THIS CUSTOMER'S ORDERS */
+
+    const ordersQuery =
+        query(
+
+            collection(
+                db,
+                "orders"
+            ),
+
+            where(
+                "customerUid",
+                "==",
+                customerUid
+            )
+
+        );
+
+
+    const snapshot =
+        await getDocs(
+            ordersQuery
+        );
 
         /* NO ORDERS */
 
