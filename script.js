@@ -2017,29 +2017,63 @@ async function verifyCustomerPhone(phone) {
 
     try {
 
-        /* CREATE RECAPTCHA */
+       /* CREATE / RESET RECAPTCHA */
 
-        if (!recaptchaVerifier) {
+const recaptchaContainer =
+    document.getElementById(
+        "recaptcha-container"
+    );
 
-            recaptchaVerifier =
-                new RecaptchaVerifier(
-                    auth,
-                    "recaptcha-container",
-                    {
-                        size: "invisible",
+if (!recaptchaContainer) {
+    throw new Error(
+        "reCAPTCHA container not found."
+    );
+}
 
-                        callback:
-                            function() {
 
-                                console.log(
-                                    "reCAPTCHA verified."
-                                );
+/* Clear old verifier */
 
-                            }
-                    }
-                );
+if (recaptchaVerifier) {
+
+    try {
+        recaptchaVerifier.clear();
+    } catch (error) {
+        console.log(
+            "Old reCAPTCHA clear skipped:",
+            error
+        );
+    }
+
+    recaptchaVerifier =
+        null;
+}
+
+
+/* Clear old rendered reCAPTCHA */
+
+recaptchaContainer.innerHTML =
+    "";
+
+
+/* Create fresh verifier */
+
+recaptchaVerifier =
+    new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+            size: "invisible",
+
+            callback:
+                function() {
+
+                    console.log(
+                        "reCAPTCHA verified."
+                    );
+
+                }
         }
-
+    );
 
         /* SEND OTP */
 
