@@ -1550,11 +1550,11 @@ function updateDashboard() {
         );
 
 
-    const pending =
-        allOrders.filter(order =>
-            (order.status || "Pending") ===
-            "Pending"
-        ).length;
+    const pendingCount =
+    getActiveOrders().filter(order =>
+        (order.status || "Pending") ===
+        "Pending"
+    ).length;
 
 
     setText(
