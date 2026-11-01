@@ -1387,90 +1387,66 @@ window.changeOrderStatus = async function(
     }
 
 };
-
 /* =========================================================
    DELETE ORDER - MOVE TO RECYCLE BIN
 ========================================================= */
 
 window.deleteOrder = async function(orderId) {
 
-    const order =
-        allOrders.find(
-            item => item.id === orderId
-        );
+    const order = allOrders.find(
+        item => item.id === orderId
+    );
 
     if (!order) return;
 
+    if (order.deleted === true) return;
 
-    const confirmDelete =
-        confirm(
-            `Move order ${
-                order.orderNumber || ""
-            } to Recycle Bin?`
-        );
-
+    const confirmDelete = confirm(
+        `Move order ${order.orderNumber || ""} to Recycle Bin?`
+    );
 
     if (!confirmDelete) return;
 
-
     try {
+
+        const deletedAt = new Date().toISOString();
 
         await updateDoc(
             doc(db, "orders", orderId),
             {
                 deleted: true,
-                deletedAt: new Date().toISOString()
+                deletedAt: deletedAt
             }
         );
 
+        allOrders = allOrders.map(item => {
 
-        /* Update local data */
+            if (item.id === orderId) {
+                return {
+                    ...item,
+                    deleted: true,
+                    deletedAt: deletedAt
+                };
+            }
 
-        allOrders =
-            allOrders.map(item => {
+            return item;
 
-                if (item.id === orderId) {
-
-                    return {
-                        ...item,
-                        deleted: true,
-                        deletedAt:
-                            new Date().toISOString()
-                    };
-
-                }
-
-                return item;
-
-            });
-
-
-        /* Refresh screens */
+        });
 
         renderOrders(allOrders);
-
-        updateDashboard();
-
         renderInvoices(allOrders);
-
+        updateDashboard();
         calculateSales();
-
         calculateAccounting();
+        updatePendingCount();
 
-        loadInvoiceRecycleBin();
+        await loadInvoiceRecycleBin();
 
-
-        alert(
-            "Order moved to Recycle Bin."
-        );
-
+        alert("Order successfully moved to Recycle Bin.");
 
     } catch (error) {
 
-        console.error(
-            "Recycle Bin error:",
-            error
-        );
+        console.error("Recycle Bin Error:", error);
 
         alert(
             "Order Recycle Bin me move nahi hua.\n\n" +
@@ -1571,7 +1547,7 @@ function updateDashboard() {
 
     setText(
         "dashboard-pending",
-        pending
+        pendingCount
     );
 
 
@@ -2741,9 +2717,13 @@ window.openInvoice = function(orderId) {
                     <div class="rc-brand-text">
 
 
-    <p>
-        Fresh Chicken • Quality • Hygiene
-    </p>
+   <p>
+    Fresh Chicken • Quality • Hygiene
+</p>
+
+<p style="font-size: 10px; margin-top: 5px; color: #777;">
+    FSSAI Lic. No.: 20726055000573
+</p>
 
 </div>
 
@@ -2965,7 +2945,7 @@ window.openInvoice = function(orderId) {
             class="invoice-whatsapp-btn"
             onclick="sendInvoiceWhatsApp('${order.id}')"
         >
-            Invoice PDF WhatsApp
+            Invoice PDF
         </button>
     </div>
 </div>
