@@ -5118,3 +5118,26 @@ onAuthStateChanged(auth, function(user) {
     panel.classList.toggle("active");
 
 };
+// Settings ke bahar click karne par panel close
+document.addEventListener("click", function(event) {
+
+    const panel = document.getElementById(
+        "admin-settings-panel"
+    );
+
+    const settingsButton = document.querySelector(
+        '[onclick="toggleAdminSettings()"]'
+    );
+
+    if (!panel || !panel.classList.contains("active")) {
+        return;
+    }
+
+    if (
+        !panel.contains(event.target) &&
+        !settingsButton?.contains(event.target)
+    ) {
+        panel.classList.remove("active");
+    }
+
+});
